@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaxiMoto Paris — Moto-Taxi Rapide & Fiable à Paris | Devis Instantané</title>
+  <meta name="description" content="Moto-taxi à Paris et Île-de-France. Trajets rapides, ponctualité garantie, disponible 24h/24. Calculez votre tarif en ligne. CDG, Orly, gares, hôpitaux.">
+  <meta name="keywords" content="moto taxi paris, taxi moto paris, moto taxi ile de france, moto taxi aeroport paris, vtc moto paris, moto taxi cdg, moto taxi orly">
+  <meta name="author" content="TaxiMoto Paris">
+  <meta property="og:title" content="TaxiMoto Paris — Moto-Taxi Rapide à Paris">
+  <meta property="og:description" content="Service de moto-taxi professionnel à Paris. Réservation rapide, tarifs transparents, chauffeur certifié.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://taximoto-paris.fr/">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TaxiMoto Paris",
+    "description": "Service de moto-taxi professionnel à Paris et Île-de-France",
+    "telephone": "+33611916560",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Paris",
+      "addressCountry": "FR"
+    },
+    "areaServed": "Paris",
+    "priceRange": "€€",
+    "openingHours": "Mo-Su 00:00-24:00"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <a href="#" class="navbar-brand">
+        <div class="logo-icon">🏍️</div>
+        Paris<span style="color:var(--accent)">TaxiMoto</span>
+      </a>
+
+      <ul class="navbar-nav">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#calculateur">Calculateur</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#zones">Zones</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="tel:+33611916560" class="navbar-cta">📞 Réserver</a></li>
+      </ul>
+
+      <button class="navbar-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="accueil">
+    <div class="hero-bg" role="img" aria-label="Vue aérienne de Paris"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container" style="display:flex;flex-direction:column;">
+      <div class="hero-content">
+        <div class="hero-badge">
+          🏍️ Service disponible 24h/24 — 7j/7
+        </div>
+        <h1>
+          Votre Moto-Taxi<br>
+          <span>Rapide à Paris</span>
+        </h1>
+        <p>
+          Traversez Paris en un temps record. Chauffeur professionnel, ponctualité garantie,
+          tarifs clairs. Aéroports, gares, événements — nous vous emmenons partout en Île-de-France.
+        </p>
+        <div class="hero-actions">
+          <a href="#calculateur" class="btn btn-primary">🔍 Calculer mon trajet</a>
+          <a href="tel:+33611916560" class="btn btn-outline">📞 Appeler maintenant</a>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-number" data-target="5000" data-suffix="+">0+</div>
+          <div class="stat-label">Trajets réalisés</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number" data-target="98" data-suffix="%">0%</div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number" data-target="24" data-suffix="h/7">0h/7</div>
+          <div class="stat-label">Disponibilité</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">Défiler</div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING STRIP
+  ============================================================ -->
+  <div class="booking-strip">
+    <div class="container">
+      <div class="booking-strip-info">
+        <h3>Réservation immédiate</h3>
+        <p>Disponible maintenant dans Paris et grande couronne</p>
+      </div>
+      <div class="booking-strip-contact">
+        <a href="tel:+33611916560" class="booking-strip-phone">
+          <div class="phone-icon">📞</div>
+          06 11 91 65 60
+        </a>
+        <a href="#calculateur" class="btn btn-primary" style="white-space:nowrap">
+          Estimer mon tarif →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos Prestations</span>
+        <h2>Des services pensés pour votre mobilité</h2>
+        <p>De l'aéroport au bureau, de la gare au domicile — nous gérons chaque trajet avec professionnalisme.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">✈️</div>
+          <h3>Transferts Aéroports</h3>
+          <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
+          <ul class="service-features">
+            <li>Charles de Gaulle (CDG)</li>
+            <li>Orly (ORY)</li>
+            <li>Suivi de vol automatique</li>
+            <li>Prise en charge bagage de cabine</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🚉</div>
+          <h3>Transferts Gares</h3>
+          <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
+          <ul class="service-features">
+            <li>Toutes gares parisiennes</li>
+            <li>Correspondance TGV/Eurostar</li>
+            <li>Confirmation par SMS</li>
+            <li>Chauffeur identifié</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Trajets Professionnels</h3>
+          <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
+          <ul class="service-features">
+            <li>Facturation entreprise</li>
+            <li>Réservation à l'avance</li>
+            <li>Ponctualité certifiée</li>
+            <li>Discrétion assurée</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>Mise à Disposition</h3>
+          <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
+          <ul class="service-features">
+            <li>À la demi-journée ou journée</li>
+            <li>Plusieurs arrêts inclus</li>
+            <li>Tarif horaire négocié</li>
+            <li>Facturation entreprise</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Mise à Dispo — Événements</h3>
+          <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
+          <ul class="service-features">
+            <li>Mariages & cérémonies</li>
+            <li>Soirées & événements privés</li>
+            <li>Shooting photo / tournage</li>
+            <li>Arrivée ou départ en moto</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🌙</div>
+          <h3>Service Nuit & Weekend</h3>
+          <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
+          <ul class="service-features">
+            <li>Disponible de 20h à 7h</li>
+            <li>Samedis et dimanches</li>
+            <li>Jours fériés</li>
+            <li>Réservation en ligne</li>
+          </ul>
+        </article>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CALCULATEUR DE PRIX
+  ============================================================ -->
+  <section class="section calculator" id="calculateur">
+    <div class="container">
+      <div class="calculator-wrapper">
+        <!-- Left: info & tariff grid -->
+        <div class="calculator-info">
+          <span class="badge" style="background:rgba(233,69,96,0.2);color:#ff8fa3;">Tarification</span>
+          <h2>Nos tarifs en toute transparence</h2>
+          <p>
+            Nos prix sont calculés selon les tarifs préfectoraux. Pas de surprise,
+            pas de frais cachés — le montant estimé correspond au montant réel.
+          </p>
+
+          <div class="pricing-table" style="margin-bottom:28px;">
+            <div class="pricing-row">
+              <span class="label">Prise en charge</span>
+              <span class="value">3,50 €</span>
+            </div>
+            <div class="pricing-row">
+              <span class="label">Tarif jour (7h–20h)</span>
+              <span class="value">1,80 € / km</span>
+            </div>
+            <div class="pricing-row">
+              <span class="label">Tarif nuit (20h–7h)</span>
+              <span class="value">2,40 € / km</span>
+            </div>
+            <div class="pricing-row highlight">
+              <span class="label">Tarif minimum</span>
+              <span class="value">8,00 €</span>
+            </div>
+          </div>
+
+          <p style="color:rgba(255,255,255,0.55);font-size:0.85rem;">
+            Tarifs week-end et jours fériés : tarif nuit appliqué toute la journée.
+          </p>
+        </div>
+
+        <!-- Right: calculator form -->
+        <div class="calculator-form">
+          <h3>Estimez votre trajet</h3>
+          <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
+
+          <div class="form-group">
+            <label for="origin">📍 Adresse de départ</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔵</span>
+              <input
+                type="text"
+                id="origin"
+                placeholder="Ex: 1 Rue de Rivoli, Paris"
+                autocomplete="off"
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="destination">🏁 Adresse de destination</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔴</span>
+              <input
+                type="text"
+                id="destination"
+                placeholder="Ex: Aéroport CDG, Terminal 2"
+                autocomplete="off"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trip-date">📅 Date</label>
+              <div class="input-wrapper">
+                <span class="input-icon">📅</span>
+                <input type="date" id="trip-date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trip-time">⏰ Heure</label>
+              <div class="input-wrapper">
+                <span class="input-icon">⏰</span>
+                <input type="time" id="trip-time">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="calculate-btn" onclick="triggerCalculate()">
+            🔍 Calculer le prix
+          </button>
+
+          <!-- Results -->
+          <div class="estimate-result" id="estimate-result">
+            <div class="estimate-grid">
+              <div class="estimate-item">
+                <div class="est-value" id="est-distance">—</div>
+                <div class="est-label">Distance</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-duration">—</div>
+                <div class="est-label">Durée estimée</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-rate">—</div>
+                <div class="est-label">Tarif appliqué</div>
+              </div>
+            </div>
+
+            <div class="estimate-price">
+              <div class="price-amount" id="est-price">—</div>
+              <div class="price-note" id="est-period">Estimation indicative</div>
+            </div>
+
+            <div id="map-preview"></div>
+
+            <p class="estimate-disclaimer">
+              Prix estimatif. Le tarif final peut varier selon la circulation et l'heure exacte du trajet.
+            </p>
+
+            <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+              <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
+                📞 Appeler
+              </a>
+              <a href="https://wa.me/33611916560" id="whatsapp-cta" target="_blank" rel="noopener" class="btn btn-gold" style="flex:1;justify-content:center;min-width:140px;">
+                💬 WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TARIFS
+  ============================================================ -->
+  <section class="section" id="tarifs">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos Formules</span>
+        <h2>Choisissez votre formule</h2>
+        <p>Des tarifs adaptés à chaque besoin, de la course ponctuelle au compte mensuel.</p>
+      </div>
+
+      <div class="tarifs-grid">
+        <div class="tarif-card">
+          <h3>Course Standard</h3>
+          <p class="tarif-desc">Pour vos déplacements ponctuels dans Paris</p>
+          <div class="tarif-price">
+            <span class="currency">à partir de </span>
+            <span class="amount">8</span><span class="currency">€</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Prise en charge immédiate</li>
+            <li><span class="check">✓</span> Tarif kilométrique transparent</li>
+            <li><span class="check">✓</span> Paris intramuros & banlieue</li>
+            <li><span class="check">✓</span> Paiement CB ou espèces</li>
+          </ul>
+          <a href="tel:+33611916560" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">
+            Réserver
+          </a>
+        </div>
+
+        <div class="tarif-card featured">
+          <div class="tarif-badge">⭐ Le plus populaire</div>
+          <h3>Transfert Aéroport</h3>
+          <p class="tarif-desc">CDG, Orly — avec suivi de vol inclus</p>
+          <div class="tarif-price">
+            <span class="currency">à partir de </span>
+            <span class="amount">45</span><span class="currency">€</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Suivi de vol en temps réel</li>
+            <li><span class="check">✓</span> Attente gratuite 30 min</li>
+            <li><span class="check">✓</span> CDG & Orly inclus</li>
+            <li><span class="check">✓</span> Confirmation par SMS</li>
+            <li><span class="check">✓</span> Facturation disponible</li>
+          </ul>
+          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Réserver
+          </a>
+        </div>
+
+        <div class="tarif-card">
+          <h3>Compte Entreprise</h3>
+          <p class="tarif-desc">Pour les professionnels avec besoins récurrents</p>
+          <div class="tarif-price">
+            <span class="currency">Sur </span>
+            <span class="amount" style="font-size:2rem">devis</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Facturation mensuelle</li>
+            <li><span class="check">✓</span> Tarifs négociés</li>
+            <li><span class="check">✓</span> Priorité de réservation</li>
+            <li><span class="check">✓</span> Compte dédié</li>
+            <li><span class="check">✓</span> Reporting mensuel</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">
+            Nous contacter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ZONES D'INTERVENTION
+  ============================================================ -->
+  <section class="section zones" id="zones">
+    <div class="container">
+      <div class="zones-grid">
+        <div>
+          <span class="badge">Couverture</span>
+          <h2>Zones d'intervention</h2>
+          <p style="color:var(--text-muted);margin-bottom:8px;">
+            Basé à Paris, nous intervenons dans toute l'Île-de-France.
+          </p>
+
+          <div class="zones-list">
+            <div class="zone-tag">Paris (75)</div>
+            <div class="zone-tag">Hauts-de-Seine (92)</div>
+            <div class="zone-tag">Seine-Saint-Denis (93)</div>
+            <div class="zone-tag">Val-de-Marne (94)</div>
+            <div class="zone-tag">CDG — Terminal 1,2,3</div>
+            <div class="zone-tag">Orly — Terminal 1,2,3,4</div>
+            <div class="zone-tag">La Défense</div>
+            <div class="zone-tag">Versailles</div>
+            <div class="zone-tag">Disneyland Paris</div>
+            <div class="zone-tag">Le Bourget</div>
+          </div>
+
+          <p style="color:var(--text-muted);font-size:0.88rem;margin-top:20px;">
+            Trajet hors zone ? Contactez-nous, nous étudions toutes les demandes.
+          </p>
+        </div>
+
+        <div class="zones-map" id="zones-map" aria-label="Carte des zones d'intervention">
+          <p>🗺️ Carte interactive chargée avec Google Maps</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POURQUOI NOUS
+  ============================================================ -->
+  <section class="section" id="pourquoi">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos engagements</span>
+        <h2>Pourquoi choisir TaxiMoto Paris ?</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-item">
+          <span class="why-icon">⚡</span>
+          <h3>Ultra-rapide</h3>
+          <p>La moto passe partout. Embouteillages, rues étroites — nous arrivons quand les voitures restent bloquées.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🎓</span>
+          <h3>Chauffeur certifié</h3>
+          <p>Carte professionnelle VMDTR, permis A, formation premiers secours. Vous êtes en sécurité.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">📱</span>
+          <h3>Suivi en temps réel</h3>
+          <p>SMS de confirmation, position en direct, notification d'arrivée — vous savez où nous sommes.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">💳</span>
+          <h3>Paiement flexible</h3>
+          <p>CB, espèces, virement, compte entreprise. Facture disponible sur demande.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🌟</span>
+          <h3>Équipement fourni</h3>
+          <p>Casque homologué, gilet, intercom bluetooth. Votre sécurité et confort sont notre priorité.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🕒</span>
+          <h3>Ponctualité garantie</h3>
+          <p>Retard de plus de 10 min ? Nous vous offrons une remise sur votre prochaine course.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TÉMOIGNAGES
+  ============================================================ -->
+  <section class="section testimonials" id="avis">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Avis clients</span>
+        <h2>Ce que disent nos passagers</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Pris en charge en 5 minutes, arrivé à CDG avec 20 minutes d'avance.
+            Chauffeur professionnel, équipement nickel. Je recommande à 100% !"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marc D.</div>
+              <div class="testimonial-role">Cadre commercial</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Trajet Gare du Nord → bureau en 8 minutes un lundi matin.
+            En taxi classique ça m'aurait pris 40 min. Bluffant."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div class="testimonial-name">Sophie L.</div>
+              <div class="testimonial-role">Avocate, Paris 8e</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Urgence médicale, besoin d'être à l'hôpital Lariboisière rapidement.
+            Chauffeur calme, rassurant, arrivée en 6 minutes. Merci !"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <div class="testimonial-name">Ahmed B.</div>
+              <div class="testimonial-role">Particulier, Paris 19e</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQ</span>
+        <h2>Questions fréquentes</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">
+            Comment réserver un moto-taxi à Paris ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Réservez par téléphone au 06 11 91 65 60, 24h/24. Vous pouvez également estimer votre tarif en ligne via notre calculateur, puis appeler pour confirmer. Nous confirmons la prise en charge par SMS.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Quelle est la différence entre un moto-taxi et un VTC ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Un moto-taxi (VMDTR) est un véhicule à deux roues motorisé avec chauffeur professionnel. Il est jusqu'à 3x plus rapide qu'un VTC en heure de pointe car il peut circuler entre les files et accéder à plus d'espaces de Paris. Idéal pour les trajets urgents.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Est-ce que le moto-taxi est sûr ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Oui. Notre chauffeur est certifié VMDTR, détient une carte professionnelle délivrée par la préfecture, et respecte le code de la route. Casque homologué fourni, assurance passager incluse. Votre sécurité est notre priorité absolue.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Peut-on transporter des bagages en moto-taxi ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Oui, nous acceptons un bagage de cabine (type sac à dos ou trolley cabine jusqu'à 10 kg) dans le top-case. Pour les bagages volumineux, nous vous conseillons un VTC ou de contacter directement pour trouver la meilleure solution.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Comment est calculé le prix d'un trajet ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Le tarif comprend une prise en charge (3,50€) + tarif kilométrique (1,80€/km le jour, 2,40€/km la nuit) + temps de trajet (0,45€/min). Des suppléments s'appliquent pour les aéroports (+7€). Tarif minimum : 8€. Utilisez notre calculateur pour une estimation précise.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Proposez-vous la facturation pour les entreprises ?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolument. Nous proposons des comptes entreprises avec facturation mensuelle, tarifs négociés selon le volume, et reporting détaillé. Contactez-nous pour établir un devis personnalisé.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <span class="badge" style="background:rgba(233,69,96,0.2);color:#ff8fa3;">Contactez-nous</span>
+          <h2>Parlons de votre trajet</h2>
+          <p>Une question, une réservation ou un devis entreprise ? Nous répondons en moins de 5 minutes pendant nos heures d'activité.</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-content">
+                <h4>Téléphone</h4>
+                <p><a href="tel:+33611916560">06 11 91 65 60</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Disponible 24h/24 — 7j/7</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div class="contact-item-content">
+                <h4>Email</h4>
+                <p><a href="mailto:contact@taximoto-paris.fr">contact@taximoto-paris.fr</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Réponse sous 2h en journée</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-content">
+                <h4>Zone d'intervention</h4>
+                <p>Paris & Île-de-France</p>
+                <p style="font-size:0.82rem;margin-top:2px;">CDG, Orly, grande couronne</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">💬</div>
+              <div class="contact-item-content">
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/33600000000">Envoyer un message</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Réponse rapide garantie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h3 style="color:var(--primary);margin-bottom:8px;">Envoyer un message</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;">Pour devis entreprise, demande spéciale ou retour d'expérience.</p>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Prénom</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="contact-name" placeholder="Jean" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone">Téléphone</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">📱</span>
+                  <input type="tel" id="contact-phone" placeholder="06 11 91 65 60">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <div class="input-wrapper">
+                <span class="input-icon">📧</span>
+                <input type="email" id="contact-email" placeholder="jean@exemple.fr" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Objet</label>
+              <select id="contact-subject">
+                <option value="">Choisir un objet...</option>
+                <option value="reservation">Réservation</option>
+                <option value="devis">Devis entreprise</option>
+                <option value="info">Renseignement</option>
+                <option value="avis">Avis / retour</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" placeholder="Décrivez votre besoin..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Envoyer le message →
+            </button>
+
+            <div id="form-success" class="form-success">
+              ✓ Message envoyé ! Nous vous répondrons très bientôt.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-brand" style="font-size:1.2rem;">
+            <div class="logo-icon">🏍️</div>
+            Paris<span style="color:var(--accent)">TaxiMoto</span>
+          </div>
+          <p>
+            Service de moto-taxi professionnel à Paris et Île-de-France.
+            Disponible 24h/24, certifié VMDTR, assurance passager incluse.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Nos services</a></li>
+            <li><a href="#calculateur">Calculateur</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#zones">Zones</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="blog/index.html">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Transferts aéroport</a></li>
+            <li><a href="#services">Transferts gares</a></li>
+            <li><a href="#services">Trajets pro</a></li>
+            <li><a href="#services">Urgences médicales</a></li>
+            <li><a href="#services">Service nuit</a></li>
+            <li><a href="#services">Compte entreprise</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Restez informé</h4>
+          <p style="font-size:0.88rem;margin-bottom:14px;color:rgba(255,255,255,0.5);">Recevez nos conseils mobilité parisienne.</p>
+          <form id="newsletter-form">
+            <div class="footer-newsletter">
+              <input type="email" placeholder="Votre email..." required>
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:11px;">
+                S'abonner →
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 TaxiMoto Paris. Tous droits réservés.</p>
+        <ul class="footer-bottom-links">
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="politique-confidentialite.html">Confidentialité</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       FLOATING PHONE BUTTON
+  ============================================================ -->
+  <div class="floating-phone">
+    <div class="floating-tooltip">Appeler maintenant</div>
+    <a href="tel:+33611916560" class="floating-phone-btn" aria-label="Appeler TaxiMoto Paris">📞</a>
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script src="js/calculator.js"></script>
+  <script src="js/main.js"></script>
+
+  <!--
+    ================================================================
+    GOOGLE MAPS API — INSTRUCTIONS D'ACTIVATION
+    ================================================================
+    1. Rendez-vous sur https://console.cloud.google.com/
+    2. Créez un projet ou sélectionnez-en un existant
+    3. Activez les 3 APIs :
+       - Maps JavaScript API
+       - Places API
+       - Directions API
+    4. Créez une clé API (Credentials → Create Credentials → API Key)
+    5. Restreignez la clé à votre domaine (HTTP referrers)
+    6. Remplacez YOUR_GOOGLE_MAPS_API_KEY ci-dessous par votre clé
+    ================================================================
+  -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fO0GfoISLeBhzw9SI_5qB7unt1rMCwo&libraries=places&callback=initMapsCalculator"
+    async
+    defer
+  ></script>
+
+  <!-- Set date/time defaults -->
+  <script>
+    const now = new Date();
+    const dateInput = document.getElementById('trip-date');
+    const timeInput = document.getElementById('trip-time');
+    if (dateInput) {
+      dateInput.value = now.toISOString().split('T')[0];
+    }
+    if (timeInput) {
+      const h = String(now.getHours()).padStart(2,'0');
+      const m = String(now.getMinutes()).padStart(2,'0');
+      timeInput.value = `${h}:${m}`;
+    }
+  </script>
+</body>
+</html>
