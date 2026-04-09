@@ -317,13 +317,10 @@
     .floating-wa:hover { transform:scale(1.1); }
 
     /* Google Maps autocomplete */
-    .pac-container { border-radius:10px!important; box-shadow:var(--shadow-lg)!important; border:1px solid var(--border)!important; margin-top:4px!important; font-family:inherit!important; z-index:1100!important; }
+    .pac-container { border-radius:10px!important; box-shadow:var(--shadow-lg)!important; border:1px solid var(--border)!important; margin-top:4px!important; font-family:inherit!important; }
     .pac-item { padding:10px 14px!important; cursor:pointer!important; font-size:0.9rem!important; }
     .pac-item:hover { background:var(--light-bg)!important; }
     .pac-icon { display:none!important; }
-    /* New PlaceAutocompleteElement styles */
-    gmp-place-autocomplete { width:100%; display:block; }
-    .input-wrapper gmp-place-autocomplete { --gmp-font-size:0.95rem; }
 
     /* ============================================================
        RESPONSIVE
@@ -334,76 +331,21 @@
       .zones-grid { grid-template-columns:1fr; }
     }
     @media(max-width:768px) {
-      .section { padding:56px 0; }
-      .section-header { margin-bottom:36px; }
-
-      /* Navbar */
+      .section { padding:60px 0; }
       .navbar-nav { display:none; position:fixed; inset:0; background:rgba(26,26,46,0.98); flex-direction:column; justify-content:center; align-items:center; gap:8px; }
       .navbar-nav.open { display:flex; }
       .navbar-nav a { font-size:1.2rem; padding:12px 24px; }
       .navbar-toggle { display:flex; z-index:1001; }
-
-      /* Hero */
       .hero-actions { flex-direction:column; }
-      .hero-actions .btn { text-align:center; justify-content:center; width:100%; }
-      .hero-stats { gap:0; justify-content:space-between; flex-wrap:nowrap; }
-      .hero-stat { flex:1; min-width:0; padding:0 8px; }
-      .stat-number { font-size:1.6rem; }
-
-      /* Booking strip */
-      .booking-strip .container { flex-direction:column; align-items:stretch; gap:16px; }
-      .booking-strip-info { text-align:center; }
-      .booking-strip-contact { flex-direction:column; align-items:stretch; gap:10px; }
-      .booking-strip-phone { justify-content:center; }
-      .booking-strip-contact .btn { text-align:center; justify-content:center; width:100%; }
-
-      /* Calculator */
-      .form-row { grid-template-columns:1fr; }
-      .estimate-grid { grid-template-columns:1fr 1fr; gap:12px; }
-
-      /* Tarifs */
-      .tarifs-grid { grid-template-columns:1fr; }
-      .tarif-card.featured { transform:none; }
-
-      /* Services / Testimonials */
-      .services-grid { grid-template-columns:1fr; }
-      .testimonials-grid { grid-template-columns:1fr; }
-
-      /* Why */
-      .why-grid { grid-template-columns:1fr 1fr; gap:16px; }
-      .why-item { padding:20px 14px; }
-
-      /* Contact */
-      .contact-wrapper { grid-template-columns:1fr; gap:32px; }
-
-      /* Contact */
-      .contact-items { gap:12px; }
-      .contact-item { gap:12px; }
-
-      /* Footer */
+      .hero-actions .btn { text-align:center; justify-content:center; }
+      .contact-wrapper { grid-template-columns:1fr; gap:40px; }
       .footer-grid { grid-template-columns:1fr; }
-      .footer-bottom { flex-direction:column; text-align:center; gap:12px; padding-bottom:80px; }
-      .footer-bottom-links { justify-content:center; flex-wrap:wrap; gap:12px; padding-right:64px; }
-
-      /* Floating buttons — plus petits sur mobile */
-      .floating-phone { bottom:16px; right:16px; gap:8px; }
-      .floating-phone-btn { width:50px; height:50px; font-size:1.2rem; }
-      .floating-wa { width:44px; height:44px; font-size:1.1rem; }
-    }
-
-    @media(max-width:480px) {
-      .container { padding:0 16px; }
-      .section { padding:44px 0; }
-      h1 { font-size:2rem; }
-      h2 { font-size:1.5rem; }
-      .hero-stat { padding:0 4px; }
-      .stat-number { font-size:1.4rem; }
-      .why-grid { grid-template-columns:1fr; }
+      .tarif-card.featured { transform:none; }
+      .form-row { grid-template-columns:1fr; }
       .estimate-grid { grid-template-columns:1fr; }
-      .calculator-form { padding:24px 16px; }
-      .contact-form-wrapper { padding:24px 16px; }
-      .tarif-card { padding:24px 16px; }
-      .footer-grid { gap:28px; }
+      .booking-strip .container { flex-direction:column; align-items:flex-start; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+      .hero-stats { gap:24px; }
     }
   </style>
 </head>
@@ -425,7 +367,6 @@
         <li><a href="#zones">Zones</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="blog/index.html">Blog</a></li>
         <li><a href="tel:+33611916560" class="navbar-cta">📞 Réserver</a></li>
       </ul>
       <button class="navbar-toggle" aria-label="Ouvrir le menu">
@@ -491,6 +432,94 @@
       </div>
     </div>
   </div>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos Prestations</span>
+        <h2>Des services pensés pour votre mobilité</h2>
+        <p>De l'aéroport au bureau, de la gare aux événements — nous gérons chaque trajet avec professionnalisme.</p>
+      </div>
+      <div class="services-grid">
+
+        <article class="service-card">
+          <div class="service-icon">✈️</div>
+          <h3>Transferts Aéroports</h3>
+          <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
+          <ul class="service-features">
+            <li>Charles de Gaulle (CDG)</li>
+            <li>Orly (ORY)</li>
+            <li>Suivi de vol automatique</li>
+            <li>Prise en charge bagage de cabine</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🚉</div>
+          <h3>Transferts Gares</h3>
+          <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
+          <ul class="service-features">
+            <li>Toutes gares parisiennes</li>
+            <li>Correspondance TGV / Eurostar</li>
+            <li>Confirmation par SMS</li>
+            <li>Chauffeur identifié</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Trajets Professionnels</h3>
+          <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
+          <ul class="service-features">
+            <li>Facturation entreprise</li>
+            <li>Réservation à l'avance</li>
+            <li>Ponctualité certifiée</li>
+            <li>Discrétion assurée</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>Mise à Disposition</h3>
+          <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
+          <ul class="service-features">
+            <li>À la demi-journée ou journée</li>
+            <li>Plusieurs arrêts inclus</li>
+            <li>Tarif horaire négocié</li>
+            <li>Facturation entreprise</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Mise à Dispo — Événements</h3>
+          <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
+          <ul class="service-features">
+            <li>Mariages & cérémonies</li>
+            <li>Soirées & événements privés</li>
+            <li>Shooting photo / tournage</li>
+            <li>Arrivée ou départ en moto</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🌙</div>
+          <h3>Service Nuit & Weekend</h3>
+          <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
+          <ul class="service-features">
+            <li>Disponible de 20h à 7h</li>
+            <li>Samedis et dimanches</li>
+            <li>Jours fériés</li>
+            <li>Réservation en ligne</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================================
        CALCULATEUR DE PRIX
@@ -596,94 +625,6 @@
             </div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       SERVICES
-  ============================================================ -->
-  <section class="section services" id="services">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge">Nos Prestations</span>
-        <h2>Des services pensés pour votre mobilité</h2>
-        <p>De l'aéroport au bureau, de la gare aux événements — nous gérons chaque trajet avec professionnalisme.</p>
-      </div>
-      <div class="services-grid">
-
-        <article class="service-card">
-          <div class="service-icon">✈️</div>
-          <h3>Transferts Aéroports</h3>
-          <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
-          <ul class="service-features">
-            <li>Charles de Gaulle (CDG)</li>
-            <li>Orly (ORY)</li>
-            <li>Suivi de vol automatique</li>
-            <li>Prise en charge bagage de cabine</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon">🚉</div>
-          <h3>Transferts Gares</h3>
-          <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
-          <ul class="service-features">
-            <li>Toutes gares parisiennes</li>
-            <li>Correspondance TGV / Eurostar</li>
-            <li>Confirmation par SMS</li>
-            <li>Chauffeur identifié</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon">💼</div>
-          <h3>Trajets Professionnels</h3>
-          <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
-          <ul class="service-features">
-            <li>Facturation entreprise</li>
-            <li>Réservation à l'avance</li>
-            <li>Ponctualité certifiée</li>
-            <li>Discrétion assurée</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon">⏱️</div>
-          <h3>Mise à Disposition</h3>
-          <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
-          <ul class="service-features">
-            <li>À la demi-journée ou journée</li>
-            <li>Plusieurs arrêts inclus</li>
-            <li>Tarif horaire négocié</li>
-            <li>Facturation entreprise</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon">🎉</div>
-          <h3>Mise à Dispo — Événements</h3>
-          <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
-          <ul class="service-features">
-            <li>Mariages & cérémonies</li>
-            <li>Soirées & événements privés</li>
-            <li>Shooting photo / tournage</li>
-            <li>Arrivée ou départ en moto</li>
-          </ul>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon">🌙</div>
-          <h3>Service Nuit & Weekend</h3>
-          <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
-          <ul class="service-features">
-            <li>Disponible de 20h à 7h</li>
-            <li>Samedis et dimanches</li>
-            <li>Jours fériés</li>
-            <li>Réservation en ligne</li>
-          </ul>
-        </article>
 
       </div>
     </div>
@@ -957,7 +898,7 @@
               <div class="contact-item-icon">📧</div>
               <div class="contact-item-content">
                 <h4>Email</h4>
-                <p><a href="mailto:contact@paristaximoto.fr">contact@paristaximoto.fr</a></p>
+                <p><a href="/cdn-cgi/l/email-protection#8fece0e1fbeeecfbcfffeefde6fcfbeef7e6e2e0fbe0a1e9fd"><span class="__cf_email__" data-cfemail="44272b2a30252730043425362d3730253c2d292b302b6a2236">[email&#160;protected]</span></a></p>
                 <p style="font-size:0.82rem;margin-top:2px;">Réponse sous 2h en journée</p>
               </div>
             </div>
@@ -1095,7 +1036,7 @@
   <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ============================================================
   // TARIFF CONFIG
   // ============================================================
@@ -1113,14 +1054,7 @@
   let originAutocomplete = null, destAutocomplete = null;
   let originPlace = null, destPlace = null;
 
-  const MAP_STYLES = [
-    { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
-    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
-    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
-  ];
-  const ZONES_STYLES = [...MAP_STYLES, { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ffd6d6' }] }];
-
-  window.initMapsCalculator = async function () {
+  window.initMapsCalculator = function () {
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
       suppressMarkers: false,
@@ -1128,59 +1062,57 @@
     });
 
     const originInput = document.getElementById('origin');
-    const destInput   = document.getElementById('destination');
+    const destInput = document.getElementById('destination');
+    if (!originInput || !destInput) return;
 
-    if (originInput && destInput) {
-      try {
-        // New API — available to all customers
-        const { PlaceAutocompleteElement } = await google.maps.importLibrary('places');
+    originAutocomplete = new google.maps.places.Autocomplete(originInput, {
+      componentRestrictions: { country: 'fr' },
+      fields: ['geometry', 'formatted_address', 'name'],
+    });
+    destAutocomplete = new google.maps.places.Autocomplete(destInput, {
+      componentRestrictions: { country: 'fr' },
+      fields: ['geometry', 'formatted_address', 'name'],
+    });
 
-        function makePlaceEl(placeholder) {
-          const el = new PlaceAutocompleteElement({ componentRestrictions: { country: 'fr' } });
-          if (placeholder) el.setAttribute('placeholder', placeholder);
-          return el;
-        }
-
-        originAutocomplete = makePlaceEl(originInput.placeholder);
-        destAutocomplete   = makePlaceEl(destInput.placeholder);
-
-        originAutocomplete.id = 'origin';
-        destAutocomplete.id   = 'destination';
-
-        originInput.parentNode.replaceChild(originAutocomplete, originInput);
-        destInput.parentNode.replaceChild(destAutocomplete,   destInput);
-
-        originAutocomplete.addEventListener('gmp-placeselect', async ({ place }) => {
-          await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
-          originPlace = { geometry: { location: place.location }, formatted_address: place.formattedAddress };
-          if (destPlace?.geometry) calculateRoute();
-        });
-        destAutocomplete.addEventListener('gmp-placeselect', async ({ place }) => {
-          await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
-          destPlace = { geometry: { location: place.location }, formatted_address: place.formattedAddress };
-          if (originPlace?.geometry) calculateRoute();
-        });
-
-      } catch (e) {
-        // Fallback — legacy Autocomplete (existing customers)
-        originAutocomplete = new google.maps.places.Autocomplete(originInput, { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] });
-        destAutocomplete   = new google.maps.places.Autocomplete(destInput,   { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] });
-        originAutocomplete.addListener('place_changed', () => { originPlace = originAutocomplete.getPlace(); if (originPlace?.geometry && destPlace?.geometry) calculateRoute(); });
-        destAutocomplete.addListener('place_changed',   () => { destPlace   = destAutocomplete.getPlace();   if (originPlace?.geometry && destPlace?.geometry) calculateRoute(); });
-      }
-    }
+    originAutocomplete.addListener('place_changed', () => {
+      originPlace = originAutocomplete.getPlace();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+    });
+    destAutocomplete.addListener('place_changed', () => {
+      destPlace = destAutocomplete.getPlace();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+    });
 
     // Map preview
     const mapDiv = document.getElementById('map-preview');
     if (mapDiv) {
-      map = new google.maps.Map(mapDiv, { zoom: 12, center: { lat: 48.8566, lng: 2.3522 }, disableDefaultUI: true, styles: MAP_STYLES });
+      map = new google.maps.Map(mapDiv, {
+        zoom: 12,
+        center: { lat: 48.8566, lng: 2.3522 },
+        disableDefaultUI: true,
+        styles: [
+          { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+          { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+        ],
+      });
       directionsRenderer.setMap(map);
     }
 
     // Zones map
     const zonesDiv = document.getElementById('zones-map');
     if (zonesDiv) {
-      new google.maps.Map(zonesDiv, { zoom: 10, center: { lat: 48.8566, lng: 2.3522 }, disableDefaultUI: true, styles: ZONES_STYLES });
+      new google.maps.Map(zonesDiv, {
+        zoom: 10,
+        center: { lat: 48.8566, lng: 2.3522 },
+        disableDefaultUI: true,
+        styles: [
+          { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+          { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+          { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ffd6d6' }] },
+        ],
+      });
     }
   };
 
@@ -1226,8 +1158,8 @@
     document.getElementById('est-period').textContent = (isNight ? '🌙 ' : '☀️ ') + period;
 
     // Build WhatsApp message with full trip info
-    const orig = originPlace?.formatted_address || getFieldValue('origin');
-    const dest = destPlace?.formatted_address || getFieldValue('destination');
+    const orig = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
+    const dest = destPlace?.formatted_address || document.getElementById('destination')?.value || '';
     const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})\n\nPouvez-vous confirmer la disponibilité ?`;
     const waBtn = document.getElementById('whatsapp-cta');
     if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
@@ -1247,20 +1179,13 @@
     if (r) { r.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;padding:16px;">⚠️ ${msg}</p>`; r.classList.add('visible'); }
   }
 
-  function getFieldValue(id) {
-    const el = document.getElementById(id);
-    if (!el) return '';
-    // PlaceAutocompleteElement exposes inputValue; regular <input> exposes value
-    return el.value ?? el.inputValue ?? '';
-  }
-
   window.triggerCalculate = function () {
     if (originPlace?.geometry && destPlace?.geometry) {
       calculateRoute();
       return;
     }
-    const oVal = getFieldValue('origin');
-    const dVal = getFieldValue('destination');
+    const oVal = document.getElementById('origin')?.value;
+    const dVal = document.getElementById('destination')?.value;
     if (!oVal || !dVal) { showCalcError('Veuillez saisir une adresse de départ et de destination.'); return; }
 
     const geocoder = new google.maps.Geocoder();
@@ -1376,14 +1301,11 @@
     const m = String(now.getMinutes()).padStart(2,'0');
     ti.value = h + ':' + m;
   }
+
   </script>
 
-  <!-- Google Maps API -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fO0GfoISLeBhzw9SI_5qB7unt1rMCwo&loading=async&libraries=places&callback=initMapsCalculator"
-    async
-    defer
-  ></script>
+  <!-- Google Maps API — AJOUT CLÉ API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCs8-SBHrIxgep1d_xhfYUiw2E2KDN-c&libraries=places&callback=initMapsCalculator" async defer></script>
 
 </body>
 </html>
