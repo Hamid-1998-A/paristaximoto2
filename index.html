@@ -317,7 +317,7 @@
     .floating-wa:hover { transform:scale(1.1); }
 
     /* Google Maps autocomplete */
-    .pac-container { border-radius:10px!important; box-shadow:var(--shadow-lg)!important; border:1px solid var(--border)!important; margin-top:4px!important; font-family:inherit!important; }
+    .pac-container { border-radius:10px!important; box-shadow:var(--shadow-lg)!important; border:1px solid var(--border)!important; margin-top:4px!important; font-family:inherit!important; z-index:1100!important; }
     .pac-item { padding:10px 14px!important; cursor:pointer!important; font-size:0.9rem!important; }
     .pac-item:hover { background:var(--light-bg)!important; }
     .pac-icon { display:none!important; }
@@ -331,21 +331,76 @@
       .zones-grid { grid-template-columns:1fr; }
     }
     @media(max-width:768px) {
-      .section { padding:60px 0; }
+      .section { padding:56px 0; }
+      .section-header { margin-bottom:36px; }
+
+      /* Navbar */
       .navbar-nav { display:none; position:fixed; inset:0; background:rgba(26,26,46,0.98); flex-direction:column; justify-content:center; align-items:center; gap:8px; }
       .navbar-nav.open { display:flex; }
       .navbar-nav a { font-size:1.2rem; padding:12px 24px; }
       .navbar-toggle { display:flex; z-index:1001; }
+
+      /* Hero */
       .hero-actions { flex-direction:column; }
-      .hero-actions .btn { text-align:center; justify-content:center; }
-      .contact-wrapper { grid-template-columns:1fr; gap:40px; }
-      .footer-grid { grid-template-columns:1fr; }
-      .tarif-card.featured { transform:none; }
+      .hero-actions .btn { text-align:center; justify-content:center; width:100%; }
+      .hero-stats { gap:0; justify-content:space-between; flex-wrap:nowrap; }
+      .hero-stat { flex:1; min-width:0; padding:0 8px; }
+      .stat-number { font-size:1.6rem; }
+
+      /* Booking strip */
+      .booking-strip .container { flex-direction:column; align-items:stretch; gap:16px; }
+      .booking-strip-info { text-align:center; }
+      .booking-strip-contact { flex-direction:column; align-items:stretch; gap:10px; }
+      .booking-strip-phone { justify-content:center; }
+      .booking-strip-contact .btn { text-align:center; justify-content:center; width:100%; }
+
+      /* Calculator */
       .form-row { grid-template-columns:1fr; }
+      .estimate-grid { grid-template-columns:1fr 1fr; gap:12px; }
+
+      /* Tarifs */
+      .tarifs-grid { grid-template-columns:1fr; }
+      .tarif-card.featured { transform:none; }
+
+      /* Services / Testimonials */
+      .services-grid { grid-template-columns:1fr; }
+      .testimonials-grid { grid-template-columns:1fr; }
+
+      /* Why */
+      .why-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .why-item { padding:20px 14px; }
+
+      /* Contact */
+      .contact-wrapper { grid-template-columns:1fr; gap:32px; }
+
+      /* Contact */
+      .contact-items { gap:12px; }
+      .contact-item { gap:12px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns:1fr; }
+      .footer-bottom { flex-direction:column; text-align:center; gap:12px; padding-bottom:80px; }
+      .footer-bottom-links { justify-content:center; flex-wrap:wrap; gap:12px; padding-right:64px; }
+
+      /* Floating buttons — plus petits sur mobile */
+      .floating-phone { bottom:16px; right:16px; gap:8px; }
+      .floating-phone-btn { width:50px; height:50px; font-size:1.2rem; }
+      .floating-wa { width:44px; height:44px; font-size:1.1rem; }
+    }
+
+    @media(max-width:480px) {
+      .container { padding:0 16px; }
+      .section { padding:44px 0; }
+      h1 { font-size:2rem; }
+      h2 { font-size:1.5rem; }
+      .hero-stat { padding:0 4px; }
+      .stat-number { font-size:1.4rem; }
+      .why-grid { grid-template-columns:1fr; }
       .estimate-grid { grid-template-columns:1fr; }
-      .booking-strip .container { flex-direction:column; align-items:flex-start; }
-      .footer-bottom { flex-direction:column; text-align:center; }
-      .hero-stats { gap:24px; }
+      .calculator-form { padding:24px 16px; }
+      .contact-form-wrapper { padding:24px 16px; }
+      .tarif-card { padding:24px 16px; }
+      .footer-grid { gap:28px; }
     }
   </style>
 </head>
