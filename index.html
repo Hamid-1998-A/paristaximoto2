@@ -321,6 +321,9 @@
     .pac-item { padding:10px 14px!important; cursor:pointer!important; font-size:0.9rem!important; }
     .pac-item:hover { background:var(--light-bg)!important; }
     .pac-icon { display:none!important; }
+    /* New PlaceAutocompleteElement styles */
+    gmp-place-autocomplete { width:100%; display:block; }
+    .input-wrapper gmp-place-autocomplete { --gmp-font-size:0.95rem; }
 
     /* ============================================================
        RESPONSIVE
@@ -1110,7 +1113,14 @@
   let originAutocomplete = null, destAutocomplete = null;
   let originPlace = null, destPlace = null;
 
-  window.initMapsCalculator = function () {
+  const MAP_STYLES = [
+    { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+  ];
+  const ZONES_STYLES = [...MAP_STYLES, { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ffd6d6' }] }];
+
+  window.initMapsCalculator = async function () {
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
       suppressMarkers: false,
@@ -1118,57 +1128,59 @@
     });
 
     const originInput = document.getElementById('origin');
-    const destInput = document.getElementById('destination');
-    if (!originInput || !destInput) return;
+    const destInput   = document.getElementById('destination');
 
-    originAutocomplete = new google.maps.places.Autocomplete(originInput, {
-      componentRestrictions: { country: 'fr' },
-      fields: ['geometry', 'formatted_address', 'name'],
-    });
-    destAutocomplete = new google.maps.places.Autocomplete(destInput, {
-      componentRestrictions: { country: 'fr' },
-      fields: ['geometry', 'formatted_address', 'name'],
-    });
+    if (originInput && destInput) {
+      try {
+        // New API — available to all customers
+        const { PlaceAutocompleteElement } = await google.maps.importLibrary('places');
 
-    originAutocomplete.addListener('place_changed', () => {
-      originPlace = originAutocomplete.getPlace();
-      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
-    });
-    destAutocomplete.addListener('place_changed', () => {
-      destPlace = destAutocomplete.getPlace();
-      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
-    });
+        function makePlaceEl(placeholder) {
+          const el = new PlaceAutocompleteElement({ componentRestrictions: { country: 'fr' } });
+          if (placeholder) el.setAttribute('placeholder', placeholder);
+          return el;
+        }
+
+        originAutocomplete = makePlaceEl(originInput.placeholder);
+        destAutocomplete   = makePlaceEl(destInput.placeholder);
+
+        originAutocomplete.id = 'origin';
+        destAutocomplete.id   = 'destination';
+
+        originInput.parentNode.replaceChild(originAutocomplete, originInput);
+        destInput.parentNode.replaceChild(destAutocomplete,   destInput);
+
+        originAutocomplete.addEventListener('gmp-placeselect', async ({ place }) => {
+          await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
+          originPlace = { geometry: { location: place.location }, formatted_address: place.formattedAddress };
+          if (destPlace?.geometry) calculateRoute();
+        });
+        destAutocomplete.addEventListener('gmp-placeselect', async ({ place }) => {
+          await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
+          destPlace = { geometry: { location: place.location }, formatted_address: place.formattedAddress };
+          if (originPlace?.geometry) calculateRoute();
+        });
+
+      } catch (e) {
+        // Fallback — legacy Autocomplete (existing customers)
+        originAutocomplete = new google.maps.places.Autocomplete(originInput, { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] });
+        destAutocomplete   = new google.maps.places.Autocomplete(destInput,   { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] });
+        originAutocomplete.addListener('place_changed', () => { originPlace = originAutocomplete.getPlace(); if (originPlace?.geometry && destPlace?.geometry) calculateRoute(); });
+        destAutocomplete.addListener('place_changed',   () => { destPlace   = destAutocomplete.getPlace();   if (originPlace?.geometry && destPlace?.geometry) calculateRoute(); });
+      }
+    }
 
     // Map preview
     const mapDiv = document.getElementById('map-preview');
     if (mapDiv) {
-      map = new google.maps.Map(mapDiv, {
-        zoom: 12,
-        center: { lat: 48.8566, lng: 2.3522 },
-        disableDefaultUI: true,
-        styles: [
-          { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
-          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
-          { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
-        ],
-      });
+      map = new google.maps.Map(mapDiv, { zoom: 12, center: { lat: 48.8566, lng: 2.3522 }, disableDefaultUI: true, styles: MAP_STYLES });
       directionsRenderer.setMap(map);
     }
 
     // Zones map
     const zonesDiv = document.getElementById('zones-map');
     if (zonesDiv) {
-      new google.maps.Map(zonesDiv, {
-        zoom: 10,
-        center: { lat: 48.8566, lng: 2.3522 },
-        disableDefaultUI: true,
-        styles: [
-          { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
-          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
-          { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
-          { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ffd6d6' }] },
-        ],
-      });
+      new google.maps.Map(zonesDiv, { zoom: 10, center: { lat: 48.8566, lng: 2.3522 }, disableDefaultUI: true, styles: ZONES_STYLES });
     }
   };
 
@@ -1214,8 +1226,8 @@
     document.getElementById('est-period').textContent = (isNight ? '🌙 ' : '☀️ ') + period;
 
     // Build WhatsApp message with full trip info
-    const orig = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
-    const dest = destPlace?.formatted_address || document.getElementById('destination')?.value || '';
+    const orig = originPlace?.formatted_address || getFieldValue('origin');
+    const dest = destPlace?.formatted_address || getFieldValue('destination');
     const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})\n\nPouvez-vous confirmer la disponibilité ?`;
     const waBtn = document.getElementById('whatsapp-cta');
     if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
@@ -1235,13 +1247,20 @@
     if (r) { r.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;padding:16px;">⚠️ ${msg}</p>`; r.classList.add('visible'); }
   }
 
+  function getFieldValue(id) {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    // PlaceAutocompleteElement exposes inputValue; regular <input> exposes value
+    return el.value ?? el.inputValue ?? '';
+  }
+
   window.triggerCalculate = function () {
     if (originPlace?.geometry && destPlace?.geometry) {
       calculateRoute();
       return;
     }
-    const oVal = document.getElementById('origin')?.value;
-    const dVal = document.getElementById('destination')?.value;
+    const oVal = getFieldValue('origin');
+    const dVal = getFieldValue('destination');
     if (!oVal || !dVal) { showCalcError('Veuillez saisir une adresse de départ et de destination.'); return; }
 
     const geocoder = new google.maps.Geocoder();
@@ -1361,7 +1380,7 @@
 
   <!-- Google Maps API -->
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fO0GfoISLeBhzw9SI_5qB7unt1rMCwo&libraries=places&callback=initMapsCalculator"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fO0GfoISLeBhzw9SI_5qB7unt1rMCwo&loading=async&libraries=places&callback=initMapsCalculator"
     async
     defer
   ></script>
