@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paris TaxiMoto — Moto-Taxi Rapide & Fiable à Paris | Devis Instantané</title>
+  <meta name="description"
+    content="Moto-taxi à Paris et Île-de-France. Trajets rapides, ponctualité garantie, disponible 24h/24. Calculez votre tarif en ligne. CDG, Orly, gares, événements.">
+  <meta name="keywords"
+    content="moto taxi paris, taxi moto paris, moto taxi ile de france, moto taxi aeroport paris, vtc moto paris, moto taxi cdg, moto taxi orly">
+  <meta name="author" content="Paris TaxiMoto">
+  <meta property="og:title" content="Paris TaxiMoto — Moto-Taxi Rapide à Paris">
+  <meta property="og:description"
+    content="Service de moto-taxi professionnel à Paris. Réservation rapide, tarifs transparents, chauffeur certifié VMDTR.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://paristaximoto.fr/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Paris TaxiMoto",
+    "description": "Service de moto-taxi professionnel à Paris et Île-de-France",
+    "telephone": "+33611916560",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Paris",
+      "addressCountry": "FR"
+    },
+    "areaServed": "Paris",
+    "priceRange": "€€",
+    "openingHours": "Mo-Su 00:00-24:00"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & VARIABLES — THEME G7 (blanc / rouge / noir)
+    ============================================================ */
+    :root {
+      --primary: #111111;
+      --accent: #CC0000;
+      --accent-dark: #990000;
+      --gold: #CC0000;
+      --white: #ffffff;
+      --light-bg: #f4f4f4;
+      --dark-bg: #1a1a1a;
+      --text: #1a1a1a;
+      --text-muted: #555555;
+      --border: #dddddd;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.15);
+      --radius: 4px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    h3 {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-header h2 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin: 14px auto 0;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+      margin-top: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      border: 1px solid var(--accent);
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(204, 0, 0, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--white);
+    }
+
+    .btn-gold {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-gold:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(204, 0, 0, 0.4);
+    }
+
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+    }
+
+    .btn-wa:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 14px 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .navbar.scrolled .navbar-brand {
+      color: var(--primary);
+    }
+
+    .navbar-brand .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .navbar-nav a {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 3px;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .navbar.scrolled .navbar-nav a {
+      color: var(--primary);
+    }
+
+    .navbar-nav a:hover,
+    .navbar-nav a.active {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .navbar.scrolled .navbar-nav a:hover,
+    .navbar.scrolled .navbar-nav a.active {
+      color: var(--accent);
+      background: rgba(204, 0, 0, 0.06);
+    }
+
+    .navbar-cta {
+      background: var(--accent) !important;
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 4px !important;
+    }
+
+    .navbar-cta:hover {
+      background: var(--accent-dark) !important;
+      color: var(--white) !important;
+    }
+
+    .navbar.scrolled .navbar-cta:hover {
+      color: var(--white) !important;
+    }
+
+    .navbar-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .navbar-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled .navbar-toggle span {
+      background: var(--primary);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.05) }
+      to { transform: scale(1.12) }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.90) 0%, rgba(0, 0, 0, 0.70) 55%, rgba(180, 0, 0, 0.30) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      max-width: 700px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(204, 0, 0, 0.18);
+      border: 1px solid rgba(204, 0, 0, 0.6);
+      color: #ffaaaa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 3px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      margin-top: 64px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      text-align: center;
+      color: var(--white);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll::before {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0) }
+      50% { transform: translateX(-50%) translateY(8px) }
+    }
+
+    /* ============================================================
+       BOOKING STRIP
+    ============================================================ */
+    .booking-strip {
+      background: var(--accent);
+      padding: 0;
+    }
+
+    .booking-strip .container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    .booking-strip-info {
+      color: var(--white);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .booking-strip-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .booking-strip-info p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+    }
+
+    .booking-strip-contact {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .booking-strip-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .booking-strip-phone .phone-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .booking-strip .btn-primary {
+      background: var(--white);
+      color: var(--accent);
+    }
+
+    .booking-strip .btn-primary:hover {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services {
+      background: var(--light-bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(204, 0, 0, 0.08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--accent);
+    }
+
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .service-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       CALCULATOR
+    ============================================================ */
+    .calculator {
+      background: var(--primary);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .calculator::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(204, 0, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .calculator-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .calculator-info h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .calculator-info h2::after {
+      background: var(--accent);
+      margin: 14px 0 0;
+    }
+
+    .calculator-info p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 32px;
+    }
+
+    .pricing-table {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-row .label {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.9rem;
+    }
+
+    .pricing-row .value {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .pricing-row.highlight {
+      background: rgba(204, 0, 0, 0.18);
+    }
+
+    .pricing-row.highlight .value {
+      color: #ff8080;
+    }
+
+    .calculator-form {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px;
+      color: var(--text);
+    }
+
+    .calculator-form h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .calculator-form .subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .form-group .input-wrapper {
+      position: relative;
+    }
+
+    .form-group .input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 14px 14px 42px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      transition: var(--transition);
+      background: var(--white);
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.10);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .estimate-result {
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-top: 24px;
+      display: none;
+    }
+
+    .estimate-result.visible {
+      display: block;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    .estimate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .estimate-item {
+      text-align: center;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 14px 8px;
+      border: 1px solid var(--border);
+    }
+
+    .estimate-item .est-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .estimate-item .est-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .estimate-price {
+      background: var(--accent);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .estimate-price .price-amount {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .estimate-price .price-note {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .estimate-disclaimer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    #map-preview {
+      height: 160px;
+      border-radius: var(--radius);
+      margin-top: 16px;
+      background: #e8e8e8;
+      display: none;
+      overflow: hidden;
+    }
+
+    #map-preview.visible {
+      display: block;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg) }
+    }
+
+    /* ============================================================
+       TARIFS
+    ============================================================ */
+    .tarifs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .tarif-card {
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      border: 2px solid var(--border);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .tarif-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .tarif-card.featured {
+      border-color: var(--accent);
+      transform: scale(1.04);
+    }
+
+    .tarif-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 18px;
+      border-radius: 2px;
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+
+    .tarif-card h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .tarif-card .tarif-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .tarif-price {
+      margin-bottom: 28px;
+    }
+
+    .tarif-price .currency {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+      vertical-align: top;
+      line-height: 2;
+    }
+
+    .tarif-price .amount {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .tarif-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .tarif-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .tarif-features li .check {
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       ZONES
+    ============================================================ */
+    .zones {
+      background: var(--light-bg);
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .zones-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .zone-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--white);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+    }
+
+    .zone-tag::before {
+      content: '📍';
+      font-size: 0.9rem;
+    }
+
+    .zones-map {
+      background: var(--white);
+      border-radius: var(--radius);
+      height: 380px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       WHY
+    ============================================================ */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+    }
+
+    .why-item {
+      text-align: center;
+      padding: 32px 20px;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .why-item:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .why-item .why-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .why-item h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .why-item p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testimonials {
+      background: var(--light-bg);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+    }
+
+    .testimonial-stars {
+      color: #CC0000;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary);
+    }
+
+    .testimonial-role {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-item.open {
+      border-color: var(--accent);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-align: left;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .faq-question:hover {
+      background: var(--light-bg);
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 2px;
+      background: var(--accent);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer p {
+      padding: 0 24px 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .contact-info h2::after {
+      background: var(--accent);
+      margin: 14px 0 0;
+    }
+
+    .contact-info p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 36px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .contact-item-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(204, 0, 0, 0.25);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item-content h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .contact-item-content p,
+    .contact-item-content a {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.92rem;
+    }
+
+    .contact-item-content a:hover {
+      color: #ff8080;
+    }
+
+    .contact-form-wrapper {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px;
+      color: var(--text);
+    }
+
+    .contact-form .form-group {
+      margin-bottom: 18px;
+    }
+
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 120px;
+      transition: var(--transition);
+      color: var(--text);
+    }
+
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.10);
+    }
+
+    .contact-form select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .contact-form select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(204, 0, 0, 0.10);
+    }
+
+    .form-success {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    .form-success.visible {
+      display: block;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #0d0d0d;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 60px 0 28px;
+      border-top: 3px solid var(--accent);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.88rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-newsletter input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      font-family: inherit;
+    }
+
+    .footer-newsletter input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .footer-newsletter input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-bottom-links a {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 0.82rem;
+      transition: var(--transition);
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ============================================================
+       FLOATING BUTTON
+    ============================================================ */
+    .floating-phone {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .floating-phone-btn {
+      width: 60px;
+      height: 60px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(204, 0, 0, 0.5);
+      animation: pulse 2.5s infinite;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 24px rgba(204, 0, 0, 0.5) }
+      50% { box-shadow: 0 6px 32px rgba(204, 0, 0, 0.75), 0 0 0 12px rgba(204, 0, 0, 0.08) }
+    }
+
+    .floating-wa {
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.5);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.1);
+    }
+
+    /* Google Maps autocomplete */
+    .pac-container {
+      border-radius: var(--radius) !important;
+      box-shadow: var(--shadow-lg) !important;
+      border: 1px solid var(--border) !important;
+      margin-top: 4px !important;
+      font-family: inherit !important;
+    }
+
+    .pac-item {
+      padding: 10px 14px !important;
+      cursor: pointer !important;
+      font-size: 0.9rem !important;
+    }
+
+    .pac-item:hover {
+      background: var(--light-bg) !important;
+    }
+
+    .pac-icon {
+      display: none !important;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media(max-width:1024px) {
+      .calculator-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .zones-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:768px) {
+      .section {
+        padding: 56px 0;
+      }
+
+      .section-header {
+        margin-bottom: 36px;
+      }
+
+      /* Navbar */
+      .navbar-nav {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(17, 17, 17, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .navbar-nav.open {
+        display: flex;
+      }
+
+      .navbar.scrolled .navbar-nav.open {
+        background: rgba(17, 17, 17, 0.98);
+      }
+
+      .navbar-nav.open a {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .navbar-nav a {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+      }
+
+      .navbar-toggle {
+        display: flex;
+        z-index: 1001;
+      }
+
+      /* Hero */
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .hero-stats {
+        gap: 0;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+
+      .hero-stat {
+        flex: 1;
+        min-width: 0;
+        padding: 0 8px;
+      }
+
+      .stat-number {
+        font-size: 1.6rem;
+      }
+
+      /* Booking strip */
+      .booking-strip .container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+
+      .booking-strip-info {
+        text-align: center;
+      }
+
+      .booking-strip-contact {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .booking-strip-phone {
+        justify-content: center;
+      }
+
+      .booking-strip-contact .btn {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* Calculator */
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .estimate-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* Grids → 1 colonne */
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tarifs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tarif-card.featured {
+        transform: none;
+      }
+
+      /* Pourquoi */
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .why-item {
+        padding: 20px 14px;
+      }
+
+      /* Contact */
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .contact-items {
+        gap: 12px;
+      }
+
+      /* Footer */
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding-bottom: 80px;
+      }
+
+      .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding-right: 64px;
+      }
+
+      /* Boutons flottants */
+      .floating-phone {
+        bottom: 16px;
+        right: 16px;
+        gap: 8px;
+      }
+
+      .floating-phone-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .floating-wa {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media(max-width:480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 44px 0;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .hero-stat {
+        padding: 0 4px;
+      }
+
+      .stat-number {
+        font-size: 1.4rem;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .estimate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calculator-form {
+        padding: 24px 16px;
+      }
+
+      .contact-form-wrapper {
+        padding: 24px 16px;
+      }
+
+      .tarif-card {
+        padding: 24px 16px;
+      }
+
+      .footer-grid {
+        gap: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <a href="#accueil" class="navbar-brand">
+        <div class="logo-icon">🏍️</div>
+        Paris<span style="color:var(--accent)">TaxiMoto</span>
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#calculateur">Calculateur</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#zones">Zones</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+33611916560" class="navbar-cta">📞 Réserver</a></li>
+      </ul>
+      <button class="navbar-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="accueil">
+    <div class="hero-bg" role="img" aria-label="Vue aérienne de Paris"></div>
+    <div class="hero-overlay"></div>
+    <div class="container" style="display:flex;flex-direction:column;">
+      <div class="hero-content">
+        <div class="hero-badge">🏍️ Service disponible 24h/24 — 7j/7</div>
+        <h1>Votre Moto-Taxi<br><span>Rapide à Paris</span></h1>
+        <p>Traversez Paris en un temps record. Chauffeur professionnel certifié VMDTR, ponctualité garantie, tarifs
+          clairs. Aéroports, gares, événements — nous vous emmenons partout en Île-de-France.</p>
+        <div class="hero-actions">
+          <a href="#estimer" class="btn btn-primary">🔍 Calculer mon trajet</a>
+          <a href="tel:+33611916560" class="btn btn-outline">📞 Appeler maintenant</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-number" data-target="5000" data-suffix="+">0+</div>
+          <div class="stat-label">Trajets réalisés</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number" data-target="98" data-suffix="%">0%</div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number" data-target="24" data-suffix="h/7">0h/7</div>
+          <div class="stat-label">Disponibilité</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">Défiler</div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING STRIP
+  ============================================================ -->
+  <div class="booking-strip">
+    <div class="container">
+      <div class="booking-strip-info">
+        <h3>Réservation immédiate</h3>
+        <p>Disponible maintenant dans Paris et grande couronne</p>
+      </div>
+      <div class="booking-strip-contact">
+        <a href="tel:+33611916560" class="booking-strip-phone">
+          <div class="phone-icon">📞</div>
+          06 11 91 65 60
+        </a>
+        <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa"
+          style="white-space:nowrap">
+          💬 WhatsApp
+        </a>
+        <a href="#estimer" class="btn btn-primary" style="white-space:nowrap">
+          Estimer mon tarif →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos Prestations</span>
+        <h2>Des services pensés pour votre mobilité</h2>
+        <p>De l'aéroport au bureau, de la gare aux événements — nous gérons chaque trajet avec professionnalisme.</p>
+      </div>
+      <div class="services-grid">
+
+        <article class="service-card">
+          <div class="service-icon">✈️</div>
+          <h3>Transferts Aéroports</h3>
+          <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
+          <ul class="service-features">
+            <li>Charles de Gaulle (CDG)</li>
+            <li>Orly (ORY)</li>
+            <li>Suivi de vol automatique</li>
+            <li>Prise en charge bagage de cabine</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🚉</div>
+          <h3>Transferts Gares</h3>
+          <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
+          <ul class="service-features">
+            <li>Toutes gares parisiennes</li>
+            <li>Correspondance TGV / Eurostar</li>
+            <li>Confirmation par SMS</li>
+            <li>Chauffeur identifié</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💼</div>
+          <h3>Trajets Professionnels</h3>
+          <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
+          <ul class="service-features">
+            <li>Facturation entreprise</li>
+            <li>Réservation à l'avance</li>
+            <li>Ponctualité certifiée</li>
+            <li>Discrétion assurée</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>Mise à Disposition</h3>
+          <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées —
+            nous restons avec vous.</p>
+          <ul class="service-features">
+            <li>À la demi-journée ou journée</li>
+            <li>Plusieurs arrêts inclus</li>
+            <li>Tarif horaire négocié</li>
+            <li>Facturation entreprise</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Mise à Dispo — Événements</h3>
+          <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à
+            Paris.</p>
+          <ul class="service-features">
+            <li>Mariages & cérémonies</li>
+            <li>Soirées & événements privés</li>
+            <li>Shooting photo / tournage</li>
+            <li>Arrivée ou départ en moto</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🌙</div>
+          <h3>Service Nuit & Weekend</h3>
+          <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le
+            sont pas.</p>
+          <ul class="service-features">
+            <li>Disponible de 20h à 7h</li>
+            <li>Samedis et dimanches</li>
+            <li>Jours fériés</li>
+            <li>Réservation en ligne</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CALCULATEUR DE PRIX
+  ============================================================ -->
+  <section class="section calculator" id="calculateur">
+    <div class="container">
+      <div class="calculator-wrapper">
+
+        <div class="calculator-info">
+          <span class="badge" style="background:transparent;color:#ff8080;border-color:rgba(255,128,128,0.5);">Tarification</span>
+          <h2>Nos tarifs en toute transparence</h2>
+          <p>Prix calculés selon les tarifs préfectoraux. Pas de surprise, pas de frais cachés — le montant estimé
+            correspond au montant réel.</p>
+          <div class="pricing-table" style="margin-bottom:28px;">
+            <div class="pricing-row">
+              <span class="label">Prise en charge</span>
+              <span class="value">3,50 €</span>
+            </div>
+            <div class="pricing-row">
+              <span class="label">Tarif jour (7h–20h)</span>
+              <span class="value">1,80 € / km</span>
+            </div>
+            <div class="pricing-row">
+              <span class="label">Tarif nuit (20h–7h)</span>
+              <span class="value">2,40 € / km</span>
+            </div>
+            <div class="pricing-row highlight">
+              <span class="label">Tarif minimum</span>
+              <span class="value">8,00 €</span>
+            </div>
+          </div>
+          <p style="color:rgba(255,255,255,0.45);font-size:0.85rem;">Tarifs week-end et jours fériés : tarif nuit
+            appliqué toute la journée.</p>
+        </div>
+
+        <div class="calculator-form" id="estimer">
+          <h3>Estimez votre trajet</h3>
+          <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
+
+          <div class="form-group">
+            <label for="origin">📍 Adresse de départ</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔵</span>
+              <input type="text" id="origin" placeholder="Ex : 1 Rue de Rivoli, Paris" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="destination">🏁 Adresse de destination</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔴</span>
+              <input type="text" id="destination" placeholder="Ex : Aéroport CDG, Terminal 2" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trip-date">📅 Date</label>
+              <div class="input-wrapper">
+                <span class="input-icon">📅</span>
+                <input type="date" id="trip-date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trip-time">⏰ Heure</label>
+              <div class="input-wrapper">
+                <span class="input-icon">⏰</span>
+                <input type="time" id="trip-time">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="calculate-btn"
+            onclick="triggerCalculate()">
+            🔍 Calculer le prix
+          </button>
+
+          <div class="estimate-result" id="estimate-result">
+            <div class="estimate-grid">
+              <div class="estimate-item">
+                <div class="est-value" id="est-distance">—</div>
+                <div class="est-label">Distance</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-duration">—</div>
+                <div class="est-label">Durée estimée</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-rate">—</div>
+                <div class="est-label">Tarif appliqué</div>
+              </div>
+            </div>
+            <div class="estimate-price">
+              <div class="price-amount" id="est-price">—</div>
+              <div class="price-note" id="est-period">Estimation indicative</div>
+            </div>
+            <div id="map-preview"></div>
+            <p class="estimate-disclaimer">Prix estimatif. Le tarif final peut varier selon les conditions de
+              circulation.</p>
+            <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+              <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
+                📞 Appeler
+              </a>
+              <a href="https://wa.me/33611916560" id="whatsapp-cta" target="_blank" rel="noopener" class="btn btn-wa"
+                style="flex:1;justify-content:center;min-width:140px;">
+                💬 Réserver sur WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TARIFS
+  ============================================================ -->
+  <section class="section" id="tarifs">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos Formules</span>
+        <h2>Choisissez votre formule</h2>
+        <p>Des tarifs adaptés à chaque besoin, de la course ponctuelle au compte mensuel.</p>
+      </div>
+      <div class="tarifs-grid">
+
+        <div class="tarif-card">
+          <h3>Course Standard</h3>
+          <p class="tarif-desc">Pour vos déplacements ponctuels dans Paris</p>
+          <div class="tarif-price">
+            <span class="currency">à partir de </span>
+            <span class="amount">8</span><span class="currency">€</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Prise en charge immédiate</li>
+            <li><span class="check">✓</span> Tarif kilométrique transparent</li>
+            <li><span class="check">✓</span> Paris intramuros & banlieue</li>
+            <li><span class="check">✓</span> Paiement CB ou espèces</li>
+          </ul>
+          <a href="tel:+33611916560" class="btn btn-outline"
+            style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Réserver</a>
+        </div>
+
+        <div class="tarif-card featured">
+          <div class="tarif-badge">⭐ Le plus populaire</div>
+          <h3>Transfert Aéroport</h3>
+          <p class="tarif-desc">CDG, Orly — avec suivi de vol inclus</p>
+          <div class="tarif-price">
+            <span class="currency">à partir de </span>
+            <span class="amount">45</span><span class="currency">€</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Suivi de vol en temps réel</li>
+            <li><span class="check">✓</span> Attente gratuite 30 min</li>
+            <li><span class="check">✓</span> CDG & Orly inclus</li>
+            <li><span class="check">✓</span> Confirmation par SMS</li>
+            <li><span class="check">✓</span> Facturation disponible</li>
+          </ul>
+          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;">Réserver</a>
+        </div>
+
+        <div class="tarif-card">
+          <h3>Compte Entreprise</h3>
+          <p class="tarif-desc">Pour les professionnels avec besoins récurrents</p>
+          <div class="tarif-price">
+            <span class="currency">Sur </span>
+            <span class="amount" style="font-size:2rem">devis</span>
+          </div>
+          <ul class="tarif-features">
+            <li><span class="check">✓</span> Facturation mensuelle</li>
+            <li><span class="check">✓</span> Tarifs négociés</li>
+            <li><span class="check">✓</span> Priorité de réservation</li>
+            <li><span class="check">✓</span> Compte dédié</li>
+            <li><span class="check">✓</span> Reporting mensuel</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline"
+            style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Nous
+            contacter</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ZONES
+  ============================================================ -->
+  <section class="section zones" id="zones">
+    <div class="container">
+      <div class="zones-grid">
+        <div>
+          <span class="badge">Couverture</span>
+          <h2>Zones d'intervention</h2>
+          <p style="color:var(--text-muted);margin-bottom:8px;">Basé à Paris, nous intervenons dans toute
+            l'Île-de-France.</p>
+          <div class="zones-list">
+            <div class="zone-tag">Paris (75)</div>
+            <div class="zone-tag">Hauts-de-Seine (92)</div>
+            <div class="zone-tag">Seine-Saint-Denis (93)</div>
+            <div class="zone-tag">Val-de-Marne (94)</div>
+            <div class="zone-tag">CDG — Terminal 1,2,3</div>
+            <div class="zone-tag">Orly — Terminal 1,2,3,4</div>
+            <div class="zone-tag">La Défense</div>
+            <div class="zone-tag">Versailles</div>
+            <div class="zone-tag">Disneyland Paris</div>
+            <div class="zone-tag">Le Bourget</div>
+          </div>
+          <p style="color:var(--text-muted);font-size:0.88rem;margin-top:20px;">Trajet hors zone ? Contactez-nous, nous
+            étudions toutes les demandes.</p>
+        </div>
+        <div class="zones-map" id="zones-map" aria-label="Carte des zones d'intervention"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POURQUOI NOUS
+  ============================================================ -->
+  <section class="section" id="pourquoi">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Nos engagements</span>
+        <h2>Pourquoi choisir Paris TaxiMoto ?</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <span class="why-icon">⚡</span>
+          <h3>Ultra-rapide</h3>
+          <p>La moto passe partout. Embouteillages, rues étroites — nous arrivons quand les voitures restent bloquées.
+          </p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🎓</span>
+          <h3>Chauffeur certifié</h3>
+          <p>Carte professionnelle VMDTR, permis A, formation premiers secours. Vous êtes entre de bonnes mains.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">📱</span>
+          <h3>Suivi en temps réel</h3>
+          <p>SMS de confirmation, position en direct, notification d'arrivée — vous savez où nous sommes.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">💳</span>
+          <h3>Paiement flexible</h3>
+          <p>CB, espèces, virement, compte entreprise. Facture disponible sur demande.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🌟</span>
+          <h3>Équipement fourni</h3>
+          <p>Casque homologué, gilet, intercom bluetooth. Votre sécurité et confort sont notre priorité.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🕒</span>
+          <h3>Ponctualité garantie</h3>
+          <p>En cas de retard, une remise immédiate vous est accordée sur votre course.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TÉMOIGNAGES
+  ============================================================ -->
+  <section class="section testimonials" id="avis">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Avis clients</span>
+        <h2>Ce que disent nos passagers</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Pris en charge en 5 minutes, arrivé à CDG avec 20 minutes d'avance. Chauffeur
+            professionnel, équipement nickel. Je recommande à 100% !"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marc D.</div>
+              <div class="testimonial-role">Cadre commercial</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Trajet Gare du Nord → bureau en 8 minutes un lundi matin. En taxi classique ça
+            m'aurait pris 40 min. Bluffant."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <div class="testimonial-name">Sophie L.</div>
+              <div class="testimonial-role">Avocate, Paris 8e</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Mise à disposition pour mon mariage — chauffeur impeccable, ponctuel, à l'écoute.
+            Une belle expérience pour une journée inoubliable."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <div class="testimonial-name">Laura M.</div>
+              <div class="testimonial-role">Mariée, Paris 16e</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+  ============================================================ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQ</span>
+        <h2>Questions fréquentes</h2>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">Comment réserver un moto-taxi à Paris ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Appelez le 06 11 91 65 60 ou envoyez un message WhatsApp 24h/24. Vous pouvez aussi estimer votre tarif
+              via notre calculateur puis réserver directement depuis l'estimation. Confirmation par SMS garantie.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Quelle est la différence entre un moto-taxi et un VTC ?<span
+              class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Un moto-taxi (VMDTR) est un véhicule à deux roues motorisé avec chauffeur professionnel certifié. Il est
+              jusqu'à 3x plus rapide qu'un VTC en heure de pointe car il circule entre les files de trafic. Idéal pour
+              les trajets urgents à Paris.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Est-ce que le moto-taxi est sûr ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Oui. Notre chauffeur est certifié VMDTR, titulaire d'une carte professionnelle préfectorale. Casque
+              homologué fourni, assurance responsabilité civile passager incluse. Votre sécurité est notre priorité
+              absolue.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Peut-on transporter des bagages ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Oui, nous acceptons un bagage de cabine (sac à dos ou trolley cabine jusqu'à 10 kg) dans le top-case.
+              Pour les bagages volumineux, prévenez-nous à la réservation et nous trouverons la meilleure solution.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Comment est calculé le prix d'un trajet ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Le tarif comprend une prise en charge (3,50€) + tarif kilométrique (1,80€/km le jour, 2,40€/km la nuit).
+              Tarif minimum : 8€. Utilisez notre calculateur pour une estimation précise avec la carte interactive.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Proposez-vous la mise à disposition pour les événements ?<span
+              class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Absolument ! Mariage, soirée VIP, tournage, journée d'entreprise… Nous proposons une mise à disposition à
+              la demi-journée ou journée avec tarif horaire négocié. Contactez-nous pour un devis personnalisé.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Proposez-vous la facturation pour les entreprises ?<span
+              class="faq-icon">+</span></button>
+          <div class="faq-answer">
+            <p>Oui. Comptes entreprises avec facturation mensuelle, tarifs négociés selon le volume, et reporting
+              détaillé. Contactez-nous pour établir un devis personnalisé.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <span class="badge" style="background:transparent;color:#ff8080;border-color:rgba(255,128,128,0.5);">Contactez-nous</span>
+          <h2>Parlons de votre trajet</h2>
+          <p>Une question, une réservation ou un devis entreprise ? Nous répondons rapidement.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-content">
+                <h4>Téléphone</h4>
+                <p><a href="tel:+33611916560">06 11 91 65 60</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Disponible 24h/24 — 7j/7</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">💬</div>
+              <div class="contact-item-content">
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/33611916560" target="_blank" rel="noopener">Envoyer un message</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Réponse rapide garantie</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div class="contact-item-content">
+                <h4>Email</h4>
+                <p><a href="mailto:contact@paristaximoto.fr">contact@paristaximoto.fr</a></p>
+                <p style="font-size:0.82rem;margin-top:2px;">Réponse sous 2h en journée</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-content">
+                <h4>Zone d'intervention</h4>
+                <p>Paris & Île-de-France</p>
+                <p style="font-size:0.82rem;margin-top:2px;">CDG, Orly, grande couronne</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h3 style="color:var(--primary);margin-bottom:8px;">Envoyer un message</h3>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:24px;">Pour devis entreprise, événement ou
+            demande spéciale.</p>
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Prénom</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">👤</span>
+                  <input type="text" id="contact-name" placeholder="Jean" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone">Téléphone</label>
+                <div class="input-wrapper">
+                  <span class="input-icon">📱</span>
+                  <input type="tel" id="contact-phone" placeholder="06 XX XX XX XX">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <div class="input-wrapper">
+                <span class="input-icon">📧</span>
+                <input type="email" id="contact-email" placeholder="jean@exemple.fr" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Objet</label>
+              <select id="contact-subject">
+                <option value="">Choisir un objet...</option>
+                <option value="reservation">Réservation</option>
+                <option value="evenement">Événement / Mise à dispo</option>
+                <option value="devis">Devis entreprise</option>
+                <option value="info">Renseignement</option>
+                <option value="avis">Avis / retour</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" placeholder="Décrivez votre besoin..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Envoyer le message →
+            </button>
+            <div id="form-success" class="form-success">
+              ✓ Message envoyé ! Nous vous répondrons très bientôt.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-brand" style="font-size:1.2rem;color:var(--white);">
+            <div class="logo-icon">🏍️</div>
+            Paris<span style="color:var(--accent)">TaxiMoto</span>
+          </div>
+          <p>Service de moto-taxi professionnel à Paris et Île-de-France. Disponible 24h/24, certifié VMDTR, assurance
+            passager incluse.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Nos services</a></li>
+            <li><a href="#calculateur">Calculateur</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+            <li><a href="#zones">Zones</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Transferts aéroport</a></li>
+            <li><a href="#services">Transferts gares</a></li>
+            <li><a href="#services">Trajets pro</a></li>
+            <li><a href="#services">Mise à disposition</a></li>
+            <li><a href="#services">Événements</a></li>
+            <li><a href="#services">Service nuit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact direct</h4>
+          <p style="font-size:0.88rem;margin-bottom:14px;color:rgba(255,255,255,0.4);">Disponible 24h/24 pour votre
+            réservation.</p>
+          <a href="tel:+33611916560" class="btn btn-primary"
+            style="width:100%;justify-content:center;margin-bottom:10px;">📞 06 11 91 65 60</a>
+          <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa"
+            style="width:100%;justify-content:center;">💬 WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Paris TaxiMoto. Tous droits réservés.</p>
+        <ul class="footer-bottom-links">
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       FLOATING BUTTONS
+  ============================================================ -->
+  <div class="floating-phone">
+    <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">💬</a>
+    <a href="tel:+33611916560" class="floating-phone-btn" aria-label="Appeler Paris TaxiMoto">📞</a>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT — identique à index.html
+  ============================================================ -->
+  <script>
+    // ============================================================
+    // TARIFF CONFIG
+    // ============================================================
+    const TARIFF = {
+      baseFare: 3.50,
+      ratePerKmDay: 1.80,
+      ratePerKmNight: 2.40,
+      minimumFare: 8,
+    };
+
+    // ============================================================
+    // GOOGLE MAPS — Calculator
+    // ============================================================
+    let map = null, directionsService = null, directionsRenderer = null;
+    let originAutocomplete = null, destAutocomplete = null;
+    let originPlace = null, destPlace = null;
+
+    window.initMapsCalculator = function () {
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        suppressMarkers: false,
+        polylineOptions: { strokeColor: '#CC0000', strokeWeight: 5 }
+      });
+
+      const originInput = document.getElementById('origin');
+      const destInput = document.getElementById('destination');
+      if (!originInput || !destInput) return;
+
+      originAutocomplete = new google.maps.places.Autocomplete(originInput, {
+        componentRestrictions: { country: 'fr' },
+        fields: ['geometry', 'formatted_address', 'name'],
+      });
+      destAutocomplete = new google.maps.places.Autocomplete(destInput, {
+        componentRestrictions: { country: 'fr' },
+        fields: ['geometry', 'formatted_address', 'name'],
+      });
+
+      originAutocomplete.addListener('place_changed', () => {
+        originPlace = originAutocomplete.getPlace();
+        if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+      });
+      destAutocomplete.addListener('place_changed', () => {
+        destPlace = destAutocomplete.getPlace();
+        if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+      });
+
+      // Map preview
+      const mapDiv = document.getElementById('map-preview');
+      if (mapDiv) {
+        map = new google.maps.Map(mapDiv, {
+          zoom: 12,
+          center: { lat: 48.8566, lng: 2.3522 },
+          disableDefaultUI: true,
+          styles: [
+            { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+            { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+            { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+          ],
+        });
+        directionsRenderer.setMap(map);
+      }
+
+      // Zones map
+      const zonesDiv = document.getElementById('zones-map');
+      if (zonesDiv) {
+        new google.maps.Map(zonesDiv, {
+          zoom: 10,
+          center: { lat: 48.8566, lng: 2.3522 },
+          disableDefaultUI: true,
+          styles: [
+            { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+            { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+            { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+            { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#ffcccc' }] },
+          ],
+        });
+      }
+    };
+
+    function calculateRoute() {
+      const btn = document.getElementById('calculate-btn');
+      if (btn) { btn.innerHTML = '<span class="spinner"></span> Calcul en cours...'; btn.disabled = true; }
+
+      directionsService.route({
+        origin: originPlace.geometry.location,
+        destination: destPlace.geometry.location,
+        travelMode: google.maps.TravelMode.DRIVING,
+        drivingOptions: { departureTime: new Date(), trafficModel: google.maps.TrafficModel.BEST_GUESS },
+      }, (result, status) => {
+        if (btn) { btn.innerHTML = '🔍 Calculer le prix'; btn.disabled = false; }
+
+        if (status === 'OK') {
+          const leg = result.routes[0].legs[0];
+          const distanceKm = leg.distance.value / 1000;
+          displayEstimate(distanceKm, leg.distance.text, leg.duration.text);
+          directionsRenderer.setDirections(result);
+          const mapDiv = document.getElementById('map-preview');
+          if (mapDiv) mapDiv.classList.add('visible');
+        } else {
+          showCalcError('Itinéraire introuvable. Vérifiez les adresses.');
+        }
+      });
+    }
+
+    function displayEstimate(distanceKm, distanceText, durationText) {
+      const isNight = isNightRate();
+      const rateKm = isNight ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
+      let price = TARIFF.baseFare + (distanceKm * rateKm);
+      price = Math.max(price, TARIFF.minimumFare);
+
+      const priceLow = Math.round(price * 0.9);
+      const priceHigh = Math.round(price * 1.1);
+      const period = isNight ? 'Tarif nuit' : 'Tarif jour';
+
+      document.getElementById('est-distance').textContent = distanceText;
+      document.getElementById('est-duration').textContent = durationText;
+      document.getElementById('est-rate').textContent = rateKm.toFixed(2) + ' €/km';
+      document.getElementById('est-price').textContent = priceLow + ' – ' + priceHigh + ' €';
+      document.getElementById('est-period').textContent = (isNight ? '🌙 ' : '☀️ ') + period;
+
+      // Build WhatsApp message with full trip info
+      const orig = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
+      const dest = destPlace?.formatted_address || document.getElementById('destination')?.value || '';
+      const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})\n\nPouvez-vous confirmer la disponibilité ?`;
+      const waBtn = document.getElementById('whatsapp-cta');
+      if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
+
+      const result = document.getElementById('estimate-result');
+      if (result) { result.classList.add('visible'); result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+    }
+
+    function isNightRate() {
+      const now = new Date();
+      const h = now.getHours(), d = now.getDay();
+      return h >= 20 || h < 7 || d === 0 || d === 6;
+    }
+
+    function showCalcError(msg) {
+      const r = document.getElementById('estimate-result');
+      if (r) { r.innerHTML = `<p style="color:#CC0000;text-align:center;font-weight:600;padding:16px;">⚠️ ${msg}</p>`; r.classList.add('visible'); }
+    }
+
+    window.triggerCalculate = function () {
+      if (originPlace?.geometry && destPlace?.geometry) {
+        calculateRoute();
+        return;
+      }
+      const oVal = document.getElementById('origin')?.value;
+      const dVal = document.getElementById('destination')?.value;
+      if (!oVal || !dVal) { showCalcError('Veuillez saisir une adresse de départ et de destination.'); return; }
+
+      const geocoder = new google.maps.Geocoder();
+      let done = 0;
+      const tryCalc = () => { if (++done === 2 && originPlace && destPlace) calculateRoute(); };
+
+      if (!originPlace) geocoder.geocode({ address: oVal, region: 'fr' }, (res, st) => {
+        if (st === 'OK') originPlace = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
+        tryCalc();
+      });
+      else tryCalc();
+
+      if (!destPlace) geocoder.geocode({ address: dVal, region: 'fr' }, (res, st) => {
+        if (st === 'OK') destPlace = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
+        tryCalc();
+      });
+      else tryCalc();
+    };
+
+    // ============================================================
+    // NAVBAR SCROLL
+    // ============================================================
+    const navbar = document.querySelector('.navbar');
+    const navToggle = document.querySelector('.navbar-toggle');
+    const navMenu = document.querySelector('.navbar-nav');
+
+    window.addEventListener('scroll', () => {
+      navbar?.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    navToggle?.addEventListener('click', () => {
+      navMenu?.classList.toggle('open');
+      document.body.style.overflow = navMenu?.classList.contains('open') ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.navbar-nav a').forEach(link => {
+      link.addEventListener('click', () => { navMenu?.classList.remove('open'); document.body.style.overflow = ''; });
+    });
+
+    // ============================================================
+    // SMOOTH SCROLL
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.pageYOffset - (navbar?.offsetHeight || 80);
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ============================================================
+    // FAQ ACCORDION
+    // ============================================================
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ============================================================
+    // CONTACT FORM
+    // ============================================================
+    document.getElementById('contact-form')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Envoi...';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Envoyer le message →';
+        const s = document.getElementById('form-success');
+        if (s) { s.classList.add('visible'); e.target.reset(); setTimeout(() => s.classList.remove('visible'), 6000); }
+      }, 1500);
+    });
+
+    // ============================================================
+    // COUNTER ANIMATION
+    // ============================================================
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.stat-number[data-target]').forEach(el => {
+            const target = parseInt(el.dataset.target), suffix = el.dataset.suffix || '';
+            let cur = 0;
+            const inc = target / 60;
+            const t = setInterval(() => {
+              cur += inc;
+              if (cur >= target) { cur = target; clearInterval(t); }
+              el.textContent = Math.floor(cur) + suffix;
+            }, 25);
+          });
+          counterObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.hero-stats').forEach(el => counterObs.observe(el));
+
+    // ============================================================
+    // DATE/TIME DEFAULTS
+    // ============================================================
+    const now = new Date();
+    const di = document.getElementById('trip-date');
+    const ti = document.getElementById('trip-time');
+    if (di) di.value = now.toISOString().split('T')[0];
+    if (ti) {
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      ti.value = h + ':' + m;
+    }
+
+  </script>
+
+  <!-- Google Maps API -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9fO0GfoISLeBhzw9SI_5qB7unt1rMCwo&libraries=places&callback=initMapsCalculator"
+    async defer></script>
+
+</body>
+
+</html>

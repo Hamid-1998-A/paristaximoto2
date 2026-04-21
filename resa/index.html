@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ffffff">
+  <title>Paris TaxiMoto — Réservation</title>
+  <meta name="description" content="Réservez votre moto-taxi à Paris. Calculez votre tarif instantanément.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       BASE
+    ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red:        #e94560;
+      --red-dark:   #c73652;
+      --red-light:  #fef2f4;
+      --green:      #16a34a;
+      --green-light:#dcfce7;
+      --navy:       #1a1a2e;
+      --text:       #111827;
+      --text-2:     #4b5563;
+      --text-3:     #9ca3af;
+      --border:     #e5e7eb;
+      --bg:         #f9fafb;
+      --white:      #ffffff;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow:     0 4px 16px rgba(0,0,0,0.10);
+      --shadow-lg:  0 -8px 48px rgba(0,0,0,0.14);
+      --radius:     14px;
+      --radius-sm:  10px;
+      --radius-xs:  8px;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      background: #dde8d0; /* correspond au style carte landscape.natural */
+      touch-action: pan-y;
+    }
+
+    /* ============================================================
+       MAP
+    ============================================================ */
+    #map-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* ============================================================
+       TOP BAR — logo + back
+    ============================================================ */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      pointer-events: none;
+    }
+
+    .top-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--white);
+      border-radius: 40px;
+      padding: 8px 14px 8px 10px;
+      box-shadow: var(--shadow);
+      pointer-events: all;
+      text-decoration: none;
+    }
+    .top-logo-icon {
+      width: 28px; height: 28px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem;
+    }
+    .top-logo-name {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.2px;
+    }
+
+    .top-tel {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--white);
+      border-radius: 40px;
+      padding: 8px 14px;
+      box-shadow: var(--shadow);
+      pointer-events: all;
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ============================================================
+       BOTTOM SHEET PANEL
+    ============================================================ */
+    .panel {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(460px, 100%);
+      z-index: 100;
+      /* légèrement transparent */
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(24px) saturate(1.6);
+      -webkit-backdrop-filter: blur(24px) saturate(1.6);
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -2px 40px rgba(0, 0, 0, 0.13), 0 -1px 0 rgba(255,255,255,0.6) inset;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-scroll {
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+    }
+    .panel-scroll::-webkit-scrollbar { display: none; }
+
+    /* Drag handle */
+    .drag-bar {
+      width: 40px; height: 4px;
+      background: #d1d5db;
+      border-radius: 2px;
+      margin: 12px auto 0;
+      flex-shrink: 0;
+    }
+
+    /* Safe-area iOS (notch / home-bar) */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      .panel-inner {
+        padding-bottom: calc(36px + env(safe-area-inset-bottom));
+      }
+    }
+
+    .panel-inner {
+      padding: 16px 20px 36px;
+    }
+
+    /* step-dots supprimés */
+
+    /* ============================================================
+       STEP TITLE
+    ============================================================ */
+    .step-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.4px;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: .82rem;
+      color: var(--text-2);
+      margin-bottom: 22px;
+    }
+
+    /* ============================================================
+       INPUTS
+    ============================================================ */
+    .address-block {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: visible;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .addr-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      position: relative;
+    }
+    .addr-row + .addr-row {
+      border-top: 1.5px solid var(--border);
+    }
+
+    .addr-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .addr-dot.green { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.15); }
+    .addr-dot.red   { background: var(--red); box-shadow: 0 0 0 3px rgba(233,69,96,.15); }
+
+    .addr-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: .9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      outline: none;
+      min-width: 0;
+    }
+    .addr-input::placeholder { color: var(--text-3); }
+
+    /* Connector dots between the two address rows */
+    .addr-connector {
+      position: absolute;
+      left: calc(16px + 4px); /* dot center */
+      top: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; gap: 3px;
+      pointer-events: none;
+    }
+    .addr-connector span {
+      display: block;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    /* Swap button */
+    .swap-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%; transform: translateY(-50%);
+      width: 34px; height: 34px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem;
+      color: var(--text-2);
+      transition: all .2s;
+      z-index: 2;
+    }
+    .swap-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* ============================================================
+       STANDARD FIELD
+    ============================================================ */
+    .field { margin-bottom: 14px; }
+    .field-label {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 6px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .optional {
+      font-size: .68rem;
+      font-weight: 400;
+      color: var(--text-3);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: .88rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .field-input::placeholder { color: var(--text-3); }
+    .field-input:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(233,69,96,.10); }
+    .field-input[type="date"],
+    .field-input[type="time"] { color-scheme: light; }
+
+    .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .row-2 .field { margin-bottom: 0; }
+
+    textarea.field-input {
+      resize: none;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: .9rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all .22s ease;
+      letter-spacing: -.1px;
+    }
+    .btn:active { transform: scale(.98); }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--red-dark); box-shadow: 0 6px 20px rgba(233,69,96,.3); }
+    .btn-primary:disabled {
+      background: #d1d5db;
+      color: #9ca3af;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+    }
+    .btn-wa:hover { background: #1ebe5d; box-shadow: 0 6px 20px rgba(37,211,102,.3); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text-2);
+      font-size: .84rem;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+    .btn-outline:hover { border-color: var(--text-2); color: var(--text); }
+
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: var(--text-3);
+      font-size: .8rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      margin-bottom: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-ghost:hover { color: var(--text); }
+
+    /* ============================================================
+       SPINNER
+    ============================================================ */
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ============================================================
+       ROUTE CARD
+    ============================================================ */
+    .route-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .route-from, .route-to {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .82rem;
+    }
+    .route-from { margin-bottom: 8px; }
+    .route-dot-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+    .rdot {
+      width: 9px; height: 9px; border-radius: 50%;
+    }
+    .rdot.green { background: #22c55e; }
+    .rdot.red   { background: var(--red); }
+    .rdot-line  { width: 1.5px; height: 14px; background: var(--border); margin: 1px 0; }
+
+    .route-addr { color: var(--text); font-weight: 500; line-height: 1.35; }
+    .route-label { font-size: .65rem; text-transform: uppercase; letter-spacing: .6px; color: var(--text-3); font-weight: 600; }
+
+    .route-stats-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .rstat {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xs);
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .rstat-val { font-size: .88rem; font-weight: 700; color: var(--text); }
+    .rstat-lbl { font-size: .62rem; color: var(--text-3); text-transform: uppercase; letter-spacing: .6px; font-weight: 600; margin-top: 1px; }
+
+    /* ============================================================
+       PRICE CARD
+    ============================================================ */
+    .price-card {
+      background: linear-gradient(135deg, #fff1f3, #fff);
+      border: 1.5px solid rgba(233,69,96,.2);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .price-tag {
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .price-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-note {
+      font-size: .72rem;
+      color: var(--text-2);
+    }
+
+    /* ============================================================
+       RECAP MINI
+    ============================================================ */
+    .mini-recap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      border-radius: var(--radius-xs);
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      gap: 8px;
+    }
+    .mini-recap-route {
+      font-size: .78rem;
+      color: var(--text-2);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mini-recap-route strong { color: var(--text); }
+    .mini-recap-price {
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--red);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       LUGGAGE STEPPER
+    ============================================================ */
+    .stepper-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--white);
+    }
+    .stepper-btn {
+      width: 46px; height: 46px;
+      background: var(--bg);
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all .15s;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .stepper-btn:hover { background: var(--red-light); color: var(--red); }
+    .stepper-val {
+      flex: 1;
+      text-align: center;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      pointer-events: none;
+      user-select: none;
+    }
+    .stepper-sep { width: 1.5px; height: 100%; background: var(--border); }
+
+    /* ============================================================
+       ERROR
+    ============================================================ */
+    .error-box {
+      background: #fff1f2;
+      border: 1.5px solid #fecdd3;
+      border-radius: var(--radius-xs);
+      padding: 10px 14px;
+      font-size: .78rem;
+      color: #be123c;
+      display: none;
+      margin-bottom: 12px;
+    }
+    .error-box.visible { display: block; }
+
+    /* ============================================================
+       SECTION SEPARATOR
+    ============================================================ */
+    .sep {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* ============================================================
+       STEP TRANSITIONS
+    ============================================================ */
+    .step-panel { display: none; }
+    .step-panel.active {
+      display: block;
+      animation: stepIn .28s ease;
+    }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* reveal sub-sections */
+    .reveal { display: none; }
+    .reveal.shown { display: block; animation: stepIn .28s ease; }
+
+    /* ============================================================
+       AUTOCOMPLETE DROPDOWN
+    ============================================================ */
+    .pac-container {
+      border-radius: 12px !important;
+      border: 1.5px solid var(--border) !important;
+      background: var(--white) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.14) !important;
+      font-family: 'Inter', sans-serif !important;
+      margin-top: 6px !important;
+      overflow: hidden;
+      z-index: 9999 !important;
+    }
+    .pac-item {
+      padding: 10px 16px !important;
+      font-size: .82rem !important;
+      color: var(--text-2) !important;
+      border-top: 1px solid #f3f4f6 !important;
+      cursor: pointer;
+    }
+    .pac-item:first-child { border-top: none !important; }
+    .pac-item:hover { background: var(--red-light) !important; }
+    .pac-item-query { color: var(--text) !important; font-weight: 600 !important; }
+    .pac-icon { display: none !important; }
+    .pac-logo::after { display: none !important; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    /* Très petits écrans (iPhone SE…) — panel moins haut pour voir la carte */
+    @media (max-height: 680px) {
+      .panel { max-height: 82vh; }
+    }
+    @media (max-height: 580px) {
+      .panel { max-height: 78vh; }
+    }
+
+    /* Tablette / desktop — panel un peu plus large et arrondi */
+    @media (min-width: 480px) {
+      .panel {
+        border-radius: 24px 24px 0 0;
+        width: min(480px, 100%);
+      }
+    }
+
+    /* ============================================================
+       FLOATING PHONE (bottom-right)
+    ============================================================ */
+    .float-wa {
+      position: fixed;
+      bottom: calc(var(--panel-h, 320px) + 16px);
+      right: 16px;
+      z-index: 90;
+      width: 48px; height: 48px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .float-wa:hover { transform: scale(1.08); }
+
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       FULL-SCREEN MAP
+  ============================================================ -->
+  <div id="map-bg"></div>
+
+  <!-- ============================================================
+       TOP BAR
+  ============================================================ -->
+  <div class="top-bar">
+    <a href="../index.html" class="top-logo">
+      <div class="top-logo-icon">🏍️</div>
+      <span class="top-logo-name">Paris TaxiMoto</span>
+    </a>
+    <a href="tel:+33611916560" class="top-tel">📞 06 11 91 65 60</a>
+  </div>
+
+  <!-- Floating WA shortcut -->
+  <a href="https://wa.me/33611916560" target="_blank" class="float-wa" aria-label="WhatsApp">💬</a>
+
+  <!-- ============================================================
+       BOTTOM SHEET PANEL
+  ============================================================ -->
+  <div class="panel" id="main-panel">
+    <div class="drag-bar"></div>
+
+    <div class="panel-scroll">
+      <div class="panel-inner">
+
+        <!-- ===================================================
+             STEP 1 — Adresses
+        ==================================================== -->
+        <div class="step-panel active" id="s1">
+
+          <h1 class="step-title">Réserver un trajet</h1>
+          <p class="step-desc">Indiquez votre départ et votre destination</p>
+
+          <!-- Address block -->
+          <div class="address-block">
+            <div class="addr-row">
+              <div class="addr-dot green"></div>
+              <input
+                type="text"
+                id="origin"
+                class="addr-input"
+                placeholder="Adresse de départ"
+                autocomplete="off"
+              >
+            </div>
+            <!-- connector dots -->
+            <div style="position:relative;height:0">
+              <div style="position:absolute;left:22px;top:-4px;display:flex;flex-direction:column;gap:3px;z-index:1">
+                <span style="display:block;width:3px;height:3px;border-radius:50%;background:#d1d5db"></span>
+                <span style="display:block;width:3px;height:3px;border-radius:50%;background:#d1d5db"></span>
+                <span style="display:block;width:3px;height:3px;border-radius:50%;background:#d1d5db"></span>
+              </div>
+            </div>
+            <div class="addr-row" style="position:relative">
+              <div class="addr-dot red"></div>
+              <input
+                type="text"
+                id="destination"
+                class="addr-input"
+                placeholder="Adresse d'arrivée"
+                autocomplete="off"
+              >
+              <button class="swap-btn" id="swap-btn" title="Inverser">⇅</button>
+            </div>
+          </div>
+
+          <div class="error-box" id="err-s1"></div>
+
+          <button class="btn btn-primary" id="btn-s1" onclick="submitStep1()" disabled>
+            Afficher le trajet →
+          </button>
+
+        </div><!-- /s1 -->
+
+
+        <!-- ===================================================
+             STEP 2 — Date / Heure / Estimation
+        ==================================================== -->
+        <div class="step-panel" id="s2">
+
+          <button class="btn-ghost" onclick="goStep(1)">← Modifier les adresses</button>
+
+          <h2 class="step-title" style="font-size:1.15rem">Quand partez-vous ?</h2>
+          <p class="step-desc">La date et l'heure déterminent le tarif appliqué</p>
+
+          <!-- Route summary card -->
+          <div class="route-card" id="route-card">
+            <div class="route-from">
+              <div class="route-dot-wrap">
+                <div class="rdot green"></div>
+                <div class="rdot-line"></div>
+              </div>
+              <div>
+                <div class="route-label">Départ</div>
+                <div class="route-addr" id="rc-from">—</div>
+              </div>
+            </div>
+            <div class="route-to">
+              <div class="route-dot-wrap" style="padding-top:2px">
+                <div class="rdot red"></div>
+              </div>
+              <div>
+                <div class="route-label">Arrivée</div>
+                <div class="route-addr" id="rc-to">—</div>
+              </div>
+            </div>
+            <div class="route-stats-row" id="route-stats" style="display:none">
+              <div class="rstat">
+                <div class="rstat-val" id="st-dist">—</div>
+                <div class="rstat-lbl">Distance</div>
+              </div>
+              <div class="rstat">
+                <div class="rstat-val" id="st-dur">—</div>
+                <div class="rstat-lbl">Durée</div>
+              </div>
+              <div class="rstat">
+                <div class="rstat-val" id="st-rate">—</div>
+                <div class="rstat-lbl">Tarif / km</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date + Time -->
+          <div class="row-2" style="margin-bottom:14px">
+            <div class="field">
+              <div class="field-label">📅 Date</div>
+              <input type="date" id="trip-date" class="field-input">
+            </div>
+            <div class="field">
+              <div class="field-label">🕐 Heure</div>
+              <input type="time" id="trip-time" class="field-input">
+            </div>
+          </div>
+
+          <div class="error-box" id="err-s2"></div>
+
+          <button class="btn btn-primary" id="btn-s2" onclick="calcEstimate()">
+            Calculer l'estimation
+          </button>
+
+          <!-- Price result — revealed after calc -->
+          <div class="reveal" id="price-block">
+            <div class="price-card">
+              <div class="price-tag">Estimation du trajet</div>
+              <div class="price-value" id="est-price">—</div>
+              <div class="price-note" id="est-note">—</div>
+            </div>
+            <button class="btn btn-primary" onclick="goStep(3)">
+              Confirmer et renseigner mes infos →
+            </button>
+          </div>
+
+        </div><!-- /s2 -->
+
+
+        <!-- ===================================================
+             STEP 3 — Détails passager + WhatsApp
+        ==================================================== -->
+        <div class="step-panel" id="s3">
+
+          <button class="btn-ghost" onclick="goStep(2)">← Modifier la date / l'heure</button>
+
+          <h2 class="step-title" style="font-size:1.15rem">Vos informations</h2>
+          <p class="step-desc">Pour préparer au mieux votre trajet</p>
+
+          <!-- Mini recap -->
+          <div class="mini-recap">
+            <div class="mini-recap-route">
+              <strong id="mr-from">—</strong> → <strong id="mr-to">—</strong>
+            </div>
+            <div class="mini-recap-price" id="mr-price">—</div>
+          </div>
+
+          <!-- Name row -->
+          <div class="row-2">
+            <div class="field">
+              <div class="field-label">Prénom</div>
+              <input type="text" id="p-first" class="field-input" placeholder="Jean" autocomplete="given-name">
+            </div>
+            <div class="field">
+              <div class="field-label">Nom</div>
+              <input type="text" id="p-last" class="field-input" placeholder="Dupont" autocomplete="family-name">
+            </div>
+          </div>
+
+          <!-- Luggage -->
+          <div class="field" style="margin-bottom:14px">
+            <div class="field-label">🧳 Nombre de bagages</div>
+            <div class="stepper-wrap">
+              <button class="stepper-btn" onclick="changeLuggage(-1)">−</button>
+              <div class="stepper-sep"></div>
+              <div class="stepper-val" id="luggage-val">0</div>
+              <div class="stepper-sep"></div>
+              <button class="stepper-btn" onclick="changeLuggage(1)">+</button>
+            </div>
+          </div>
+
+          <!-- Flight number -->
+          <div class="field">
+            <div class="field-label">✈️ Numéro de vol <span class="optional">— optionnel</span></div>
+            <input type="text" id="p-flight" class="field-input" placeholder="Ex : AF 1234" autocomplete="off">
+          </div>
+
+          <!-- Notes -->
+          <div class="field">
+            <div class="field-label">📝 Demandes particulières <span class="optional">— optionnel</span></div>
+            <textarea id="p-notes" class="field-input" rows="3" placeholder="Animaux, siège bébé, équipement spécifique…"></textarea>
+          </div>
+
+          <div class="error-box" id="err-s3"></div>
+
+          <!-- CTA -->
+          <a id="btn-wa" href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Réserver via WhatsApp
+          </a>
+          <a href="tel:+33611916560" class="btn btn-outline">📞 Appeler le +33 6 11 91 65 60</a>
+
+        </div><!-- /s3 -->
+
+      </div><!-- /panel-inner -->
+    </div><!-- /panel-scroll -->
+  </div><!-- /panel -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ============================================================
+       CONFIG TARIF
+    ============================================================ */
+    const TARIFF = {
+      baseFare:       3.50,
+      ratePerKmDay:   1.80,
+      ratePerKmNight: 2.40,
+      minimumFare:    8,
+    };
+
+    /* ============================================================
+       STATE
+    ============================================================ */
+    let map, ds, dr;
+    let acOrigin, acDest;
+    let placeOrigin = null, placeDest = null;
+    let lastDist = 0, lastDistText = '', lastDurText = '';
+    let luggageCount = 0;
+    let currentStep = 1;
+
+    /* ============================================================
+       DATE / TIME DEFAULT
+    ============================================================ */
+    (function () {
+      const n = new Date();
+      const d = document.getElementById('trip-date');
+      const t = document.getElementById('trip-time');
+      if (d) d.value = n.toISOString().split('T')[0];
+      if (t) t.value = String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0');
+    })();
+
+    /* ============================================================
+       NIGHT RATE — uses selected date/time
+    ============================================================ */
+    function isNightRate() {
+      const d = document.getElementById('trip-date')?.value;
+      const t = document.getElementById('trip-time')?.value;
+      const ref = (d && t) ? new Date(d + 'T' + t) : new Date();
+      const h = ref.getHours(), day = ref.getDay();
+      return h >= 20 || h < 7 || day === 0 || day === 6;
+    }
+
+    /* ============================================================
+       MAPS INIT
+    ============================================================ */
+    window.initMapsResa = function () {
+      ds = new google.maps.DirectionsService();
+      dr = new google.maps.DirectionsRenderer({
+        suppressMarkers: false,
+        polylineOptions: { strokeColor: '#e94560', strokeWeight: 5, strokeOpacity: .9 },
+      });
+
+      map = new google.maps.Map(document.getElementById('map-bg'), {
+        zoom: 11,
+        center: { lat: 48.8566, lng: 2.3522 }, /* Paris – Île-de-France */
+        disableDefaultUI: true,
+        gestureHandling: 'greedy',
+        styles: [
+          { elementType: 'geometry',              stylers: [{ color: '#f0ede8' }] },
+          { elementType: 'labels.text.fill',      stylers: [{ color: '#6b7280' }] },
+          { elementType: 'labels.text.stroke',    stylers: [{ color: '#f9fafb' }] },
+          { elementType: 'labels.icon',           stylers: [{ visibility: 'off' }] },
+          { featureType: 'administrative',        elementType: 'geometry',       stylers: [{ visibility: 'off' }] },
+          { featureType: 'poi',                   stylers: [{ visibility: 'off' }] },
+          { featureType: 'road',                  elementType: 'geometry',       stylers: [{ color: '#ffffff' }] },
+          { featureType: 'road',                  elementType: 'geometry.stroke',stylers: [{ color: '#e5e7eb' }] },
+          { featureType: 'road.highway',          elementType: 'geometry',       stylers: [{ color: '#fff9f0' }] },
+          { featureType: 'road.highway',          elementType: 'geometry.stroke',stylers: [{ color: '#f3d19c' }] },
+          { featureType: 'road.local',            stylers: [{ visibility: 'simplified' }] },
+          { featureType: 'transit',               stylers: [{ visibility: 'off' }] },
+          { featureType: 'water',                 elementType: 'geometry',       stylers: [{ color: '#bfdbfe' }] },
+          { featureType: 'landscape.natural',     elementType: 'geometry',       stylers: [{ color: '#dde8d0' }] },
+        ],
+      });
+      dr.setMap(map);
+
+      acOrigin = new google.maps.places.Autocomplete(
+        document.getElementById('origin'),
+        { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] }
+      );
+      acDest = new google.maps.places.Autocomplete(
+        document.getElementById('destination'),
+        { componentRestrictions: { country: 'fr' }, fields: ['geometry', 'formatted_address', 'name'] }
+      );
+
+      acOrigin.addListener('place_changed', () => {
+        placeOrigin = acOrigin.getPlace();
+        checkStep1Ready();
+      });
+      acDest.addListener('place_changed', () => {
+        placeDest = acDest.getPlace();
+        checkStep1Ready();
+      });
+
+      // Re-estimate on date/time change if on step 2 and already estimated
+      ['trip-date','trip-time'].forEach(id => {
+        document.getElementById(id)?.addEventListener('change', () => {
+          const pb = document.getElementById('price-block');
+          if (pb?.classList.contains('shown') && placeOrigin && placeDest) {
+            calcEstimate();
+          }
+        });
+      });
+    };
+
+    /* ============================================================
+       STEP 1 — validation
+    ============================================================ */
+    function checkStep1Ready() {
+      const oVal = document.getElementById('origin')?.value?.trim();
+      const dVal = document.getElementById('destination')?.value?.trim();
+      const btn  = document.getElementById('btn-s1');
+      const ready = (placeOrigin?.geometry || oVal) && (placeDest?.geometry || dVal);
+      if (btn) btn.disabled = !ready;
+    }
+
+    ['origin','destination'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', checkStep1Ready);
+    });
+
+    function submitStep1() {
+      hideError('err-s1');
+      const oVal = document.getElementById('origin')?.value?.trim();
+      const dVal = document.getElementById('destination')?.value?.trim();
+      if (!oVal || !dVal) {
+        showError('err-s1', 'Veuillez saisir une adresse de départ et d\'arrivée.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-s1');
+      btn.innerHTML = '<span class="spinner"></span> Calcul de l\'itinéraire…';
+      btn.disabled = true;
+
+      const done = () => {
+        if (placeOrigin?.geometry && placeDest?.geometry) {
+          drawRoute(() => {
+            btn.innerHTML = 'Afficher le trajet →';
+            btn.disabled = false;
+            goStep(2);
+          });
+        } else {
+          btn.innerHTML = 'Afficher le trajet →';
+          btn.disabled = false;
+          showError('err-s1', 'Adresse introuvable. Veuillez choisir une suggestion dans la liste.');
+        }
+      };
+
+      let pending = 0;
+      const geocoder = new google.maps.Geocoder();
+
+      if (!placeOrigin?.geometry) {
+        pending++;
+        geocoder.geocode({ address: oVal, region: 'fr' }, (res, st) => {
+          if (st === 'OK') placeOrigin = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
+          if (--pending === 0) done();
+        });
+      }
+      if (!placeDest?.geometry) {
+        pending++;
+        geocoder.geocode({ address: dVal, region: 'fr' }, (res, st) => {
+          if (st === 'OK') placeDest = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
+          if (--pending === 0) done();
+        });
+      }
+      if (pending === 0) done();
+    }
+
+    /* ============================================================
+       DRAW ROUTE (silent, no price calc)
+    ============================================================ */
+    function drawRoute(cb) {
+      const dateVal = document.getElementById('trip-date')?.value;
+      const timeVal = document.getElementById('trip-time')?.value;
+      let depTime = new Date();
+      if (dateVal && timeVal) {
+        const d = new Date(dateVal + 'T' + timeVal);
+        if (d > depTime) depTime = d;
+      }
+
+      ds.route({
+        origin: placeOrigin.geometry.location,
+        destination: placeDest.geometry.location,
+        travelMode: google.maps.TravelMode.DRIVING,
+        drivingOptions: { departureTime: depTime, trafficModel: google.maps.TrafficModel.BEST_GUESS },
+      }, (result, status) => {
+        if (status === 'OK') {
+          const leg = result.routes[0].legs[0];
+          lastDist     = leg.distance.value / 1000;
+          lastDistText = leg.distance.text;
+          lastDurText  = leg.duration.text;
+          dr.setDirections(result);
+
+          // Fit map — décale vers le haut pour ne pas être masqué par le panel
+          if (result.routes[0].bounds) {
+            const ph = document.getElementById('main-panel')?.offsetHeight || 300;
+            const topBarH = 64;
+            map.fitBounds(result.routes[0].bounds, {
+              top:    topBarH + 24,
+              right:  24,
+              bottom: ph + 40,
+              left:   24,
+            });
+          }
+
+          // Populate route card
+          const from = placeOrigin.formatted_address || document.getElementById('origin').value;
+          const to   = placeDest.formatted_address   || document.getElementById('destination').value;
+          document.getElementById('rc-from').textContent = from;
+          document.getElementById('rc-to').textContent   = to;
+
+          document.getElementById('st-dist').textContent = lastDistText;
+          document.getElementById('st-dur').textContent  = lastDurText;
+          document.getElementById('route-stats').style.display = 'flex';
+
+          if (cb) cb();
+        } else {
+          if (cb) cb(); // still go forward, show error later
+          showError('err-s1', 'Itinéraire introuvable. Vérifiez les adresses.');
+        }
+      });
+    }
+
+    /* ============================================================
+       STEP 2 — estimate
+    ============================================================ */
+    function calcEstimate() {
+      hideError('err-s2');
+      if (!placeOrigin?.geometry || !placeDest?.geometry) {
+        showError('err-s2', 'Adresses manquantes. Retournez à l\'étape précédente.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-s2');
+      btn.innerHTML = '<span class="spinner"></span> Calcul…';
+      btn.disabled = true;
+
+      // Redraw route with updated time then show price
+      const dateVal = document.getElementById('trip-date')?.value;
+      const timeVal = document.getElementById('trip-time')?.value;
+      let depTime = new Date();
+      if (dateVal && timeVal) {
+        const d = new Date(dateVal + 'T' + timeVal);
+        if (d > depTime) depTime = d;
+      }
+
+      ds.route({
+        origin: placeOrigin.geometry.location,
+        destination: placeDest.geometry.location,
+        travelMode: google.maps.TravelMode.DRIVING,
+        drivingOptions: { departureTime: depTime, trafficModel: google.maps.TrafficModel.BEST_GUESS },
+      }, (result, status) => {
+        btn.innerHTML = 'Calculer l\'estimation';
+        btn.disabled = false;
+
+        if (status === 'OK') {
+          const leg = result.routes[0].legs[0];
+          lastDist     = leg.distance.value / 1000;
+          lastDistText = leg.distance.text;
+          lastDurText  = leg.duration.text;
+          dr.setDirections(result);
+
+          // Update stats
+          document.getElementById('st-dist').textContent = lastDistText;
+          document.getElementById('st-dur').textContent  = lastDurText;
+          document.getElementById('route-stats').style.display = 'flex';
+
+          showPrice();
+        } else {
+          showError('err-s2', 'Impossible de calculer l\'itinéraire. Vérifiez les adresses.');
+        }
+      });
+    }
+
+    function showPrice() {
+      const night  = isNightRate();
+      const rateKm = night ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
+      let price = TARIFF.baseFare + lastDist * rateKm;
+      price = Math.max(price, TARIFF.minimumFare);
+      const lo = Math.round(price * .9);
+      const hi = Math.round(price * 1.1);
+
+      document.getElementById('est-price').textContent = lo + ' – ' + hi + ' €';
+      document.getElementById('est-note').textContent  =
+        (night ? '🌙 Tarif nuit' : '☀️ Tarif jour') +
+        ' · ' + rateKm.toFixed(2) + ' €/km — Base ' + TARIFF.baseFare.toFixed(2) + ' €';
+      document.getElementById('st-rate').textContent   = rateKm.toFixed(2) + ' €/km';
+
+      // Mini recap for step 3
+      const from = placeOrigin?.formatted_address || document.getElementById('origin').value;
+      const to   = placeDest?.formatted_address   || document.getElementById('destination').value;
+      document.getElementById('mr-from').textContent  = shorten(from, 18);
+      document.getElementById('mr-to').textContent    = shorten(to, 18);
+      document.getElementById('mr-price').textContent = lo + '–' + hi + ' €';
+
+      // Build WA message (will be updated again in step 3)
+      buildWaLink();
+
+      const pb = document.getElementById('price-block');
+      pb.classList.add('shown');
+      pb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shorten(str, max) {
+      if (!str) return '—';
+      const parts = str.split(',');
+      return parts[0].trim().length > max ? parts[0].trim().substring(0, max) + '…' : parts[0].trim();
+    }
+
+    /* ============================================================
+       STEP 3 — whatsapp link
+    ============================================================ */
+    function buildWaLink() {
+      const night  = isNightRate();
+      const rateKm = night ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
+      let price = TARIFF.baseFare + lastDist * rateKm;
+      price = Math.max(price, TARIFF.minimumFare);
+      const lo = Math.round(price * .9);
+      const hi = Math.round(price * 1.1);
+
+      const from    = placeOrigin?.formatted_address || document.getElementById('origin')?.value || '';
+      const to      = placeDest?.formatted_address   || document.getElementById('destination')?.value || '';
+      const dateVal = document.getElementById('trip-date')?.value || '';
+      const timeVal = document.getElementById('trip-time')?.value || '';
+      const first   = document.getElementById('p-first')?.value?.trim() || '';
+      const last    = document.getElementById('p-last')?.value?.trim() || '';
+      const luggage = luggageCount;
+      const flight  = document.getElementById('p-flight')?.value?.trim() || '';
+      const notes   = document.getElementById('p-notes')?.value?.trim() || '';
+
+      let msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n`;
+      if (first || last) msg += `\n👤 Passager : ${[first, last].filter(Boolean).join(' ')}`;
+      msg += `\n\n📍 Départ : ${from}`;
+      msg += `\n🏁 Arrivée : ${to}`;
+      msg += `\n📅 Date : ${dateVal} à ${timeVal}`;
+      msg += `\n📏 Distance : ${lastDistText}`;
+      msg += `\n⏱️ Durée estimée : ${lastDurText}`;
+      msg += `\n🧳 Bagages : ${luggage}`;
+      if (flight) msg += `\n✈️ Vol : ${flight}`;
+      msg += `\n💰 Estimation : ${lo}–${hi} € (${night ? 'tarif nuit' : 'tarif jour'})`;
+      if (notes) msg += `\n\n📝 Demandes : ${notes}`;
+      msg += `\n\nPouvez-vous confirmer la disponibilité ?`;
+
+      const btn = document.getElementById('btn-wa');
+      if (btn) btn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
+    }
+
+    // Rebuild WA link as user fills form
+    ['p-first','p-last','p-flight','p-notes'].forEach(id => {
+      document.getElementById(id)?.addEventListener('input', buildWaLink);
+    });
+
+    /* ============================================================
+       LUGGAGE STEPPER
+    ============================================================ */
+    window.changeLuggage = function (delta) {
+      luggageCount = Math.max(0, Math.min(10, luggageCount + delta));
+      document.getElementById('luggage-val').textContent = luggageCount;
+      buildWaLink();
+    };
+
+    /* ============================================================
+       SWAP ADDRESSES
+    ============================================================ */
+    document.getElementById('swap-btn')?.addEventListener('click', () => {
+      const o = document.getElementById('origin');
+      const d = document.getElementById('destination');
+      [o.value, d.value] = [d.value, o.value];
+      [placeOrigin, placeDest] = [placeDest, placeOrigin];
+      checkStep1Ready();
+    });
+
+    /* ============================================================
+       NAVIGATION BETWEEN STEPS
+    ============================================================ */
+    window.goStep = function (n) {
+      document.querySelectorAll('.step-panel').forEach(el => el.classList.remove('active'));
+      document.getElementById('s' + n)?.classList.add('active');
+      currentStep = n;
+
+      // Scroll panel to top
+      document.querySelector('.panel-scroll')?.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Rebuild WA link if going to step 3
+      if (n === 3) buildWaLink();
+    };
+
+    /* ============================================================
+       ERROR HELPERS
+    ============================================================ */
+    function showError(id, msg) {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = '⚠️ ' + msg; el.classList.add('visible'); }
+    }
+    function hideError(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('visible');
+    }
+
+  </script>
+
+  <!-- Google Maps API — même clé que la page principale -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCs8-SBHrIxgep1d_xhfYUiw2E2KDN-c&libraries=places&callback=initMapsResa"
+    async defer></script>
+
+</body>
+</html>
