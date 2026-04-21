@@ -39,20 +39,32 @@
 
     html, body {
       height: 100%;
+      width: 100%;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       -webkit-font-smoothing: antialiased;
+      /* NE PAS mettre overflow:hidden sur html — casse Google Maps sur iOS Safari */
       overflow: hidden;
-      background: #dde8d0; /* correspond au style carte landscape.natural */
-      touch-action: pan-y;
+      background: #dde8d0;
     }
 
     /* ============================================================
-       MAP
+       MAP — plein écran en fond
     ============================================================ */
     #map-bg {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;        /* explicite : Google Maps vérifie offsetWidth */
+      height: 100%;       /* explicite : Google Maps vérifie offsetHeight */
       z-index: 0;
+    }
+
+    /* Google Maps crée un div interne — forcer aussi sa taille */
+    #map-bg > div {
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* ============================================================
@@ -948,6 +960,14 @@
         ],
       });
       dr.setMap(map);
+
+      // Force le recalcul des dimensions après rendu du DOM
+      // (nécessaire sur certains navigateurs mobiles / iOS Safari)
+      google.maps.event.addListenerOnce(map, 'idle', function () {
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter({ lat: 48.8566, lng: 2.3522 });
+        map.setZoom(11);
+      });
 
       acOrigin = new google.maps.places.Autocomplete(
         document.getElementById('origin'),
