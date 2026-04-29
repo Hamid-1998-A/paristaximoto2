@@ -77,51 +77,187 @@
       top: 0; left: 0; right: 0;
       z-index: 50;
       display: flex;
-      align-items: center;
+      align-items: flex-start;          /* flex-start pour que l'expansion aille vers le bas */
       justify-content: space-between;
       padding: 12px 16px;
       pointer-events: none;
+      gap: 8px;
     }
 
-    .top-logo {
+    /* ============================================================
+       INFO CARDS — chauffeur (gauche) & tarifs (droite)
+    ============================================================ */
+    .info-card {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      border-radius: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.11);
+      overflow: hidden;
+      pointer-events: all;
+      max-height: 46px;                 /* hauteur pill fermée */
+      max-width: min(240px, calc(50vw - 22px));
+      flex-shrink: 0;
+      /* Animation : hauteur + coins */
+      transition:
+        max-height .42s cubic-bezier(0.4, 0, 0.2, 1),
+        border-radius .35s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow .3s ease;
+    }
+    .info-card.open {
+      max-height: 440px;
+      border-radius: 16px;
+      box-shadow: 0 10px 36px rgba(0,0,0,.17);
+    }
+
+    /* Bouton pill déclencheur */
+    .card-trigger {
       display: flex;
       align-items: center;
-      gap: 9px;
-      background: var(--white);
-      border-radius: 40px;
-      padding: 8px 14px 8px 10px;
-      box-shadow: var(--shadow);
-      pointer-events: all;
-      text-decoration: none;
+      gap: 8px;
+      background: transparent;
+      border: none;
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 12px 9px 10px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      outline: none;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
     }
-    .top-logo-icon {
+    .card-trigger:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: -2px;
+      border-radius: 22px;
+    }
+
+    /* Icône colorée dans le trigger */
+    .ct-icon {
       width: 28px; height: 28px;
       background: var(--red);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: .85rem;
+      font-size: .84rem;
+      flex-shrink: 0;
+      transition: transform .2s ease;
     }
-    .top-logo-name {
+    .info-card.open .ct-icon { transform: scale(.92); }
+
+    .ct-name {
       font-size: .8rem;
       font-weight: 700;
       color: var(--text);
       letter-spacing: -.2px;
+      flex: 1;
+      text-align: left;
     }
 
-    .top-tel {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--white);
-      border-radius: 40px;
-      padding: 8px 14px;
-      box-shadow: var(--shadow);
-      pointer-events: all;
-      text-decoration: none;
-      font-size: .78rem;
-      font-weight: 600;
-      color: var(--text);
+    /* Chevron */
+    .ct-chev {
+      width: 14px; height: 14px;
+      stroke: var(--text-3);
+      flex-shrink: 0;
+      transition: transform .38s cubic-bezier(0.4, 0, 0.2, 1), stroke .2s;
     }
+    .info-card.open .ct-chev { transform: rotate(180deg); stroke: var(--text-2); }
+
+    /* Corps de la carte */
+    .card-body {
+      padding: 0 14px 14px;
+    }
+    .card-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 13px;
+    }
+
+    /* ---- CHAUFFEUR ---- */
+    .driver-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .driver-avatar {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--red) 0%, #c73652 100%);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .88rem; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+      letter-spacing: -.5px;
+    }
+    .driver-name {
+      font-size: .9rem; font-weight: 700;
+      color: var(--text); letter-spacing: -.2px;
+      margin-bottom: 3px;
+    }
+    .driver-badge {
+      font-size: .63rem; font-weight: 600;
+      color: var(--red);
+      background: var(--red-light);
+      border-radius: 4px;
+      padding: 2px 6px;
+      display: inline-block;
+    }
+
+    .driver-stats {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 5px;
+      margin-bottom: 11px;
+    }
+    .dstat {
+      background: var(--bg);
+      border-radius: 8px; padding: 7px 4px;
+      text-align: center;
+    }
+    .dstat-val {
+      display: block; font-size: .8rem; font-weight: 800; color: var(--text); line-height: 1.1;
+    }
+    .dstat-lbl {
+      display: block; font-size: .58rem; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-top: 2px;
+    }
+
+    .driver-langs {
+      font-size: .71rem; color: var(--text-2);
+      line-height: 1.55; margin-bottom: 8px;
+    }
+    .driver-desc {
+      font-size: .72rem; color: var(--text-2);
+      line-height: 1.58; margin: 0;
+    }
+
+    /* ---- TARIFS ---- */
+    .tarif-rows { margin-bottom: 12px; }
+    .tarif-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0; font-size: .77rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tarif-row:last-child { border-bottom: none; }
+    .tarif-row span { color: var(--text-2); }
+    .tarif-row strong { color: var(--text); font-weight: 700; }
+
+    .pm-label {
+      font-size: .63rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .8px;
+      color: var(--text-3); margin-bottom: 6px;
+    }
+    .pm-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+    .pm-chip {
+      font-size: .67rem; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 3px 7px; color: var(--text-2); font-weight: 500;
+    }
+    .card-call-btn {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px; background: var(--red);
+      color: #fff; border-radius: 9px;
+      font-size: .78rem; font-weight: 700;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .card-call-btn:hover { background: var(--red-dark); }
 
     /* ============================================================
        BOTTOM SHEET PANEL — collapsible
@@ -765,14 +901,91 @@
   <div id="map-bg"></div>
 
   <!-- ============================================================
-       TOP BAR
+       TOP BAR — cartes chauffeur + tarifs
   ============================================================ -->
   <div class="top-bar">
-    <a href="../index.html" class="top-logo">
-      <div class="top-logo-icon">🏍️</div>
-      <span class="top-logo-name">Paris TaxiMoto</span>
-    </a>
-    <a href="tel:+33611916560" class="top-tel">📞 06 11 91 65 60</a>
+
+    <!-- ① CARTE CHAUFFEUR (gauche) -->
+    <div class="info-card" id="card-driver" role="region" aria-label="Informations chauffeur">
+      <button class="card-trigger" id="trigger-driver"
+              aria-expanded="false" aria-controls="body-driver">
+        <div class="ct-icon">🏍️</div>
+        <span class="ct-name">Paris TaxiMoto</span>
+        <svg class="ct-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <div class="card-body" id="body-driver" aria-hidden="true">
+        <div class="card-sep"></div>
+
+        <div class="driver-header">
+          <div class="driver-avatar">HB</div>
+          <div>
+            <div class="driver-name">Hamid B.</div>
+            <span class="driver-badge">✓ Certifié VMDTR</span>
+          </div>
+        </div>
+
+        <div class="driver-stats">
+          <div class="dstat">
+            <span class="dstat-val">850+</span>
+            <span class="dstat-lbl">Courses</span>
+          </div>
+          <div class="dstat">
+            <span class="dstat-val">⭐ 4.9</span>
+            <span class="dstat-lbl">Note</span>
+          </div>
+          <div class="dstat">
+            <span class="dstat-val">6 ans</span>
+            <span class="dstat-lbl">Exp.</span>
+          </div>
+        </div>
+
+        <div class="driver-langs">🇫🇷 Français &nbsp;·&nbsp; 🇬🇧 English &nbsp;·&nbsp; 🇩🇿 Arabe</div>
+        <p class="driver-desc">Chauffeur certifié depuis 2018. Connaissance approfondie de Paris et Île-de-France. Discret, ponctuel, professionnel.</p>
+      </div>
+    </div>
+
+    <!-- ② CARTE TARIFS (droite) -->
+    <div class="info-card" id="card-tarifs" role="region" aria-label="Tarifs et services">
+      <button class="card-trigger" id="trigger-tarifs"
+              aria-expanded="false" aria-controls="body-tarifs">
+        <div class="ct-icon" style="background:#16a34a">💰</div>
+        <span class="ct-name">Tarifs</span>
+        <svg class="ct-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <div class="card-body" id="body-tarifs" aria-hidden="true">
+        <div class="card-sep"></div>
+
+        <div class="tarif-rows">
+          <div class="tarif-row"><span>☀️ Tarif jour</span><strong>1,80 €/km</strong></div>
+          <div class="tarif-row"><span>🌙 Nuit &amp; WE</span><strong>2,40 €/km</strong></div>
+          <div class="tarif-row"><span>🚀 Prise en charge</span><strong>3,50 €</strong></div>
+          <div class="tarif-row"><span>⚡ Minimum</span><strong>8,00 €</strong></div>
+        </div>
+
+        <div class="pm-label">Paiements acceptés</div>
+        <div class="pm-chips">
+          <span class="pm-chip">💵 Espèces</span>
+          <span class="pm-chip">💳 CB</span>
+          <span class="pm-chip">📱 Lydia</span>
+          <span class="pm-chip">🏦 Virement</span>
+        </div>
+
+        <a href="tel:+33611916560" class="card-call-btn">
+          📞 06 11 91 65 60
+        </a>
+      </div>
+    </div>
+
   </div>
 
   <!-- Floating WA shortcut -->
@@ -1547,6 +1760,83 @@
       /* Exposer pour usage externe */
       window.collapsePanel = collapse;
       window.expandPanel   = expand;
+
+    })();
+
+    /* ============================================================
+       INFO CARDS — toggle chauffeur / tarifs
+    ============================================================ */
+    (function () {
+      const CARDS = [
+        { cardId: 'card-driver',  triggerId: 'trigger-driver',  bodyId: 'body-driver'  },
+        { cardId: 'card-tarifs',  triggerId: 'trigger-tarifs',  bodyId: 'body-tarifs'  },
+      ];
+
+      function openCard(targetCardId) {
+        CARDS.forEach(({ cardId, triggerId, bodyId }) => {
+          const card    = document.getElementById(cardId);
+          const trigger = document.getElementById(triggerId);
+          const body    = document.getElementById(bodyId);
+          if (!card) return;
+
+          if (cardId === targetCardId) {
+            card.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+            body.setAttribute('aria-hidden', 'false');
+          } else {
+            card.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+            body.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+
+      function closeAll() {
+        CARDS.forEach(({ cardId, triggerId, bodyId }) => {
+          document.getElementById(cardId)?.classList.remove('open');
+          document.getElementById(triggerId)?.setAttribute('aria-expanded', 'false');
+          document.getElementById(bodyId)?.setAttribute('aria-hidden', 'true');
+        });
+      }
+
+      function isAnyOpen() {
+        return CARDS.some(({ cardId }) =>
+          document.getElementById(cardId)?.classList.contains('open')
+        );
+      }
+
+      /* Clic sur un trigger */
+      CARDS.forEach(({ cardId, triggerId }) => {
+        const trigger = document.getElementById(triggerId);
+        if (!trigger) return;
+
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = document.getElementById(cardId);
+          if (card.classList.contains('open')) closeAll();
+          else openCard(cardId);
+        });
+
+        /* Clavier : Enter/Space géré nativement sur button ;
+           Escape referme */
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') { closeAll(); trigger.blur(); }
+        });
+      });
+
+      /* Fermer si clic hors des deux cartes */
+      document.addEventListener('click', (e) => {
+        if (!isAnyOpen()) return;
+        const inside = CARDS.some(({ cardId }) =>
+          document.getElementById(cardId)?.contains(e.target)
+        );
+        if (!inside) closeAll();
+      });
+
+      /* Fermer avec Escape depuis n'importe où */
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isAnyOpen()) closeAll();
+      });
 
     })();
 
