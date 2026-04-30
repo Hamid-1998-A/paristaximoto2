@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#ffffff">
   <title>Paris TaxiMoto — Réservation</title>
   <meta name="description" content="Réservez votre moto-taxi à Paris. Calculez votre tarif instantanément.">
+  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="apple-touch-icon" href="../logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -909,7 +911,9 @@
     <div class="info-card" id="card-driver" role="region" aria-label="Informations chauffeur">
       <button class="card-trigger" id="trigger-driver"
               aria-expanded="false" aria-controls="body-driver">
-        <div class="ct-icon">🏍️</div>
+        <div class="ct-icon" style="background:transparent;padding:2px;display:flex;align-items:center;justify-content:center;">
+          <img src="../logo.png" alt="Paris TaxiMoto" style="width:24px;height:24px;object-fit:contain;border-radius:50%;">
+        </div>
         <span class="ct-name">Paris TaxiMoto</span>
         <svg class="ct-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
