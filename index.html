@@ -398,6 +398,131 @@
       .tarif-card { padding:24px 16px; }
       .footer-grid { gap:28px; }
     }
+
+    /* ============================================================
+       BOUTON FLOTTANT — AJOUTER AUX CONTACTS (mobile)
+    ============================================================ */
+    .cf-wrap {
+      position: fixed;
+      bottom: 88px;
+      left: 16px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateX(-90px);
+      pointer-events: none;
+      transition: opacity .55s cubic-bezier(.34,1.56,.64,1),
+                  transform .55s cubic-bezier(.34,1.56,.64,1);
+    }
+    .cf-wrap.cf-visible {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+    .cf-wrap.cf-out {
+      opacity: 0 !important;
+      transform: translateX(-90px) !important;
+      pointer-events: none !important;
+      transition: opacity .28s ease, transform .28s ease !important;
+    }
+    /* Bouton principal — pilule */
+    .cf-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 60%, #3b82f6 100%);
+      border: none;
+      border-radius: 50px;
+      height: 54px;
+      width: 54px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(29,78,216,.45), 0 2px 8px rgba(0,0,0,.22);
+      transition: width .55s cubic-bezier(.34,1.56,.64,1),
+                  box-shadow .3s ease,
+                  transform .15s ease;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+    .cf-btn.cf-expanded {
+      width: 228px;
+      box-shadow: 0 6px 32px rgba(29,78,216,.55), 0 3px 14px rgba(0,0,0,.26);
+    }
+    .cf-btn:active { transform: scale(.94); }
+    /* Icône centrée */
+    .cf-icon {
+      width: 54px;
+      min-width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .cf-icon svg { width: 22px; height: 22px; }
+    /* Texte qui apparaît à l'expansion */
+    .cf-label {
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      line-height: 1.2;
+      padding-right: 18px;
+      overflow: hidden;
+      max-width: 0;
+      opacity: 0;
+      transition: max-width .45s ease .08s, opacity .3s ease .2s;
+    }
+    .cf-btn.cf-expanded .cf-label {
+      max-width: 175px;
+      opacity: 1;
+    }
+    /* Bouton fermer */
+    .cf-close {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1f2937;
+      border: 2px solid #fff;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(0,0,0,.35);
+      transition: background .2s, transform .15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cf-close:hover, .cf-close:active { background: #dc2626; transform: scale(1.1); }
+    /* Pulse subtil avant l'expansion */
+    @keyframes cf-pulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(29,78,216,.45), 0 2px 8px rgba(0,0,0,.22); }
+      50%      { box-shadow: 0 4px 28px rgba(29,78,216,.75), 0 0 0 7px rgba(29,78,216,.14); }
+    }
+    .cf-btn.cf-pulsing { animation: cf-pulse 1.6s ease-in-out infinite; }
+    /* Shimmer sur le texte au moment de l'expansion */
+    @keyframes cf-shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .cf-btn.cf-expanded .cf-label {
+      background: linear-gradient(90deg, #fff 30%, #bfdbfe 50%, #fff 70%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: cf-shimmer .9s ease forwards .2s;
+    }
   </style>
 </head>
 <body>
@@ -1358,6 +1483,100 @@
 
   <!-- Google Maps API — AJOUT CLÉ API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCs8-SBHrIxgep1d_xhfYUiw2E2KDN-c&libraries=places&callback=initMapsCalculator" async defer></script>
+
+  <!-- ============================================================
+       BOUTON FLOTTANT — AJOUTER AUX CONTACTS (mobile uniquement)
+  ============================================================ -->
+  <div class="cf-wrap" id="cf-wrap" role="complementary" aria-label="Ajouter le chauffeur dans vos contacts">
+    <!-- Fermer -->
+    <button class="cf-close" id="cf-close" aria-label="Fermer ce bouton">
+      <svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="1" y1="1" x2="9" y2="9"/><line x1="9" y1="1" x2="1" y2="9"/>
+      </svg>
+    </button>
+    <!-- Pilule principale -->
+    <button class="cf-btn" id="cf-btn" aria-label="Ajouter Paris TaxiMoto dans vos contacts">
+      <span class="cf-icon">
+        <!-- person-add SVG -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <line x1="19" y1="8" x2="19" y2="14"/>
+          <line x1="22" y1="11" x2="16" y2="11"/>
+        </svg>
+      </span>
+      <span class="cf-label">📲 Ajouter dans vos contacts</span>
+    </button>
+  </div>
+
+  <script>
+  /* ============================================================
+     BOUTON CONTACT FLOTTANT
+  ============================================================ */
+  (function () {
+    /* Mobile uniquement */
+    var mob = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (!mob) return;
+    /* Déjà fermé ? */
+    if (localStorage.getItem('ptm_contact_dismissed') === '1') return;
+
+    var wrap  = document.getElementById('cf-wrap');
+    var btn   = document.getElementById('cf-btn');
+    var close = document.getElementById('cf-close');
+    if (!wrap || !btn || !close) return;
+
+    /* --- Apparition (900 ms après chargement) --- */
+    setTimeout(function () {
+      wrap.classList.add('cf-visible');
+      btn.classList.add('cf-pulsing');
+
+      /* --- Expansion (2.8 s après apparition) --- */
+      setTimeout(function () {
+        btn.classList.remove('cf-pulsing');
+        btn.classList.add('cf-expanded');
+
+        /* --- Repli automatique après 7 s --- */
+        setTimeout(function () {
+          btn.classList.remove('cf-expanded');
+        }, 7000);
+      }, 2800);
+    }, 900);
+
+    /* --- Téléchargement vCard (iOS + Android) --- */
+    btn.addEventListener('click', function () {
+      var vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:B.;Hamid;;;',
+        'FN:Hamid B. — Paris TaxiMoto',
+        'ORG:Paris TaxiMoto',
+        'TITLE:Moto-Taxi Paris',
+        'TEL;TYPE=CELL,VOICE:+33611916560',
+        'URL:https://paristaximoto.fr',
+        'NOTE:Chauffeur certifié VMDTR. Disponible 24h/24 à Paris et Île-de-France.',
+        'END:VCARD'
+      ].join('\r\n');
+
+      var blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'Paris-TaxiMoto.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    });
+
+    /* --- Fermeture définitive --- */
+    close.addEventListener('click', function (e) {
+      e.stopPropagation();
+      wrap.classList.remove('cf-visible');
+      wrap.classList.add('cf-out');
+      localStorage.setItem('ptm_contact_dismissed', '1');
+    });
+  })();
+  </script>
 
 </body>
 </html>
