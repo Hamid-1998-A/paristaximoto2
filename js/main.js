@@ -101,7 +101,7 @@ newsletterForm?.addEventListener('submit', (e) => {
   const input = newsletterForm.querySelector('input');
   if (input?.value) {
     input.value = '';
-    input.placeholder = '✓ Merci pour votre inscription !';
+    input.placeholder = 'Merci pour votre inscription !';
     setTimeout(() => { input.placeholder = 'Votre email...'; }, 3000);
   }
 });

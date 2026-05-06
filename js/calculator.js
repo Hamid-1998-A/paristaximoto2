@@ -110,7 +110,7 @@ function calculateRoute() {
     },
     (result, status) => {
       if (calculateBtn) {
-        calculateBtn.innerHTML = '🔍 Calculer le prix';
+        calculateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Calculer le prix';
         calculateBtn.disabled = false;
       }
 
@@ -164,7 +164,10 @@ function displayEstimate(distanceKm, durationMin, durationWithTrafficMin, distan
   document.getElementById('est-duration').textContent = durationText;
   document.getElementById('est-rate').textContent = `${rateKm.toFixed(2)} €/km`;
   document.getElementById('est-price').textContent = `${priceLow} – ${priceHigh} €`;
-  document.getElementById('est-period').textContent = isNight ? '🌙 Tarif nuit' : '☀️ Tarif jour';
+  document.getElementById('est-period').innerHTML = isNight
+    ? '<i data-lucide="moon"></i> Tarif nuit'
+    : '<i data-lucide="sun"></i> Tarif jour';
+  if (typeof lucide !== 'undefined') lucide.createIcons();
 
   // Update WhatsApp CTA link
   const waBtn = document.getElementById('whatsapp-cta');
@@ -191,7 +194,8 @@ function isNightRate() {
 function showError(msg) {
   const result = document.getElementById('estimate-result');
   if (result) {
-    result.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;">⚠️ ${msg}</p>`;
+    result.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;"><i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0"></i>${msg}</p>`;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     result.classList.add('visible');
   }
 }

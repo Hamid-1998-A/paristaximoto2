@@ -532,9 +532,14 @@ a { text-decoration: none; color: inherit; }
 }
 
 .service-features li::before {
-  content: '✓';
-  color: var(--accent);
-  font-weight: 700;
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e94560' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
   flex-shrink: 0;
 }
 
@@ -897,8 +902,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 .zone-tag::before {
-  content: '📍';
-  font-size: 0.9rem;
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e94560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'%3E%3C%2Fpath%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C%2Fcircle%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 2px;
 }
 
 .zones-map {
@@ -934,6 +947,7 @@ a { text-decoration: none; color: inherit; }
   margin-bottom: 16px;
   display: block;
 }
+.why-icon svg.lucide { width: 2.4rem; height: 2.4rem; }
 
 .why-item h3 {
   color: var(--primary);
@@ -967,10 +981,17 @@ a { text-decoration: none; color: inherit; }
 }
 
 .testimonial-stars {
-  color: var(--gold);
-  font-size: 1rem;
-  letter-spacing: 2px;
+  display: flex;
+  gap: 3px;
   margin-bottom: 16px;
+}
+.testimonial-stars i {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+  fill: var(--gold);
+  stroke: var(--gold);
+  flex-shrink: 0;
 }
 
 .testimonial-text {
@@ -1515,3 +1536,70 @@ footer {
     text-align: center;
   }
 }
+
+/* ============================================
+   LUCIDE ICONS
+   ============================================ */
+
+svg.lucide {
+  display: inline-block;
+  vertical-align: -0.15em;
+  flex-shrink: 0;
+  stroke-width: 1.75;
+}
+
+/* Service icon (64×64 container, flex-centered) */
+.service-icon svg.lucide { width: 32px; height: 32px; }
+
+/* Contact item icon (48×48 container, flex-centered) */
+.contact-item-icon svg.lucide { width: 22px; height: 22px; }
+
+/* Booking strip phone icon (42×42 container, flex-centered) */
+.phone-icon svg.lucide { width: 20px; height: 20px; }
+
+/* Input icons inside form fields */
+.input-icon svg.lucide { width: 16px; height: 16px; vertical-align: middle; }
+
+/* Floating buttons */
+.floating-phone-btn svg.lucide { width: 24px; height: 24px; }
+.floating-wa svg.lucide { width: 24px; height: 24px; }
+
+/* Navbar & buttons */
+.navbar-cta svg.lucide { width: 13px; height: 13px; vertical-align: -2px; margin-right: 3px; }
+.btn svg.lucide { width: 15px; height: 15px; vertical-align: -2px; margin-right: 5px; }
+
+/* Tarif badge, check marks, inline small icons */
+.tarif-badge svg.lucide,
+.check svg.lucide,
+.form-success svg.lucide,
+.driver-badge svg.lucide { width: 13px; height: 13px; vertical-align: -1px; }
+
+/* Hero badge inline icon */
+.hero-badge svg.lucide { width: 15px; height: 15px; vertical-align: -2px; margin-right: 4px; }
+
+/* Payment chips */
+.pm-chip svg.lucide { width: 13px; height: 13px; vertical-align: -1px; margin-right: 2px; }
+
+/* Tarif rows */
+.tarif-row svg.lucide { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
+
+/* Card call button */
+.card-call-btn svg.lucide { width: 15px; height: 15px; vertical-align: -2px; margin-right: 4px; }
+
+/* CF label (floating contact button) */
+.cf-label svg.lucide { width: 14px; height: 14px; vertical-align: -2px; margin-right: 4px; }
+
+/* ct-icon inside resa top-cards (colored background badge) */
+.ct-icon svg.lucide { width: 20px; height: 20px; }
+
+/* Blog thumbnails */
+.blog-card-thumb svg.lucide { width: 3rem; height: 3rem; color: rgba(255,255,255,0.9); }
+
+/* Blog date icons */
+.blog-date svg.lucide { width: 13px; height: 13px; vertical-align: -1px; }
+
+/* Blog article metadata icons */
+.blog-article-meta svg.lucide { width: 13px; height: 13px; vertical-align: -1px; margin-right: 2px; }
+
+/* Float WA (resa page) */
+.float-wa svg.lucide { width: 24px; height: 24px; }

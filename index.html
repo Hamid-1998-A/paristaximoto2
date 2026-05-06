@@ -161,7 +161,7 @@
     .service-card p { color:var(--text-muted); font-size:0.95rem; margin-bottom:20px; }
     .service-features { list-style:none; display:flex; flex-direction:column; gap:8px; }
     .service-features li { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:var(--text-muted); }
-    .service-features li::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; }
+    .service-features li::before { content:''; display:block; width:14px; height:14px; min-width:14px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e94560' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-size:contain; flex-shrink:0; }
 
     /* ============================================================
        CALCULATOR
@@ -227,7 +227,7 @@
     .zones-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
     .zones-list { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
     .zone-tag { display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--white); border-radius:8px; font-size:0.9rem; font-weight:500; border:1px solid var(--border); color:var(--text); }
-    .zone-tag::before { content:'📍'; font-size:0.9rem; }
+    .zone-tag::before { content:''; display:inline-block; width:12px; height:12px; min-width:12px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e94560' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z'%3E%3C%2Fpath%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C%2Fcircle%3E%3C%2Fsvg%3E"); background-repeat:no-repeat; background-size:contain; vertical-align:middle; margin-right:2px; }
     .zones-map { background:var(--white); border-radius:var(--radius); height:380px; border:1px solid var(--border); overflow:hidden; }
 
     /* ============================================================
@@ -544,7 +544,7 @@
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="blog/index.html">Blog</a></li>
-        <li><a href="tel:+33611916560" class="navbar-cta">📞 Réserver</a></li>
+        <li><a href="tel:+33611916560" class="navbar-cta"><i data-lucide="phone"></i> Réserver</a></li>
       </ul>
       <button class="navbar-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -560,12 +560,12 @@
     <div class="hero-overlay"></div>
     <div class="container" style="display:flex;flex-direction:column;">
       <div class="hero-content">
-        <div class="hero-badge">🏍️ Service disponible 24h/24 — 7j/7</div>
+        <div class="hero-badge"><i data-lucide="bike"></i> Service disponible 24h/24 — 7j/7</div>
         <h1>Votre Moto-Taxi<br><span>Rapide à Paris</span></h1>
         <p>Traversez Paris en un temps record. Chauffeur professionnel certifié VMDTR, ponctualité garantie, tarifs clairs. Aéroports, gares, événements — nous vous emmenons partout en Île-de-France.</p>
         <div class="hero-actions">
-          <a href="#estimer" class="btn btn-primary">🔍 Calculer mon trajet</a>
-          <a href="tel:+33611916560" class="btn btn-outline">📞 Appeler maintenant</a>
+          <a href="#estimer" class="btn btn-primary"><i data-lucide="search"></i> Calculer mon trajet</a>
+          <a href="tel:+33611916560" class="btn btn-outline"><i data-lucide="phone"></i> Appeler maintenant</a>
         </div>
       </div>
       <div class="hero-stats">
@@ -597,11 +597,11 @@
       </div>
       <div class="booking-strip-contact">
         <a href="tel:+33611916560" class="booking-strip-phone">
-          <div class="phone-icon">📞</div>
+          <div class="phone-icon"><i data-lucide="phone"></i></div>
           06 11 91 65 60
         </a>
         <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa" style="white-space:nowrap">
-          💬 WhatsApp
+          <i data-lucide="message-circle"></i> WhatsApp
         </a>
         <a href="#estimer" class="btn btn-primary" style="white-space:nowrap">
           Estimer mon tarif →
@@ -623,7 +623,7 @@
       <div class="services-grid">
 
         <article class="service-card">
-          <div class="service-icon">✈️</div>
+          <div class="service-icon"><i data-lucide="plane"></i></div>
           <h3>Transferts Aéroports</h3>
           <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
           <ul class="service-features">
@@ -635,7 +635,7 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">🚉</div>
+          <div class="service-icon"><i data-lucide="train-front"></i></div>
           <h3>Transferts Gares</h3>
           <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
           <ul class="service-features">
@@ -647,7 +647,7 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">💼</div>
+          <div class="service-icon"><i data-lucide="briefcase"></i></div>
           <h3>Trajets Professionnels</h3>
           <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
           <ul class="service-features">
@@ -659,7 +659,7 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">⏱️</div>
+          <div class="service-icon"><i data-lucide="timer"></i></div>
           <h3>Mise à Disposition</h3>
           <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
           <ul class="service-features">
@@ -671,7 +671,7 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">🎉</div>
+          <div class="service-icon"><i data-lucide="party-popper"></i></div>
           <h3>Mise à Dispo — Événements</h3>
           <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
           <ul class="service-features">
@@ -683,7 +683,7 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">🌙</div>
+          <div class="service-icon"><i data-lucide="moon"></i></div>
           <h3>Service Nuit & Weekend</h3>
           <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
           <ul class="service-features">
@@ -735,40 +735,40 @@
           <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
 
           <div class="form-group">
-            <label for="origin">📍 Adresse de départ</label>
+            <label for="origin"><i data-lucide="map-pin"></i> Adresse de départ</label>
             <div class="input-wrapper">
-              <span class="input-icon">🔵</span>
+              <span class="input-icon"><i data-lucide="map-pin"></i></span>
               <input type="text" id="origin" placeholder="Ex : 1 Rue de Rivoli, Paris" autocomplete="off">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="destination">🏁 Adresse de destination</label>
+            <label for="destination"><i data-lucide="flag"></i> Adresse de destination</label>
             <div class="input-wrapper">
-              <span class="input-icon">🔴</span>
+              <span class="input-icon"><i data-lucide="flag"></i></span>
               <input type="text" id="destination" placeholder="Ex : Aéroport CDG, Terminal 2" autocomplete="off">
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="trip-date">📅 Date</label>
+              <label for="trip-date"><i data-lucide="calendar"></i> Date</label>
               <div class="input-wrapper">
-                <span class="input-icon">📅</span>
+                <span class="input-icon"><i data-lucide="calendar"></i></span>
                 <input type="date" id="trip-date">
               </div>
             </div>
             <div class="form-group">
-              <label for="trip-time">⏰ Heure</label>
+              <label for="trip-time"><i data-lucide="clock"></i> Heure</label>
               <div class="input-wrapper">
-                <span class="input-icon">⏰</span>
+                <span class="input-icon"><i data-lucide="clock"></i></span>
                 <input type="time" id="trip-time">
               </div>
             </div>
           </div>
 
           <button class="btn btn-primary" style="width:100%;justify-content:center;" id="calculate-btn" onclick="triggerCalculate()">
-            🔍 Calculer le prix
+            <i data-lucide="search"></i> Calculer le prix
           </button>
 
           <div class="estimate-result" id="estimate-result">
@@ -794,10 +794,10 @@
             <p class="estimate-disclaimer">Prix estimatif. Le tarif final peut varier selon les conditions de circulation.</p>
             <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
               <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
-                📞 Appeler
+                <i data-lucide="phone"></i> Appeler
               </a>
               <a href="https://wa.me/33611916560" id="whatsapp-cta" target="_blank" rel="noopener" class="btn btn-wa" style="flex:1;justify-content:center;min-width:140px;">
-                💬 Réserver sur WhatsApp
+                <i data-lucide="message-circle"></i> Réserver sur WhatsApp
               </a>
             </div>
           </div>
@@ -827,16 +827,16 @@
             <span class="amount">8</span><span class="currency">€</span>
           </div>
           <ul class="tarif-features">
-            <li><span class="check">✓</span> Prise en charge immédiate</li>
-            <li><span class="check">✓</span> Tarif kilométrique transparent</li>
-            <li><span class="check">✓</span> Paris intramuros & banlieue</li>
-            <li><span class="check">✓</span> Paiement CB ou espèces</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Prise en charge immédiate</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Tarif kilométrique transparent</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Paris intramuros & banlieue</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Paiement CB ou espèces</li>
           </ul>
           <a href="tel:+33611916560" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Réserver</a>
         </div>
 
         <div class="tarif-card featured">
-          <div class="tarif-badge">⭐ Le plus populaire</div>
+          <div class="tarif-badge"><i data-lucide="star"></i> Le plus populaire</div>
           <h3>Transfert Aéroport</h3>
           <p class="tarif-desc">CDG, Orly — avec suivi de vol inclus</p>
           <div class="tarif-price">
@@ -844,11 +844,11 @@
             <span class="amount">45</span><span class="currency">€</span>
           </div>
           <ul class="tarif-features">
-            <li><span class="check">✓</span> Suivi de vol en temps réel</li>
-            <li><span class="check">✓</span> Attente gratuite 30 min</li>
-            <li><span class="check">✓</span> CDG & Orly inclus</li>
-            <li><span class="check">✓</span> Confirmation par SMS</li>
-            <li><span class="check">✓</span> Facturation disponible</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Suivi de vol en temps réel</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Attente gratuite 30 min</li>
+            <li><span class="check"><i data-lucide="check"></i></span> CDG & Orly inclus</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Confirmation par SMS</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Facturation disponible</li>
           </ul>
           <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;">Réserver</a>
         </div>
@@ -861,11 +861,11 @@
             <span class="amount" style="font-size:2rem">devis</span>
           </div>
           <ul class="tarif-features">
-            <li><span class="check">✓</span> Facturation mensuelle</li>
-            <li><span class="check">✓</span> Tarifs négociés</li>
-            <li><span class="check">✓</span> Priorité de réservation</li>
-            <li><span class="check">✓</span> Compte dédié</li>
-            <li><span class="check">✓</span> Reporting mensuel</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Facturation mensuelle</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Tarifs négociés</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Priorité de réservation</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Compte dédié</li>
+            <li><span class="check"><i data-lucide="check"></i></span> Reporting mensuel</li>
           </ul>
           <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Nous contacter</a>
         </div>
@@ -914,32 +914,32 @@
       </div>
       <div class="why-grid">
         <div class="why-item">
-          <span class="why-icon">⚡</span>
+          <span class="why-icon"><i data-lucide="zap"></i></span>
           <h3>Ultra-rapide</h3>
           <p>La moto passe partout. Embouteillages, rues étroites — nous arrivons quand les voitures restent bloquées.</p>
         </div>
         <div class="why-item">
-          <span class="why-icon">🎓</span>
+          <span class="why-icon"><i data-lucide="graduation-cap"></i></span>
           <h3>Chauffeur certifié</h3>
           <p>Carte professionnelle VMDTR, permis A, formation premiers secours. Vous êtes entre de bonnes mains.</p>
         </div>
         <div class="why-item">
-          <span class="why-icon">📱</span>
+          <span class="why-icon"><i data-lucide="smartphone"></i></span>
           <h3>Suivi en temps réel</h3>
           <p>SMS de confirmation, position en direct, notification d'arrivée — vous savez où nous sommes.</p>
         </div>
         <div class="why-item">
-          <span class="why-icon">💳</span>
+          <span class="why-icon"><i data-lucide="credit-card"></i></span>
           <h3>Paiement flexible</h3>
           <p>CB, espèces, virement, compte entreprise. Facture disponible sur demande.</p>
         </div>
         <div class="why-item">
-          <span class="why-icon">🌟</span>
+          <span class="why-icon"><i data-lucide="star"></i></span>
           <h3>Équipement fourni</h3>
           <p>Casque homologué, gilet, intercom bluetooth. Votre sécurité et confort sont notre priorité.</p>
         </div>
         <div class="why-item">
-          <span class="why-icon">🕒</span>
+          <span class="why-icon"><i data-lucide="clock"></i></span>
           <h3>Ponctualité garantie</h3>
           <p>En cas de retard, une remise immédiate vous est accordée sur votre course.</p>
         </div>
@@ -958,7 +958,7 @@
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
           <p class="testimonial-text">"Pris en charge en 5 minutes, arrivé à CDG avec 20 minutes d'avance. Chauffeur professionnel, équipement nickel. Je recommande à 100% !"</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">M</div>
@@ -969,7 +969,7 @@
           </div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
           <p class="testimonial-text">"Trajet Gare du Nord → bureau en 8 minutes un lundi matin. En taxi classique ça m'aurait pris 40 min. Bluffant."</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">S</div>
@@ -980,7 +980,7 @@
           </div>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
           <p class="testimonial-text">"Mise à disposition pour mon mariage — chauffeur impeccable, ponctuel, à l'écoute. Une belle expérience pour une journée inoubliable."</p>
           <div class="testimonial-author">
             <div class="testimonial-avatar">L</div>
@@ -1056,7 +1056,7 @@
           <p>Une question, une réservation ou un devis entreprise ? Nous répondons rapidement.</p>
           <div class="contact-items">
             <div class="contact-item">
-              <div class="contact-item-icon">📞</div>
+              <div class="contact-item-icon"><i data-lucide="phone"></i></div>
               <div class="contact-item-content">
                 <h4>Téléphone</h4>
                 <p><a href="tel:+33611916560">06 11 91 65 60</a></p>
@@ -1064,7 +1064,7 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">💬</div>
+              <div class="contact-item-icon"><i data-lucide="message-circle"></i></div>
               <div class="contact-item-content">
                 <h4>WhatsApp</h4>
                 <p><a href="https://wa.me/33611916560" target="_blank" rel="noopener">Envoyer un message</a></p>
@@ -1072,7 +1072,7 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">📧</div>
+              <div class="contact-item-icon"><i data-lucide="mail"></i></div>
               <div class="contact-item-content">
                 <h4>Email</h4>
                 <p><a href="/cdn-cgi/l/email-protection#8fece0e1fbeeecfbcfffeefde6fcfbeef7e6e2e0fbe0a1e9fd"><span class="__cf_email__" data-cfemail="44272b2a30252730043425362d3730253c2d292b302b6a2236">[email&#160;protected]</span></a></p>
@@ -1080,7 +1080,7 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">📍</div>
+              <div class="contact-item-icon"><i data-lucide="map-pin"></i></div>
               <div class="contact-item-content">
                 <h4>Zone d'intervention</h4>
                 <p>Paris & Île-de-France</p>
@@ -1098,14 +1098,14 @@
               <div class="form-group">
                 <label for="contact-name">Prénom</label>
                 <div class="input-wrapper">
-                  <span class="input-icon">👤</span>
+                  <span class="input-icon"><i data-lucide="user"></i></span>
                   <input type="text" id="contact-name" placeholder="Jean" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="contact-phone">Téléphone</label>
                 <div class="input-wrapper">
-                  <span class="input-icon">📱</span>
+                  <span class="input-icon"><i data-lucide="smartphone"></i></span>
                   <input type="tel" id="contact-phone" placeholder="06 XX XX XX XX">
                 </div>
               </div>
@@ -1113,7 +1113,7 @@
             <div class="form-group">
               <label for="contact-email">Email</label>
               <div class="input-wrapper">
-                <span class="input-icon">📧</span>
+                <span class="input-icon"><i data-lucide="mail"></i></span>
                 <input type="email" id="contact-email" placeholder="jean@exemple.fr" required>
               </div>
             </div>
@@ -1136,7 +1136,7 @@
               Envoyer le message →
             </button>
             <div id="form-success" class="form-success">
-              ✓ Message envoyé ! Nous vous répondrons très bientôt.
+              <i data-lucide="check"></i> Message envoyé ! Nous vous répondrons très bientôt.
             </div>
           </form>
         </div>
@@ -1158,7 +1158,7 @@
           <p>Service de moto-taxi professionnel à Paris et Île-de-France. Disponible 24h/24, certifié VMDTR, assurance passager incluse.</p>
           <div class="footer-social">
             <a href="#" class="social-link" aria-label="Facebook">f</a>
-            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Instagram"><i data-lucide="instagram"></i></a>
             <a href="#" class="social-link" aria-label="LinkedIn">in</a>
           </div>
         </div>
@@ -1187,8 +1187,8 @@
         <div class="footer-col">
           <h4>Contact direct</h4>
           <p style="font-size:0.88rem;margin-bottom:14px;color:rgba(255,255,255,0.5);">Disponible 24h/24 pour votre réservation.</p>
-          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px;">📞 06 11 91 65 60</a>
-          <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa" style="width:100%;justify-content:center;">💬 WhatsApp</a>
+          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px;"><i data-lucide="phone"></i> 06 11 91 65 60</a>
+          <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa" style="width:100%;justify-content:center;"><i data-lucide="message-circle"></i> WhatsApp</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1206,8 +1206,8 @@
        FLOATING BUTTONS
   ============================================================ -->
   <div class="floating-phone">
-    <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp">💬</a>
-    <a href="tel:+33611916560" class="floating-phone-btn" aria-label="Appeler Paris TaxiMoto">📞</a>
+    <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+    <a href="tel:+33611916560" class="floating-phone-btn" aria-label="Appeler Paris TaxiMoto"><i data-lucide="phone"></i></a>
   </div>
 
   <!-- ============================================================
@@ -1303,7 +1303,7 @@
       travelMode: google.maps.TravelMode.DRIVING,
       drivingOptions: { departureTime: new Date(), trafficModel: google.maps.TrafficModel.BEST_GUESS },
     }, (result, status) => {
-      if (btn) { btn.innerHTML = '🔍 Calculer le prix'; btn.disabled = false; }
+      if (btn) { btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Calculer le prix'; btn.disabled = false; }
 
       if (status === 'OK') {
         const leg = result.routes[0].legs[0];
@@ -1332,7 +1332,9 @@
     document.getElementById('est-duration').textContent = durationText;
     document.getElementById('est-rate').textContent = rateKm.toFixed(2) + ' €/km';
     document.getElementById('est-price').textContent = priceLow + ' – ' + priceHigh + ' €';
-    document.getElementById('est-period').textContent = (isNight ? '🌙 ' : '☀️ ') + period;
+    const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    const sunSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+    document.getElementById('est-period').innerHTML = (isNight ? moonSvg : sunSvg) + period;
 
     // Build WhatsApp message with full trip info
     const orig = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
@@ -1353,7 +1355,8 @@
 
   function showCalcError(msg) {
     const r = document.getElementById('estimate-result');
-    if (r) { r.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;padding:16px;">⚠️ ${msg}</p>`; r.classList.add('visible'); }
+    const alertSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>';
+    if (r) { r.innerHTML = `<p style="color:#e94560;text-align:center;font-weight:600;padding:16px;">${alertSvg}${msg}</p>`; r.classList.add('visible'); }
   }
 
   window.triggerCalculate = function () {
@@ -1505,7 +1508,7 @@
           <line x1="22" y1="11" x2="16" y2="11"/>
         </svg>
       </span>
-      <span class="cf-label">📲 Ajouter dans vos contacts</span>
+      <span class="cf-label"><i data-lucide="contact"></i> Ajouter dans vos contacts</span>
     </button>
   </div>
 
@@ -1577,6 +1580,9 @@
     });
   })();
   </script>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
 
 </body>
 </html>
