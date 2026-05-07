@@ -58,14 +58,15 @@
 }
 
 .blog-cat {
-  background: rgba(233, 69, 96, 0.1);
+  background: rgba(217, 119, 6, 0.09);
   color: var(--accent);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  border: 1px solid rgba(217, 119, 6, 0.18);
 }
 
 .blog-date {
@@ -176,7 +177,7 @@
 .article-content strong { color: var(--primary); }
 
 .article-content .highlight-box {
-  background: rgba(233, 69, 96, 0.07);
+  background: rgba(217, 119, 6, 0.07);
   border-left: 4px solid var(--accent);
   padding: 18px 22px;
   border-radius: 0 10px 10px 0;
