@@ -984,6 +984,22 @@
     }
     .cf-btn.cf-pulsing { animation:cf-pulse 1.6s ease-in-out infinite; }
 
+    /* Floating Tab Bar */
+    .ftb{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:1100;background:rgba(20,20,24,.84);backdrop-filter:blur(24px) saturate(190%);-webkit-backdrop-filter:blur(24px) saturate(190%);border-radius:32px;padding:10px 6px;display:flex;align-items:center;box-shadow:0 8px 40px rgba(0,0,0,.62),0 2px 12px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);}
+    .ftb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 22px;border-radius:22px;text-decoration:none;color:rgba(255,255,255,.52);font-family:'Inter',sans-serif;font-size:.7rem;font-weight:500;transition:color .18s ease,background .18s ease;-webkit-tap-highlight-color:transparent;user-select:none;cursor:pointer;}
+    .ftb-item:hover{color:rgba(255,255,255,.92);background:rgba(255,255,255,.07);}
+    .ftb-item.ftb-active{color:#fff;}
+    .ftb-item>svg.lucide{width:23px;height:23px;stroke-width:1.7;}
+    .ftb-label{font-size:.67rem;font-weight:500;line-height:1;}
+    .ftb-cta{padding:6px 18px;gap:5px;color:rgba(255,255,255,.80);}
+    .ftb-cta:hover{background:transparent;color:rgba(255,255,255,.95);}
+    .ftb-cta-circle{width:52px;height:52px;background:#007AFF;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 18px rgba(0,122,255,.52);border:2px solid transparent;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .18s ease;}
+    .ftb-cta-circle>svg.lucide{width:24px;height:24px;stroke-width:2.2;}
+    .ftb-cta:hover .ftb-cta-circle{background:#0A84FF;box-shadow:0 6px 26px rgba(0,122,255,.68);transform:scale(1.07);}
+    .ftb-cta.ftb-active .ftb-cta-circle{border-color:rgba(255,255,255,.55);box-shadow:0 4px 18px rgba(0,122,255,.52),0 0 0 3px rgba(0,122,255,.25);}
+    @keyframes ftb-spring{0%{transform:scale(1)}22%{transform:scale(.79)}52%{transform:scale(1.21)}72%{transform:scale(.93)}88%{transform:scale(1.05)}100%{transform:scale(1)}}
+    .ftb-cta.ftb-bouncing .ftb-cta-circle{animation:ftb-spring .50s ease forwards;}
+    @media(max-width:480px){.ftb{bottom:20px;padding:8px 4px;border-radius:26px;}.ftb-item{padding:6px 14px;}.ftb-cta{padding:5px 12px;}.ftb-cta-circle{width:46px;height:46px;}}
   </style>
 </head>
 <body>
@@ -2087,7 +2103,34 @@
   </script>
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+    (function(){
+      var btn=document.getElementById('ftb-resa-btn');
+      if(!btn)return;
+      btn.addEventListener('click',function(e){
+        e.preventDefault();var href=this.getAttribute('href');
+        this.classList.add('ftb-bouncing');
+        setTimeout(function(){window.location.href=href;},340);
+      });
+    })();
+  </script>
+
+  <!-- Floating Tab Bar -->
+  <nav class="ftb" role="navigation" aria-label="Navigation rapide">
+    <a href="../index.html" class="ftb-item">
+      <i data-lucide="house"></i>
+      <span class="ftb-label">Accueil</span>
+    </a>
+    <a href="index.html" class="ftb-item ftb-cta ftb-active" id="ftb-resa-btn">
+      <div class="ftb-cta-circle"><i data-lucide="plus"></i></div>
+      <span class="ftb-label">Réservation</span>
+    </a>
+    <a href="../blog/index.html" class="ftb-item">
+      <i data-lucide="bell"></i>
+      <span class="ftb-label">Actualités</span>
+    </a>
+  </nav>
 
 </body>
 </html>
