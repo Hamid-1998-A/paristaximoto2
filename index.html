@@ -148,21 +148,70 @@
     .booking-strip-phone .phone-icon { width:42px; height:42px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; }
 
     /* ============================================================
-       SERVICES
+       SERVICES — modules dépliants
     ============================================================ */
     .services { background:var(--light-bg); }
-    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
-    .service-card { background:var(--white); border-radius:var(--radius); padding:36px 28px; transition:var(--transition); border:1px solid var(--border); box-shadow:0 1px 3px rgba(0,0,0,0.04); position:relative; overflow:hidden; }
-    .service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent); transform:scaleX(0); transition:var(--transition); }
-    .service-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:transparent; }
-    .service-card:hover::before { transform:scaleX(1); }
-    .service-icon { width:64px; height:64px; background:rgba(17,24,39,0.06); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; margin-bottom:20px; transition:var(--transition); color:var(--primary); }
-    .service-card:hover .service-icon { background:var(--accent); color:var(--white); }
-    .service-card h3 { color:var(--primary); margin-bottom:12px; }
-    .service-card p { color:var(--text-muted); font-size:0.95rem; margin-bottom:20px; }
-    .service-features { list-style:none; display:flex; flex-direction:column; gap:8px; }
-    .service-features li { display:flex; align-items:center; gap:8px; font-size:0.9rem; color:var(--text-muted); }
-    .service-features li::before { content:''; display:block; width:14px; height:14px; min-width:14px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D97706' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-size:contain; flex-shrink:0; }
+    .svc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; align-items:start; }
+    @media(min-width:600px){ .svc-grid { grid-template-columns:repeat(3,1fr); gap:14px; } }
+    @media(min-width:1024px){ .svc-grid { gap:16px; } }
+
+    .svc-card {
+      background:#16181f;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.07);
+      transition:border-color var(--transition);
+    }
+    .svc-card.open { border-color:rgba(217,119,6,0.40); }
+
+    .svc-hd {
+      width:100%; background:none; border:none; cursor:pointer;
+      padding:14px 10px 12px;
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      position:relative; -webkit-tap-highlight-color:transparent;
+      font-family:inherit;
+    }
+    .svc-badge {
+      position:absolute; top:10px; left:10px;
+      background:#dc2626; color:#fff;
+      font-size:0.58rem; font-weight:700;
+      padding:3px 7px; border-radius:20px;
+      text-transform:uppercase; letter-spacing:0.4px; line-height:1.4;
+      white-space:nowrap;
+    }
+    .svc-icon {
+      width:54px; height:54px;
+      background:rgba(255,255,255,0.08);
+      border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,0.88);
+      margin-top:16px;
+      transition:background var(--transition);
+    }
+    .svc-card.open .svc-icon { background:rgba(217,119,6,0.22); color:#FCD34D; }
+    .svc-icon svg.lucide { width:26px; height:26px; stroke-width:1.75; }
+    .svc-name {
+      color:#fff; font-size:0.75rem; font-weight:600;
+      text-align:center; font-family:inherit; letter-spacing:-0.01em; line-height:1.3;
+      padding:0 4px;
+    }
+    .svc-chev {
+      color:rgba(255,255,255,0.25);
+      display:flex; align-items:center;
+      transition:transform var(--transition), color var(--transition);
+    }
+    .svc-chev svg.lucide { width:14px; height:14px; }
+    .svc-card.open .svc-chev { transform:rotate(180deg); color:rgba(217,119,6,0.75); }
+
+    /* Smooth height animation via CSS Grid */
+    .svc-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows 0.32s ease; }
+    .svc-card.open .svc-body { grid-template-rows:1fr; }
+    .svc-body-in { overflow:hidden; min-height:0; border-top:1px solid rgba(255,255,255,0.07); }
+    .svc-body-in h4 { color:#fff; font-size:0.82rem; font-weight:700; margin:12px 14px 6px; letter-spacing:-0.01em; }
+    .svc-body-in > p { color:rgba(255,255,255,0.6); font-size:0.77rem; line-height:1.55; margin:0 14px 10px; }
+    .svc-feats { list-style:none; margin:0 14px 14px; display:flex; flex-direction:column; gap:5px; }
+    .svc-feats li { display:flex; align-items:center; gap:6px; color:rgba(255,255,255,0.62); font-size:0.73rem; font-family:inherit; }
+    .svc-feats li::before { content:''; display:block; width:12px; height:12px; min-width:12px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D97706' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat:no-repeat; background-size:contain; flex-shrink:0; }
 
     /* ============================================================
        CALCULATOR
@@ -312,6 +361,61 @@
     .footer-bottom-links a:hover { color:var(--accent); }
 
     /* ============================================================
+       SECTION LABELS NUMÉROTÉS
+    ============================================================ */
+    .sec-label {
+      font-size:0.68rem; font-weight:700; letter-spacing:2.5px;
+      text-transform:uppercase; color:var(--text-muted);
+      margin-bottom:10px; display:block;
+    }
+    .sec-label b { color:var(--accent); }
+
+    /* ============================================================
+       SERVICES — scroll horizontal mobile
+    ============================================================ */
+    .svc-scroll {
+      overflow-x:auto; margin:0 -24px; padding:0 24px 8px;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    }
+    .svc-scroll::-webkit-scrollbar { display:none; }
+
+    /* ============================================================
+       TARIFS SIMPLE TABLE
+    ============================================================ */
+    .tarif-table-wrap { margin-top:32px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+    .tarif-table { width:100%; border-collapse:collapse; }
+    .tarif-table thead th {
+      font-size:0.7rem; text-transform:uppercase; letter-spacing:1.8px;
+      color:var(--text-muted); font-weight:600; padding:12px 20px;
+      background:var(--light-bg); border-bottom:1px solid var(--border); text-align:left;
+    }
+    .tarif-table thead th:last-child { text-align:right; }
+    .tarif-table tbody tr { border-bottom:1px solid var(--border); transition:background .15s; }
+    .tarif-table tbody tr:last-child { border-bottom:none; }
+    .tarif-table tbody tr:hover { background:var(--light-bg); }
+    .tarif-table tbody td { padding:14px 20px; font-size:0.95rem; color:var(--text); }
+    .tarif-table tbody td:last-child { text-align:right; font-weight:700; color:var(--accent); font-size:1.05rem; }
+
+    /* ============================================================
+       TESTIMONIALS — dark
+    ============================================================ */
+    .testimonials { background:var(--dark-bg); }
+    .testimonials .section-header { text-align:left; }
+    .testimonials .badge { background:rgba(217,119,6,0.12); color:#FCD34D; border:1px solid rgba(217,119,6,0.25); }
+    .testimonials .section-header h2 { color:var(--white); }
+    .testi-score { font-size:3.5rem; font-weight:800; color:var(--white); line-height:1; margin-bottom:8px; }
+    .testi-score span { color:var(--accent); }
+    .testi-score-sub { color:rgba(255,255,255,0.5); font-size:0.85rem; margin-bottom:32px; display:flex; align-items:center; gap:8px; }
+    .testi-score-sub svg { color:#F59E0B; }
+    .testimonial-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); }
+    .testimonial-card:hover { background:rgba(255,255,255,0.08); border-color:rgba(217,119,6,0.25); box-shadow:none; }
+    .testimonial-text { color:rgba(255,255,255,0.75); }
+    .testimonial-name { color:var(--white); }
+    .testimonial-role { color:rgba(255,255,255,0.45); }
+    .testimonial-avatar { background:linear-gradient(135deg,rgba(217,119,6,0.4),rgba(217,119,6,0.2)); color:var(--white); }
+    .testimonial-stars { color:#F59E0B; }
+
+    /* ============================================================
        FLOATING BUTTON
     ============================================================ */
     .floating-phone { position:fixed; bottom:28px; right:28px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:12px; }
@@ -362,11 +466,15 @@
       .form-row { grid-template-columns:1fr; }
       .estimate-grid { grid-template-columns:1fr 1fr; gap:12px; }
 
-      /* Grids → 1 colonne */
-      .services-grid { grid-template-columns:1fr; }
+      /* Services — scroll horizontal */
+      .svc-scroll { margin:0 -16px; padding:0 16px 12px; }
+      .svc-grid { display:flex; flex-wrap:nowrap; width:max-content; gap:10px; }
+      .svc-card { width:152px; flex-shrink:0; }
+
+      /* Tarifs */
       .tarifs-grid { grid-template-columns:1fr; }
-      .testimonials-grid { grid-template-columns:1fr; }
       .tarif-card.featured { transform:none; }
+      .tarif-table tbody td { padding:12px 14px; font-size:0.88rem; }
 
       /* Pourquoi */
       .why-grid { grid-template-columns:1fr 1fr; gap:16px; }
@@ -562,26 +670,26 @@
     <div class="hero-overlay"></div>
     <div class="container" style="display:flex;flex-direction:column;">
       <div class="hero-content">
-        <div class="hero-badge"><i data-lucide="bike"></i> Service disponible 24h/24 — 7j/7</div>
-        <h1>Votre Moto-Taxi<br><span>Rapide à Paris</span></h1>
-        <p>Traversez Paris en un temps record. Chauffeur professionnel certifié VMDTR, ponctualité garantie, tarifs clairs. Aéroports, gares, événements — nous vous emmenons partout en Île-de-France.</p>
+        <div class="hero-badge"><i data-lucide="bike"></i> Paris · 24h/24 · 7j/7</div>
+        <h1>Traversez Paris<br>en <span>taxi-moto.</span></h1>
+        <p>Un chauffeur professionnel à votre porte en 10 minutes. Prix fixe, sans surprise.</p>
         <div class="hero-actions">
-          <a href="#estimer" class="btn btn-primary"><i data-lucide="search"></i> Calculer mon trajet</a>
-          <a href="tel:+33611916560" class="btn btn-outline"><i data-lucide="phone"></i> Appeler maintenant</a>
+          <a href="#estimer" class="btn btn-primary">Réserver une course →</a>
+          <a href="tel:+33611916560" class="btn btn-outline"><i data-lucide="phone"></i> Appeler</a>
         </div>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="stat-number" data-target="5000" data-suffix="+">0+</div>
-          <div class="stat-label">Trajets réalisés</div>
+          <div class="stat-number" data-target="10" data-suffix=" min">0 min</div>
+          <div class="stat-label">Délai moyen</div>
         </div>
         <div class="hero-stat">
-          <div class="stat-number" data-target="98" data-suffix="%">0%</div>
-          <div class="stat-label">Clients satisfaits</div>
+          <div class="stat-number" data-target="12" data-suffix="k">0k</div>
+          <div class="stat-label">Courses/mois</div>
         </div>
         <div class="hero-stat">
-          <div class="stat-number" data-target="24" data-suffix="h/7">0h/7</div>
-          <div class="stat-label">Disponibilité</div>
+          <div class="stat-number" data-target="4" data-suffix=".9★">0★</div>
+          <div class="stat-label">Satisfaction</div>
         </div>
       </div>
     </div>
@@ -618,85 +726,138 @@
   <section class="section services" id="services">
     <div class="container">
       <div class="section-header">
-        <span class="badge">Nos Prestations</span>
-        <h2>Des services pensés pour votre mobilité</h2>
-        <p>De l'aéroport au bureau, de la gare aux événements — nous gérons chaque trajet avec professionnalisme.</p>
+        <span class="sec-label"><b>02</b> — Nos services</span>
+        <h2>Là où vous devez être.</h2>
       </div>
-      <div class="services-grid">
+      <div class="svc-scroll"><div class="svc-grid">
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="plane"></i></div>
-          <h3>Transferts Aéroports</h3>
-          <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
-          <ul class="service-features">
-            <li>Charles de Gaulle (CDG)</li>
-            <li>Orly (ORY)</li>
-            <li>Suivi de vol automatique</li>
-            <li>Prise en charge bagage de cabine</li>
-          </ul>
+        <article class="svc-card" id="sc-1">
+          <button class="svc-hd" onclick="toggleSvc('sc-1')" aria-expanded="false" aria-controls="sb-1">
+            <span class="svc-badge">CDG · Orly</span>
+            <span class="svc-icon"><i data-lucide="plane"></i></span>
+            <span class="svc-name">Transferts<br>Aéroports</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-1" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Transferts Aéroports</h4>
+              <p>CDG, Orly, Beauvais. Suivi de vols en temps réel, attente incluse en cas de retard.</p>
+              <ul class="svc-feats">
+                <li>Charles de Gaulle (CDG)</li>
+                <li>Orly (ORY)</li>
+                <li>Suivi de vol automatique</li>
+                <li>Prise en charge bagage de cabine</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="train-front"></i></div>
-          <h3>Transferts Gares</h3>
-          <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
-          <ul class="service-features">
-            <li>Toutes gares parisiennes</li>
-            <li>Correspondance TGV / Eurostar</li>
-            <li>Confirmation par SMS</li>
-            <li>Chauffeur identifié</li>
-          </ul>
+        <article class="svc-card" id="sc-2">
+          <button class="svc-hd" onclick="toggleSvc('sc-2')" aria-expanded="false" aria-controls="sb-2">
+            <span class="svc-badge">Paris</span>
+            <span class="svc-icon"><i data-lucide="train-front"></i></span>
+            <span class="svc-name">Transferts<br>Gares</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-2" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Transferts Gares</h4>
+              <p>Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Ponctualité garantie pour vos correspondances.</p>
+              <ul class="svc-feats">
+                <li>Toutes gares parisiennes</li>
+                <li>Correspondance TGV / Eurostar</li>
+                <li>Confirmation par SMS</li>
+                <li>Chauffeur identifié</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="briefcase"></i></div>
-          <h3>Trajets Professionnels</h3>
-          <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
-          <ul class="service-features">
-            <li>Facturation entreprise</li>
-            <li>Réservation à l'avance</li>
-            <li>Ponctualité certifiée</li>
-            <li>Discrétion assurée</li>
-          </ul>
+        <article class="svc-card" id="sc-3">
+          <button class="svc-hd" onclick="toggleSvc('sc-3')" aria-expanded="false" aria-controls="sb-3">
+            <span class="svc-badge">Pro</span>
+            <span class="svc-icon"><i data-lucide="briefcase"></i></span>
+            <span class="svc-name">Trajets<br>Professionnels</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-3" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Trajets Professionnels</h4>
+              <p>Réunions, conférences, déplacements urgents. Factures disponibles, comptes entreprises acceptés.</p>
+              <ul class="svc-feats">
+                <li>Facturation entreprise</li>
+                <li>Réservation à l'avance</li>
+                <li>Ponctualité certifiée</li>
+                <li>Discrétion assurée</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="timer"></i></div>
-          <h3>Mise à Disposition</h3>
-          <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
-          <ul class="service-features">
-            <li>À la demi-journée ou journée</li>
-            <li>Plusieurs arrêts inclus</li>
-            <li>Tarif horaire négocié</li>
-            <li>Facturation entreprise</li>
-          </ul>
+        <article class="svc-card" id="sc-4">
+          <button class="svc-hd" onclick="toggleSvc('sc-4')" aria-expanded="false" aria-controls="sb-4">
+            <span class="svc-badge">Dispo</span>
+            <span class="svc-icon"><i data-lucide="timer"></i></span>
+            <span class="svc-name">Mise à<br>Disposition</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-4" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Mise à Disposition</h4>
+              <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
+              <ul class="svc-feats">
+                <li>À la demi-journée ou journée</li>
+                <li>Plusieurs arrêts inclus</li>
+                <li>Tarif horaire négocié</li>
+                <li>Facturation entreprise</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="party-popper"></i></div>
-          <h3>Mise à Dispo — Événements</h3>
-          <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
-          <ul class="service-features">
-            <li>Mariages & cérémonies</li>
-            <li>Soirées & événements privés</li>
-            <li>Shooting photo / tournage</li>
-            <li>Arrivée ou départ en moto</li>
-          </ul>
+        <article class="svc-card" id="sc-5">
+          <button class="svc-hd" onclick="toggleSvc('sc-5')" aria-expanded="false" aria-controls="sb-5">
+            <span class="svc-badge">VIP</span>
+            <span class="svc-icon"><i data-lucide="party-popper"></i></span>
+            <span class="svc-name">Événements<br>Spéciaux</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-5" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Événements Spéciaux</h4>
+              <p>Mariage, soirée privée, sortie VIP, tournage… Votre moto-taxi dédié pour tous vos événements spéciaux à Paris.</p>
+              <ul class="svc-feats">
+                <li>Mariages &amp; cérémonies</li>
+                <li>Soirées &amp; événements privés</li>
+                <li>Shooting photo / tournage</li>
+                <li>Arrivée ou départ en moto</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-        <article class="service-card">
-          <div class="service-icon"><i data-lucide="moon"></i></div>
-          <h3>Service Nuit & Weekend</h3>
-          <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
-          <ul class="service-features">
-            <li>Disponible de 20h à 7h</li>
-            <li>Samedis et dimanches</li>
-            <li>Jours fériés</li>
-            <li>Réservation en ligne</li>
-          </ul>
+        <article class="svc-card" id="sc-6">
+          <button class="svc-hd" onclick="toggleSvc('sc-6')" aria-expanded="false" aria-controls="sb-6">
+            <span class="svc-badge">7j/7</span>
+            <span class="svc-icon"><i data-lucide="moon"></i></span>
+            <span class="svc-name">Service Nuit<br>&amp; Weekend</span>
+            <span class="svc-chev"><i data-lucide="chevron-down"></i></span>
+          </button>
+          <div class="svc-body" id="sb-6" aria-hidden="true">
+            <div class="svc-body-in">
+              <h4>Service Nuit &amp; Weekend</h4>
+              <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
+              <ul class="svc-feats">
+                <li>Disponible de 20h à 7h</li>
+                <li>Samedis et dimanches</li>
+                <li>Jours fériés</li>
+                <li>Réservation en ligne</li>
+              </ul>
+            </div>
+          </div>
         </article>
 
-      </div>
+      </div></div>
     </div>
   </section>
 
@@ -708,9 +869,8 @@
       <div class="calculator-wrapper">
 
         <div class="calculator-info">
-          <span class="badge" style="background:rgba(217,119,6,0.12);color:#FCD34D;border:1px solid rgba(217,119,6,0.30);">Tarification</span>
-          <h2>Nos tarifs en toute transparence</h2>
-          <p>Prix calculés selon les tarifs préfectoraux. Pas de surprise, pas de frais cachés — le montant estimé correspond au montant réel.</p>
+          <span class="sec-label" style="color:rgba(255,255,255,0.4);"><b style="color:#FCD34D;">01</b> — Calculateur</span>
+          <h2 style="color:var(--white);">Estimez votre course<br>en temps réel.</h2>
           <div class="pricing-table" style="margin-bottom:28px;">
             <div class="pricing-row">
               <span class="label">Prise en charge</span>
@@ -814,138 +974,28 @@
   ============================================================ -->
   <section class="section" id="tarifs">
     <div class="container">
-      <div class="section-header">
-        <span class="badge">Nos Formules</span>
-        <h2>Choisissez votre formule</h2>
-        <p>Des tarifs adaptés à chaque besoin, de la course ponctuelle au compte mensuel.</p>
+      <span class="sec-label"><b>03</b> — Tarifs</span>
+      <h2 style="margin-bottom:6px;">Grille tarifaire,<br>annoncée avant départ.</h2>
+      <p style="color:var(--text-muted);font-size:0.92rem;">Forfait inclus : casque, gants, blouson.</p>
+      <div class="tarif-table-wrap">
+        <table class="tarif-table">
+          <thead>
+            <tr>
+              <th>Départ</th>
+              <th>Arrivée</th>
+              <th>Prix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Paris centre</td><td>CDG</td><td>€65</td></tr>
+            <tr><td>Paris centre</td><td>Orly</td><td>€48</td></tr>
+            <tr><td>Paris centre</td><td>Gare du Nord</td><td>€12</td></tr>
+            <tr><td>Gare de Lyon</td><td>La Défense</td><td>€28</td></tr>
+            <tr><td>Paris centre</td><td>Versailles</td><td>€55</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div class="tarifs-grid">
-
-        <div class="tarif-card">
-          <h3>Course Standard</h3>
-          <p class="tarif-desc">Pour vos déplacements ponctuels dans Paris</p>
-          <div class="tarif-price">
-            <span class="currency">à partir de </span>
-            <span class="amount">8</span><span class="currency">€</span>
-          </div>
-          <ul class="tarif-features">
-            <li><span class="check"><i data-lucide="check"></i></span> Prise en charge immédiate</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Tarif kilométrique transparent</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Paris intramuros & banlieue</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Paiement CB ou espèces</li>
-          </ul>
-          <a href="tel:+33611916560" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Réserver</a>
-        </div>
-
-        <div class="tarif-card featured">
-          <div class="tarif-badge"><i data-lucide="star"></i> Le plus populaire</div>
-          <h3>Transfert Aéroport</h3>
-          <p class="tarif-desc">CDG, Orly — avec suivi de vol inclus</p>
-          <div class="tarif-price">
-            <span class="currency">à partir de </span>
-            <span class="amount">45</span><span class="currency">€</span>
-          </div>
-          <ul class="tarif-features">
-            <li><span class="check"><i data-lucide="check"></i></span> Suivi de vol en temps réel</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Attente gratuite 30 min</li>
-            <li><span class="check"><i data-lucide="check"></i></span> CDG & Orly inclus</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Confirmation par SMS</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Facturation disponible</li>
-          </ul>
-          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;">Réserver</a>
-        </div>
-
-        <div class="tarif-card">
-          <h3>Compte Entreprise</h3>
-          <p class="tarif-desc">Pour les professionnels avec besoins récurrents</p>
-          <div class="tarif-price">
-            <span class="currency">Sur </span>
-            <span class="amount" style="font-size:2rem">devis</span>
-          </div>
-          <ul class="tarif-features">
-            <li><span class="check"><i data-lucide="check"></i></span> Facturation mensuelle</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Tarifs négociés</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Priorité de réservation</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Compte dédié</li>
-            <li><span class="check"><i data-lucide="check"></i></span> Reporting mensuel</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--primary);border-color:var(--border);">Nous contacter</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       ZONES
-  ============================================================ -->
-  <section class="section zones" id="zones">
-    <div class="container">
-      <div class="zones-grid">
-        <div>
-          <span class="badge">Couverture</span>
-          <h2>Zones d'intervention</h2>
-          <p style="color:var(--text-muted);margin-bottom:8px;">Basé à Paris, nous intervenons dans toute l'Île-de-France.</p>
-          <div class="zones-list">
-            <div class="zone-tag">Paris (75)</div>
-            <div class="zone-tag">Hauts-de-Seine (92)</div>
-            <div class="zone-tag">Seine-Saint-Denis (93)</div>
-            <div class="zone-tag">Val-de-Marne (94)</div>
-            <div class="zone-tag">CDG — Terminal 1,2,3</div>
-            <div class="zone-tag">Orly — Terminal 1,2,3,4</div>
-            <div class="zone-tag">La Défense</div>
-            <div class="zone-tag">Versailles</div>
-            <div class="zone-tag">Disneyland Paris</div>
-            <div class="zone-tag">Le Bourget</div>
-          </div>
-          <p style="color:var(--text-muted);font-size:0.88rem;margin-top:20px;">Trajet hors zone ? Contactez-nous, nous étudions toutes les demandes.</p>
-        </div>
-        <div class="zones-map" id="zones-map" aria-label="Carte des zones d'intervention"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       POURQUOI NOUS
-  ============================================================ -->
-  <section class="section" id="pourquoi">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge">Nos engagements</span>
-        <h2>Pourquoi choisir Paris TaxiMoto ?</h2>
-      </div>
-      <div class="why-grid">
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="zap"></i></span>
-          <h3>Ultra-rapide</h3>
-          <p>La moto passe partout. Embouteillages, rues étroites — nous arrivons quand les voitures restent bloquées.</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="graduation-cap"></i></span>
-          <h3>Chauffeur certifié</h3>
-          <p>Carte professionnelle VMDTR, permis A, formation premiers secours. Vous êtes entre de bonnes mains.</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="smartphone"></i></span>
-          <h3>Suivi en temps réel</h3>
-          <p>SMS de confirmation, position en direct, notification d'arrivée — vous savez où nous sommes.</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="credit-card"></i></span>
-          <h3>Paiement flexible</h3>
-          <p>CB, espèces, virement, compte entreprise. Facture disponible sur demande.</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="star"></i></span>
-          <h3>Équipement fourni</h3>
-          <p>Casque homologué, gilet, intercom bluetooth. Votre sécurité et confort sont notre priorité.</p>
-        </div>
-        <div class="why-item">
-          <span class="why-icon"><i data-lucide="clock"></i></span>
-          <h3>Ponctualité garantie</h3>
-          <p>En cas de retard, une remise immédiate vous est accordée sur votre course.</p>
-        </div>
-      </div>
+      <p class="tarif-note">* Tarifs TTC — majoration nuit (20h–7h) et week-end : +33% · <a href="#estimer" style="color:var(--accent);font-weight:600;">Estimez votre trajet →</a></p>
     </div>
   </section>
 
@@ -955,8 +1005,16 @@
   <section class="section testimonials" id="avis">
     <div class="container">
       <div class="section-header">
-        <span class="badge">Avis clients</span>
-        <h2>Ce que disent nos passagers</h2>
+        <span class="sec-label"><b>04</b> — Avis clients</span>
+        <div class="testi-score">4,9<span>/5</span></div>
+        <div class="testi-score-sub">
+          <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+          <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+          <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+          <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+          <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+          · +1 200 avis vérifiés
+        </div>
       </div>
       <div class="testimonials-grid">
         <div class="testimonial-card">
@@ -1002,7 +1060,7 @@
   <section class="section" id="faq">
     <div class="container">
       <div class="section-header">
-        <span class="badge">FAQ</span>
+        <span class="sec-label"><b>05</b> — FAQ</span>
         <h2>Questions fréquentes</h2>
       </div>
       <div class="faq-list">
@@ -1053,9 +1111,8 @@
     <div class="container">
       <div class="contact-wrapper">
         <div class="contact-info">
-          <span class="badge" style="background:rgba(217,119,6,0.12);color:#FCD34D;border:1px solid rgba(217,119,6,0.30);">Contactez-nous</span>
-          <h2>Parlons de votre trajet</h2>
-          <p>Une question, une réservation ou un devis entreprise ? Nous répondons rapidement.</p>
+          <span class="sec-label" style="color:rgba(255,255,255,0.4);"><b style="color:#FCD34D;">06</b> — Contact</span>
+          <h2 style="color:var(--white);">Réservez en 30 secondes.</h2>
           <div class="contact-items">
             <div class="contact-item">
               <div class="contact-item-icon"><i data-lucide="phone"></i></div>
@@ -1584,7 +1641,26 @@
   </script>
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+    function toggleSvc(id) {
+      var card = document.getElementById(id);
+      var btn  = card.querySelector('.svc-hd');
+      var body = card.querySelector('.svc-body');
+      var open = card.classList.contains('open');
+      document.querySelectorAll('.svc-card.open').forEach(function(c) {
+        c.classList.remove('open');
+        c.querySelector('.svc-hd').setAttribute('aria-expanded', 'false');
+        c.querySelector('.svc-body').setAttribute('aria-hidden', 'true');
+      });
+      if (!open) {
+        card.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.setAttribute('aria-hidden', 'false');
+        setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+      }
+    }
+  </script>
 
 </body>
 </html>
