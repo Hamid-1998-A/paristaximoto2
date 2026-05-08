@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -131,5 +131,13 @@
   <script src="../js/main.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>lucide.createIcons();</script>
+  <script>
+    (function(){var btn=document.getElementById('ftb-resa-btn');if(!btn)return;btn.addEventListener('click',function(e){e.preventDefault();var href=this.getAttribute('href');this.classList.add('ftb-bouncing');setTimeout(function(){window.location.href=href;},340);});})();
+  </script>
+  <nav class="ftb" role="navigation" aria-label="Navigation rapide">
+    <a href="../index.html" class="ftb-item"><i data-lucide="house"></i><span class="ftb-label">Accueil</span></a>
+    <a href="../resa/index.html" class="ftb-item ftb-cta" id="ftb-resa-btn"><div class="ftb-cta-circle"><i data-lucide="plus"></i></div><span class="ftb-label">Réservation</span></a>
+    <a href="index.html" class="ftb-item ftb-active"><i data-lucide="bell"></i><span class="ftb-label">Actualités</span></a>
+  </nav>
 </body>
 </html>
