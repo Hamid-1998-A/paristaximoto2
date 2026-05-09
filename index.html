@@ -438,9 +438,14 @@
       .footer-grid { grid-template-columns:1fr 1fr; }
       .zones-grid { grid-template-columns:1fr; }
     }
+    /* Scroll horizontal — Témoignages */
+    .testi-scroll { overflow-x:auto; margin:0 -24px; padding:0 24px 10px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .testi-scroll::-webkit-scrollbar { display:none; }
+
     @media(max-width:768px) {
-      .section { padding:56px 0; }
-      .section-header { margin-bottom:36px; }
+      /* Sections */
+      .section { padding:36px 0; }
+      .section-header { margin-bottom:20px; }
 
       /* Navbar */
       .navbar-nav { display:none; position:fixed; inset:0; background:rgba(17,24,39,0.98); flex-direction:column; justify-content:center; align-items:center; gap:8px; }
@@ -448,65 +453,111 @@
       .navbar-nav a { font-size:1.2rem; padding:12px 24px; }
       .navbar-toggle { display:flex; z-index:1001; }
 
-      /* Hero */
-      .hero-actions { flex-direction:column; }
-      .hero-actions .btn { text-align:center; justify-content:center; width:100%; }
-      .hero-stats { gap:0; justify-content:space-between; flex-wrap:nowrap; }
-      .hero-stat { flex:1; min-width:0; padding:0 8px; }
-      .stat-number { font-size:1.6rem; }
+      /* Hero — moins haut */
+      .hero { min-height:82vh; }
+      .hero p { font-size:0.93rem; margin-bottom:20px; }
+      .hero-actions { flex-direction:column; gap:10px; }
+      .hero-actions .btn { text-align:center; justify-content:center; width:100%; padding:12px 24px; }
+      .hero-stats { gap:0; justify-content:space-between; flex-wrap:nowrap; margin-top:28px; }
+      .hero-stat { flex:1; min-width:0; padding:0 6px; }
+      .stat-number { font-size:1.5rem; }
+      .hero-scroll { display:none; }
 
-      /* Booking strip */
-      .booking-strip .container { flex-direction:column; align-items:stretch; gap:16px; }
-      .booking-strip-info { text-align:center; }
-      .booking-strip-contact { flex-direction:column; align-items:stretch; gap:10px; }
-      .booking-strip-phone { justify-content:center; }
-      .booking-strip-contact .btn { text-align:center; justify-content:center; width:100%; }
-
-      /* Calculator */
-      .form-row { grid-template-columns:1fr; }
-      .estimate-grid { grid-template-columns:1fr 1fr; gap:12px; }
+      /* Booking strip — compact */
+      .booking-strip .container { flex-direction:column; align-items:stretch; gap:8px; padding-top:14px; padding-bottom:14px; }
+      .booking-strip-info { display:none; }
+      .booking-strip-contact { flex-direction:row; align-items:center; gap:8px; flex-wrap:nowrap; }
+      .booking-strip-phone { font-size:1.05rem; gap:8px; flex:1; }
+      .booking-strip-contact .btn { padding:10px 16px; font-size:0.88rem; flex-shrink:0; }
 
       /* Services — scroll horizontal */
       .svc-scroll { margin:0 -16px; padding:0 16px 12px; }
       .svc-grid { display:flex; flex-wrap:nowrap; width:max-content; gap:10px; }
-      .svc-card { width:152px; flex-shrink:0; }
+      .svc-card { width:148px; flex-shrink:0; }
 
-      /* Tarifs */
-      .tarifs-grid { grid-template-columns:1fr; }
-      .tarif-card.featured { transform:none; }
-      .tarif-table tbody td { padding:12px 14px; font-size:0.88rem; }
+      /* Calculator — compact */
+      .calculator-form { padding:20px 16px; }
+      .form-row { grid-template-columns:1fr; gap:0; }
+      .estimate-grid { grid-template-columns:1fr 1fr; gap:10px; }
+      .pricing-table { margin-bottom:16px; }
+      .pricing-row { padding:10px 14px; }
 
-      /* Pourquoi */
-      .why-grid { grid-template-columns:1fr 1fr; gap:16px; }
-      .why-item { padding:20px 14px; }
+      /* Tarifs table — compact */
+      .tarif-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+      .tarif-table { min-width:300px; }
+      .tarif-table thead th { padding:10px 14px; }
+      .tarif-table tbody td { padding:11px 14px; font-size:0.88rem; }
+      .tarif-note { font-size:0.72rem; }
 
-      /* Contact */
-      .contact-wrapper { grid-template-columns:1fr; gap:32px; }
-      .contact-items { gap:12px; }
+      /* Témoignages — scroll horizontal */
+      .testi-scroll { margin:0 -16px; padding:0 16px 10px; }
+      .testimonials-grid { display:flex; flex-wrap:nowrap; width:max-content; gap:12px; }
+      .testimonial-card { width:262px; flex-shrink:0; padding:20px; }
+      .testimonial-text { font-size:0.88rem; margin-bottom:14px; }
+      .testi-score { font-size:2.6rem; }
+      .testi-score-sub { margin-bottom:18px; font-size:0.78rem; }
 
-      /* Footer */
-      .footer-grid { grid-template-columns:1fr; }
-      .footer-bottom { flex-direction:column; text-align:center; gap:12px; padding-bottom:80px; }
-      .footer-bottom-links { justify-content:center; flex-wrap:wrap; gap:12px; padding-right:64px; }
+      /* FAQ — compact */
+      .faq-list { gap:8px; }
+      .faq-question { padding:13px 16px; font-size:0.90rem; }
+      .faq-answer p { padding:0 16px 12px; font-size:0.87rem; }
+
+      /* Contact — compact */
+      .contact-wrapper { grid-template-columns:1fr; gap:20px; }
+      .contact-info h2 { font-size:1.5rem; }
+      .contact-info > p { display:none; }
+      .contact-items { gap:8px; }
+      .contact-item { gap:10px; }
+      .contact-item-icon { width:36px; height:36px; border-radius:10px; }
+      .contact-item-content h4 { font-size:0.88rem; }
+      .contact-item-content p, .contact-item-content a { font-size:0.82rem; }
+      .contact-form-wrapper { padding:20px 16px; }
+
+      /* Footer — compact */
+      .footer-grid { grid-template-columns:1fr; gap:20px; }
+      .footer-bottom { flex-direction:column; text-align:center; gap:10px; padding-bottom:92px; }
+      .footer-bottom-links { justify-content:center; flex-wrap:wrap; gap:12px; }
 
       /* Boutons flottants */
       .floating-phone { bottom:86px; right:16px; gap:8px; }
       .floating-phone-btn { width:50px; height:50px; font-size:1.2rem; }
       .floating-wa { width:44px; height:44px; font-size:1.1rem; }
     }
+
     @media(max-width:480px) {
-      .container { padding:0 16px; }
-      .section { padding:44px 0; }
-      h1 { font-size:2rem; }
-      h2 { font-size:1.5rem; }
+      .container { padding:0 14px; }
+      .section { padding:28px 0; }
+      .section-header { margin-bottom:16px; }
+      h1 { font-size:1.85rem; }
+      h2 { font-size:1.3rem; }
+      .badge { font-size:0.68rem; padding:5px 12px; margin-bottom:10px; }
+      .sec-label { font-size:0.64rem; margin-bottom:6px; }
+
+      /* Hero */
+      .hero { min-height:78vh; }
+      .hero-badge { font-size:0.74rem; padding:6px 14px; margin-bottom:18px; }
       .hero-stat { padding:0 4px; }
-      .stat-number { font-size:1.4rem; }
-      .why-grid { grid-template-columns:1fr; }
-      .estimate-grid { grid-template-columns:1fr; }
-      .calculator-form { padding:24px 16px; }
-      .contact-form-wrapper { padding:24px 16px; }
-      .tarif-card { padding:24px 16px; }
-      .footer-grid { gap:28px; }
+      .stat-number { font-size:1.3rem; }
+      .stat-label { font-size:0.72rem; }
+
+      /* Calculator */
+      .calculator-form { padding:16px 12px; }
+      .form-group { margin-bottom:14px; }
+      .form-group input { padding:11px 11px 11px 38px; font-size:0.88rem; }
+      .estimate-grid { grid-template-columns:1fr; gap:8px; }
+
+      /* Témoignages */
+      .testimonial-card { width:240px; padding:16px; }
+
+      /* FAQ */
+      .faq-question { padding:12px 14px; font-size:0.86rem; }
+
+      /* Contact */
+      .contact-form-wrapper { padding:16px 12px; }
+
+      /* Footer */
+      .footer-grid { gap:16px; }
+      .footer-bottom { padding-bottom:86px; }
     }
 
     /* ============================================================
@@ -1069,7 +1120,7 @@
           · +1 200 avis vérifiés
         </div>
       </div>
-      <div class="testimonials-grid">
+      <div class="testi-scroll"><div class="testimonials-grid">
         <div class="testimonial-card">
           <div class="testimonial-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
           <p class="testimonial-text">"Pris en charge en 5 minutes, arrivé à CDG avec 20 minutes d'avance. Chauffeur professionnel, équipement nickel. Je recommande à 100% !"</p>
@@ -1103,7 +1154,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
   </section>
 
