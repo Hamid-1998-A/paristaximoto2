@@ -1403,8 +1403,70 @@
     baseFare: 3.50,
     ratePerKmDay: 1.80,
     ratePerKmNight: 2.40,
-    minimumFare: 8,
+    minimumFare: 8,          // minimum compteur brut (inchangé)
+    minimumFareGlobal: 47,   // plancher global pour tout trajet hors forfait
   };
+
+  // ============================================================
+  // FORFAITS FIXES — prix plancher par paire de zones
+  // Pour ajouter/modifier un forfait, éditez uniquement ce tableau.
+  // Les deux sens (aller/retour) sont déclarés explicitement.
+  // ============================================================
+  const FORFAITS = [
+    // ——— Aller ———
+    { from: 'paris',   to: 'paris',   min: 46  },
+    { from: 'paris',   to: 'orly',    min: 76  },
+    { from: 'paris',   to: 'cdg',     min: 99  },
+    { from: 'defense', to: 'cdg',     min: 99  },
+    { from: 'defense', to: 'orly',    min: 99  },
+    { from: 'cdg',     to: 'orly',    min: 139 },
+    // ——— Retour (symétriques) ———
+    { from: 'orly',    to: 'paris',   min: 76  },
+    { from: 'cdg',     to: 'paris',   min: 99  },
+    { from: 'cdg',     to: 'defense', min: 99  },
+    { from: 'orly',    to: 'defense', min: 99  },
+    { from: 'orly',    to: 'cdg',     min: 139 },
+  ];
+
+  /**
+   * Détecte la zone tarifaire d'une adresse Google Places.
+   * Ordre de priorité : CDG > Orly > La Défense > Paris > null
+   * (important : CDG/Orly contiennent "Paris" → vérifier en premier)
+   *
+   * @param  {string} address  adresse formatée (ex: "Aéroport CDG, 95700 Roissy, France")
+   * @returns {'cdg'|'orly'|'defense'|'paris'|null}
+   */
+  function detectZone(address) {
+    if (!address) return null;
+    // Normalisation : minuscules + suppression des accents pour comparaisons robustes
+    const a = address.toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+    // 1. Aéroport CDG / Roissy — AVANT Paris car l'adresse contient "Paris"
+    if (/cdg|roissy|charles.?de.?gaulle|95700|95701|95702/.test(a)) return 'cdg';
+
+    // 2. Aéroport Orly — AVANT Paris (même raison)
+    if (/\borly\b|ory|94390|94396|94544/.test(a)) return 'orly';
+
+    // 3. La Défense (quartier + communes adjacentes Puteaux, Courbevoie)
+    if (/la.?de.?fense|defense|puteaux|92400|92800/.test(a)) return 'defense';
+
+    // 4. Paris intramuros — code postal 750xx OU libellé ", Paris,"
+    if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
+
+    return null; // zone inconnue → plancher global 47 €
+  }
+
+  /**
+   * Retourne le forfait correspondant à une paire de zones, ou null.
+   * @param  {string|null} fromZone
+   * @param  {string|null} toZone
+   * @returns {{ from, to, min }|null}
+   */
+  function getForfait(fromZone, toZone) {
+    if (!fromZone || !toZone) return null;
+    return FORFAITS.find(f => f.from === fromZone && f.to === toZone) || null;
+  }
 
   // ============================================================
   // GOOGLE MAPS — Calculator
@@ -1503,25 +1565,55 @@
   function displayEstimate(distanceKm, distanceText, durationText) {
     const isNight = isNightRate();
     const rateKm = isNight ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
-    let price = TARIFF.baseFare + (distanceKm * rateKm);
-    price = Math.max(price, TARIFF.minimumFare);
 
-    const priceLow = Math.round(price * 0.9);
+    // 1. Calcul tarifaire de base (compteur)
+    let price = TARIFF.baseFare + (distanceKm * rateKm);
+    price = Math.max(price, TARIFF.minimumFare); // plancher compteur : 8 €
+
+    // 2. Détection des zones depuis les adresses Google Places
+    const origAddr = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
+    const destAddr  = destPlace?.formatted_address  || document.getElementById('destination')?.value || '';
+    const origZone  = detectZone(origAddr);
+    const destZone  = detectZone(destAddr);
+
+    // 3. Recherche d'un forfait applicable
+    const forfait = getForfait(origZone, destZone);
+
+    // 4. Application du prix plancher
+    //    - Si forfait trouvé  → plancher = prix du forfait
+    //    - Sinon              → plancher global = 47 €
+    const plancher = forfait ? forfait.min : TARIFF.minimumFareGlobal;
+    const forfaitApplique = price < plancher; // true si le forfait relève le prix
+    price = Math.max(price, plancher);
+
+    // 5. Fourchette affichée (±10 %)
+    const priceLow  = Math.round(price * 0.9);
     const priceHigh = Math.round(price * 1.1);
     const period = isNight ? 'Tarif nuit' : 'Tarif jour';
 
+    // 6. Mise à jour de l'affichage
     document.getElementById('est-distance').textContent = distanceText;
     document.getElementById('est-duration').textContent = durationText;
     document.getElementById('est-rate').textContent = rateKm.toFixed(2) + ' €/km';
     document.getElementById('est-price').textContent = priceLow + ' – ' + priceHigh + ' €';
-    const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
-    const sunSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
-    document.getElementById('est-period').innerHTML = (isNight ? moonSvg : sunSvg) + period;
 
-    // Build WhatsApp message with full trip info
-    const orig = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
-    const dest = destPlace?.formatted_address || document.getElementById('destination')?.value || '';
-    const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})\n\nPouvez-vous confirmer la disponibilité ?`;
+    const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    const sunSvg  = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+
+    // Indicateur forfait visible sous le prix
+    let periodHtml = (isNight ? moonSvg : sunSvg) + period;
+    if (forfaitApplique) {
+      periodHtml += ' &nbsp;·&nbsp; <strong style="color:#D97706">✓ Forfait ' + plancher + ' €</strong>';
+    }
+    document.getElementById('est-period').innerHTML = periodHtml;
+
+    // 7. Message WhatsApp enrichi (mentionne le forfait si applicable)
+    const orig = origAddr;
+    const dest = destAddr;
+    const forfaitMsg = forfaitApplique
+      ? `\n✅ Forfait garanti : ${plancher} €`
+      : '';
+    const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})${forfaitMsg}\n\nPouvez-vous confirmer la disponibilité ?`;
     const waBtn = document.getElementById('whatsapp-cta');
     if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
 
