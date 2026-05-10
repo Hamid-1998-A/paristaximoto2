@@ -117,7 +117,7 @@
     /* ============================================================
        HERO
     ============================================================ */
-    .hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; }
+    .hero { position:relative; min-height:52vh; display:flex; align-items:center; overflow:hidden; }
     .hero-bg { position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1800&q=80'); background-size:cover; background-position:center; transform:scale(1.05); animation:heroZoom 20s ease-in-out infinite alternate; }
     @keyframes heroZoom { from{transform:scale(1.05)} to{transform:scale(1.12)} }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(160deg,rgba(17,24,39,0.93) 0%,rgba(17,24,39,0.76) 55%,rgba(17,24,39,0.44) 100%); }
@@ -454,7 +454,10 @@
       .navbar-toggle { display:flex; z-index:1001; }
 
       /* Hero — moins haut */
-      .hero { min-height:82vh; }
+      .hero { min-height:44vh; }
+      .hero-badge { display:none; }
+      .hero-stats { display:none; }
+      .hero-scroll { display:none; }
       .hero p { font-size:0.93rem; margin-bottom:20px; }
       .hero-actions { flex-direction:column; gap:10px; }
       .hero-actions .btn { text-align:center; justify-content:center; width:100%; padding:12px 24px; }
@@ -534,7 +537,7 @@
       .sec-label { font-size:0.64rem; margin-bottom:6px; }
 
       /* Hero */
-      .hero { min-height:78vh; }
+      .hero { min-height:38vh; }
       .hero-badge { font-size:0.74rem; padding:6px 14px; margin-bottom:18px; }
       .hero-stat { padding:0 4px; }
       .stat-number { font-size:1.3rem; }
@@ -775,22 +778,12 @@
     <div class="container" style="display:flex;flex-direction:column;">
       <div class="hero-content">
         <div class="hero-badge"><i data-lucide="bike"></i> Paris · 24h/24 · 7j/7</div>
-        <h1>Traversez Paris<br>en <span>taxi-moto.</span></h1>
-        <p>Un chauffeur professionnel à votre porte en 10 minutes. Prix fixe, sans surprise.</p>
+        <h1>Ne laissez pas<br>le trafic <span>vous retarder.</span></h1>
         <div class="hero-actions">
           <a href="resa/index.html" class="btn btn-primary">Réserver une course →</a>
-          <a href="tel:+33611916560" class="btn btn-outline"><i data-lucide="phone"></i> Appeler</a>
         </div>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="stat-number" data-target="10" data-suffix=" min">0 min</div>
-          <div class="stat-label">Délai moyen</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-number" data-target="12" data-suffix="k">0k</div>
-          <div class="stat-label">Courses/mois</div>
-        </div>
         <div class="hero-stat">
           <div class="stat-number" data-target="4" data-suffix=".9★">0★</div>
           <div class="stat-label">Satisfaction</div>
@@ -799,30 +792,6 @@
     </div>
     <div class="hero-scroll" aria-hidden="true">Défiler</div>
   </section>
-
-  <!-- ============================================================
-       BOOKING STRIP
-  ============================================================ -->
-  <div class="booking-strip">
-    <div class="container">
-      <div class="booking-strip-info">
-        <h3>Réservation immédiate</h3>
-        <p>Disponible maintenant dans Paris et grande couronne</p>
-      </div>
-      <div class="booking-strip-contact">
-        <a href="tel:+33611916560" class="booking-strip-phone">
-          <div class="phone-icon"><i data-lucide="phone"></i></div>
-          06 11 91 65 60
-        </a>
-        <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa" style="white-space:nowrap">
-          <i data-lucide="message-circle"></i> WhatsApp
-        </a>
-        <a href="#estimer" class="btn btn-primary" style="white-space:nowrap">
-          Estimer mon tarif →
-        </a>
-      </div>
-    </div>
-  </div>
 
   <!-- ============================================================
        SERVICES
