@@ -1134,7 +1134,7 @@
           <line x1="22" y1="11" x2="16" y2="11"/>
         </svg>
       </span>
-      <span class="cf-label"><i data-lucide="contact"></i> Ajouter dans vos contacts</span>
+      <span class="cf-label"><i data-lucide="contact"></i> Enregistrer le contact</span>
     </button>
   </div>
 
@@ -2049,20 +2049,14 @@
     var close = document.getElementById('cf-close');
     if (!wrap || !btn || !close) return;
 
-    /* Apparition */
+    /* Apparition + expansion immédiate */
     setTimeout(function () {
       wrap.classList.add('cf-visible');
-      btn.classList.add('cf-pulsing');
-
-      /* Expansion */
+      btn.classList.add('cf-expanded');
+      /* Repli auto après 2s */
       setTimeout(function () {
-        btn.classList.remove('cf-pulsing');
-        btn.classList.add('cf-expanded');
-        /* Repli auto */
-        setTimeout(function () {
-          btn.classList.remove('cf-expanded');
-        }, 7000);
-      }, 2800);
+        btn.classList.remove('cf-expanded');
+      }, 2000);
     }, 1200);
 
     /* Se cache quand le panel s'ouvre, réapparaît quand il se ferme */
