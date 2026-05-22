@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /resa/
+
+Sitemap: https://paristaximoto.fr/sitemap.xml
