@@ -1,6 +1,24 @@
+# robots.txt — paristaximoto.fr
+# Dernière mise à jour : 2026-06-01
+
+# ── Crawlers généraux ────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 
+# Pages sans valeur SEO
 Disallow: /resa/
 
+# Paramètres d'URL dynamiques (tracking, sessions, filtres)
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?ref=
+Disallow: /*?source=
+
+# Répertoires internes / outils (ne doivent pas être servis mais par sécurité)
+Disallow: /.claude/
+Disallow: /nextjs/
+Disallow: /cdn-cgi/
+
+# ── Sitemap ───────────────────────────────────────────────────────────────────
 Sitemap: https://paristaximoto.fr/sitemap.xml

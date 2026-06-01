@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moto Taxi Gare du Nord | Correspondance Eurostar & Thalys | Paris TaxiMoto</title>
+  <meta name="description" content="Moto taxi Gare du Nord Paris — arrivée, départ, correspondance Eurostar ou Thalys. Transfert ultra-rapide, chauffeur certifié VMDTR. Réservation 24h/24.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://paristaximoto.fr/moto-taxi-gare-du-nord/">
+  <link rel="icon" type="image/png" href="../logov2.png">
+  <meta property="og:title" content="Moto Taxi Gare du Nord | Correspondance Eurostar & Thalys | Paris TaxiMoto">
+  <meta property="og:description" content="Moto taxi Gare du Nord depuis tout Paris. Chauffeur certifié, disponible 24h/24. Réservez en 30 secondes.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://paristaximoto.fr/moto-taxi-gare-du-nord/">
+  <meta property="og:image" content="https://paristaximoto.fr/logov2.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Moto Taxi Gare du Nord",
+    "description": "Service de moto-taxi professionnel pour transferts vers et depuis la Gare du Nord à Paris. Correspondances Eurostar, Thalys, TGV. Chauffeur certifié VMDTR, disponible 24h/24.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Paris TaxiMoto",
+      "telephone": "+33611916560",
+      "email": "contact@paristaximoto.fr",
+      "url": "https://paristaximoto.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Massy",
+        "postalCode": "91300",
+        "addressCountry": "FR"
+      }
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Gare du Nord, Paris"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "46",
+      "priceCurrency": "EUR",
+      "description": "À partir de 46 € pour un trajet Paris intramuros vers la Gare du Nord"
+    },
+    "serviceType": "Moto-taxi transfert gare"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary:#111827; --accent:#D97706; --accent-dark:#B45309; --gold:#F59E0B;
+      --white:#ffffff; --light-bg:#F9FAFB; --dark-bg:#030712;
+      --text:#1E293B; --text-muted:#64748B; --border:#E5E7EB;
+      --shadow:0 1px 4px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.07);
+      --radius:10px; --transition:all 0.22s ease;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter','Segoe UI',sans-serif;color:var(--text);background:var(--white);line-height:1.6;}
+    h1,h2,h3,h4{font-weight:700;line-height:1.2;}
+    h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;letter-spacing:-0.03em;}
+    h2{font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-0.02em;}
+    h3{font-size:clamp(1.1rem,2vw,1.4rem);letter-spacing:-0.01em;}
+    p{font-size:1rem;line-height:1.7;}
+    a{text-decoration:none;color:inherit;}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+    .section{padding:80px 0;}
+    .section-header{text-align:center;margin-bottom:56px;}
+    .section-header h2{color:var(--primary);margin-bottom:12px;}
+    .section-header p{color:var(--text-muted);max-width:580px;margin:0 auto;}
+    .badge{display:inline-block;background:rgba(217,119,6,0.09);color:var(--accent);font-size:0.75rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;padding:6px 16px;border-radius:40px;margin-bottom:16px;border:1px solid rgba(217,119,6,0.22);}
+    .sec-label{font-size:0.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;display:block;}
+    .sec-label b{color:var(--accent);}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;cursor:pointer;border:none;transition:var(--transition);}
+    .btn-primary{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:var(--white);box-shadow:0 2px 12px rgba(217,119,6,0.22);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(217,119,6,0.42);filter:brightness(1.06);}
+    .btn-wa{background:#25D366;color:var(--white);}
+    .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.4);}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:var(--transition);}
+    .navbar.scrolled{background:rgba(17,24,39,0.97);backdrop-filter:blur(16px);padding:14px 0;box-shadow:0 1px 0 rgba(255,255,255,0.05),var(--shadow);}
+    .navbar .container{display:flex;align-items:center;justify-content:space-between;}
+    .navbar-brand{display:flex;align-items:center;gap:10px;color:var(--white);font-size:1.3rem;font-weight:800;}
+    .navbar-brand .logo-icon{width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+    .navbar-nav{display:flex;align-items:center;gap:8px;list-style:none;}
+    .navbar-nav a{color:rgba(255,255,255,0.85);font-weight:500;padding:8px 16px;border-radius:8px;transition:var(--transition);font-size:0.95rem;}
+    .navbar-nav a:hover{color:var(--white);background:rgba(255,255,255,0.1);}
+    .navbar-cta{background:var(--accent)!important;color:var(--white)!important;padding:10px 20px!important;border-radius:50px!important;}
+    .navbar-cta:hover{background:var(--accent-dark)!important;}
+    .navbar-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .navbar-toggle span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:var(--transition);}
+    .hero{position:relative;min-height:58vh;display:flex;align-items:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1800&q=80');background-size:cover;background-position:center;}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(17,24,39,0.93) 0%,rgba(17,24,39,0.76) 55%,rgba(17,24,39,0.44) 100%);}
+    .hero-content{position:relative;z-index:2;color:var(--white);max-width:700px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(217,119,6,0.12);border:1px solid rgba(217,119,6,0.38);color:#FCD34D;font-size:0.82rem;font-weight:600;padding:8px 18px;border-radius:40px;margin-bottom:28px;backdrop-filter:blur(8px);}
+    .hero h1{color:var(--white);margin-bottom:20px;text-shadow:0 2px 16px rgba(0,0,0,0.3);}
+    .hero h1 span{color:var(--accent);}
+    .hero p{font-size:1.15rem;color:rgba(255,255,255,0.85);margin-bottom:36px;max-width:560px;}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+    .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .intro-text h2{color:var(--primary);margin-bottom:16px;}
+    .intro-text p{color:var(--text-muted);margin-bottom:24px;line-height:1.8;}
+    .intro-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;}
+    .highlight-item{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--light-bg);border-radius:10px;border:1px solid var(--border);}
+    .highlight-icon{font-size:1.2rem;flex-shrink:0;}
+    .highlight-text{font-size:0.88rem;font-weight:600;color:var(--primary);}
+    .pricing-box{background:var(--primary);border-radius:16px;padding:32px;color:var(--white);}
+    .pricing-box h3{color:var(--white);margin-bottom:24px;}
+    .pricing-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .pricing-row:last-child{border-bottom:none;}
+    .pricing-row .label{color:rgba(255,255,255,0.7);font-size:0.9rem;}
+    .pricing-row .value{color:var(--white);font-weight:700;font-size:1.05rem;}
+    .pricing-row.accent-row .value{color:#FCD34D;font-size:1.3rem;}
+    .tarif-table-wrap{margin-top:32px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+    .tarif-table{width:100%;border-collapse:collapse;}
+    .tarif-table thead th{font-size:0.7rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--text-muted);font-weight:600;padding:12px 20px;background:var(--light-bg);border-bottom:1px solid var(--border);text-align:left;}
+    .tarif-table thead th:last-child{text-align:right;}
+    .tarif-table tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+    .tarif-table tbody tr:last-child{border-bottom:none;}
+    .tarif-table tbody tr:hover{background:var(--light-bg);}
+    .tarif-table tbody tr.highlight-row{background:rgba(217,119,6,0.06);}
+    .tarif-table tbody td{padding:14px 20px;font-size:0.95rem;color:var(--text);}
+    .tarif-table tbody td:last-child{text-align:right;font-weight:700;color:var(--accent);font-size:1.05rem;}
+    .tarif-note{font-size:0.82rem;color:var(--text-muted);margin-top:12px;}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+    .step{text-align:center;padding:32px 20px;background:var(--white);border-radius:16px;border:1px solid var(--border);}
+    .step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);color:var(--white);font-size:1.4rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 16px rgba(217,119,6,0.3);}
+    .step h3{color:var(--primary);margin-bottom:10px;}
+    .step p{color:var(--text-muted);font-size:0.92rem;}
+    .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+    .faq-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .faq-question{width:100%;background:none;border:none;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:1rem;font-weight:600;color:var(--primary);text-align:left;transition:var(--transition);font-family:inherit;}
+    .faq-question:hover{background:var(--light-bg);}
+    .faq-icon{width:24px;height:24px;border-radius:50%;background:rgba(217,119,6,0.12);color:var(--accent);border:1px solid rgba(217,119,6,0.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:var(--transition);}
+    .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--accent);color:var(--white);border-color:var(--accent);}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+    .faq-item.open .faq-answer{max-height:300px;}
+    .faq-answer p{padding:0 24px 20px;color:var(--text-muted);font-size:0.95rem;}
+    .cta-section{background:var(--primary);color:var(--white);text-align:center;}
+    .cta-section h2{color:var(--white);margin-bottom:12px;}
+    .cta-section p{color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto 36px;}
+    .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+    .cta-btns .btn{padding:16px 36px;font-size:1.05rem;}
+    footer{background:var(--dark-bg);color:rgba(255,255,255,0.7);padding:60px 0 28px;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;margin-bottom:48px;}
+    .footer-brand p{font-size:0.9rem;line-height:1.7;margin-top:16px;color:rgba(255,255,255,0.55);}
+    .footer-col h4{color:var(--white);font-size:0.95rem;margin-bottom:16px;}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+    .footer-links a{color:rgba(255,255,255,0.55);font-size:0.88rem;transition:var(--transition);}
+    .footer-links a:hover{color:var(--accent);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+    .footer-bottom p{font-size:0.85rem;color:rgba(255,255,255,0.4);}
+    .footer-bottom-links{display:flex;gap:20px;list-style:none;}
+    .footer-bottom-links a{color:rgba(255,255,255,0.4);font-size:0.82rem;transition:var(--transition);}
+    .footer-bottom-links a:hover{color:var(--accent);}
+    .floating-phone{position:fixed;bottom:92px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+    .floating-phone-btn{width:60px;height:60px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dark) 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:0 6px 24px rgba(217,119,6,0.45);animation:pulse 2.5s infinite;text-decoration:none;}
+    @keyframes pulse{0%,100%{box-shadow:0 6px 24px rgba(217,119,6,0.45)}50%{box-shadow:0 6px 32px rgba(217,119,6,0.70),0 0 0 12px rgba(217,119,6,0.10)}}
+    .floating-wa{width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);box-shadow:0 6px 24px rgba(37,211,102,0.5);text-decoration:none;transition:var(--transition);}
+    .floating-wa:hover{transform:scale(1.1);}
+    .ftb{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1100;background:rgba(18,18,22,0.55);backdrop-filter:blur(18px) saturate(160%);border-radius:50px;padding:6px 4px;display:flex;align-items:center;box-shadow:0 4px 24px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);}
+    .ftb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 18px;border-radius:40px;text-decoration:none;color:rgba(255,255,255,0.50);font-family:'Inter',sans-serif;font-size:0.65rem;font-weight:500;transition:color .18s ease,background .18s ease;cursor:pointer;}
+    .ftb-item:hover{color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.06);}
+    .ftb-label{font-size:0.60rem;font-weight:500;line-height:1;}
+    .ftb-cta{padding:4px 14px;gap:4px;color:rgba(255,255,255,0.75);}
+    .ftb-cta-circle{width:42px;height:42px;background:#007AFF;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 3px 14px rgba(0,122,255,.45);transition:transform .38s cubic-bezier(.34,1.56,.64,1);}
+    .ftb-cta:hover .ftb-cta-circle{background:#0A84FF;transform:scale(1.07);}
+    @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr;}.intro-grid{grid-template-columns:1fr;gap:40px;}}
+    @media(max-width:768px){
+      .section{padding:48px 0;}.section-header{margin-bottom:32px;}
+      .navbar-nav{display:none;position:fixed;inset:0;background:rgba(17,24,39,0.98);flex-direction:column;justify-content:center;align-items:center;gap:8px;}
+      .navbar-nav.open{display:flex;}.navbar-nav a{font-size:1.2rem;padding:12px 24px;}
+      .navbar-toggle{display:flex;z-index:1001;}
+      .hero{min-height:50vh;}.hero p{font-size:0.93rem;}
+      .hero-actions{flex-direction:column;gap:10px;}.hero-actions .btn{justify-content:center;width:100%;}
+      .steps-grid{grid-template-columns:1fr;}
+      .intro-highlights{grid-template-columns:1fr;}
+      .faq-question{padding:13px 16px;font-size:0.90rem;}
+      .faq-answer p{padding:0 16px 12px;}
+      .cta-btns{flex-direction:column;align-items:center;}.cta-btns .btn{width:100%;max-width:340px;justify-content:center;}
+      .footer-grid{grid-template-columns:1fr;gap:20px;}
+      .footer-bottom{flex-direction:column;text-align:center;padding-bottom:92px;}
+      .floating-phone{bottom:86px;right:16px;}
+      .floating-phone-btn{width:50px;height:50px;}
+      .floating-wa{width:44px;height:44px;}
+      .tarif-table-wrap{overflow-x:auto;}.tarif-table{min-width:320px;}
+    }
+    @media(max-width:480px){
+      .container{padding:0 14px;}.section{padding:32px 0;}
+      h1{font-size:1.85rem;}h2{font-size:1.3rem;}
+      .ftb{bottom:16px;padding:5px 2px;}.ftb-item{padding:5px 12px;}
+      .ftb-cta{padding:4px 10px;}.ftb-cta-circle{width:38px;height:38px;}
+      .footer-bottom{padding-bottom:86px;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <a href="../" class="navbar-brand">
+        <div class="logo-icon"><img src="../logov2.png" alt="Paris TaxiMoto" style="width:32px;height:32px;object-fit:contain;border-radius:50%;"></div>
+        Paris<span style="color:var(--accent)">TaxiMoto</span>
+      </a>
+      <ul class="navbar-nav">
+        <li><a href="../#services">Services</a></li>
+        <li><a href="../#tarifs">Tarifs</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="tel:+33611916560" class="navbar-cta"><i data-lucide="phone"></i> Réserver</a></li>
+      </ul>
+      <button class="navbar-toggle" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="accueil">
+    <div class="hero-bg" role="img" aria-label="Paris vue aérienne"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><i data-lucide="train-front"></i> Correspondance Gare du Nord · 24h/24</div>
+        <h1>Moto Taxi<br><span>Gare du Nord</span></h1>
+        <p>Eurostar, Thalys, TGV — arrivée garantie à l'heure · 2 à 3× plus rapide qu'un taxi</p>
+        <div class="hero-actions">
+          <a href="tel:+33611916560" class="btn btn-primary"><i data-lucide="phone"></i> 06 11 91 65 60</a>
+          <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa"><i data-lucide="message-circle"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--light-bg);">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <span class="sec-label"><b>01</b> — Présentation</span>
+          <h2>Arrivez à la Gare du Nord<br>sans stress</h2>
+          <p>Rater un Eurostar ou un Thalys est impensable. Paris TaxiMoto vous garantit une arrivée ponctuelle à la Gare du Nord depuis n'importe quel point de Paris. Notre chauffeur certifié VMDTR circule entre les files de trafic et vous dépose au terminal exact en 8 à 15 minutes depuis le centre de Paris — là où un VTC mettrait 30 à 45 minutes. Disponible 24h/24 et 7j/7, confirmation SMS immédiate, équipement fourni. Réservez en 30 secondes.</p>
+          <div class="intro-highlights">
+            <div class="highlight-item"><span class="highlight-icon">🚄</span><span class="highlight-text">Eurostar &amp; Thalys</span></div>
+            <div class="highlight-item"><span class="highlight-icon">⚡</span><span class="highlight-text">8–15 min depuis Paris</span></div>
+            <div class="highlight-item"><span class="highlight-icon">🛡️</span><span class="highlight-text">Certifié VMDTR</span></div>
+            <div class="highlight-item"><span class="highlight-icon">🕐</span><span class="highlight-text">Disponible 24h/24</span></div>
+          </div>
+        </div>
+        <div class="pricing-box">
+          <h3>Tarifs Gare du Nord</h3>
+          <div class="pricing-row"><span class="label">Prise en charge</span><span class="value">3,50 €</span></div>
+          <div class="pricing-row"><span class="label">Tarif jour (7h–20h)</span><span class="value">1,80 € / km</span></div>
+          <div class="pricing-row"><span class="label">Tarif nuit (20h–7h)</span><span class="value">2,40 € / km</span></div>
+          <div class="pricing-row accent-row"><span class="label">Depuis Paris intramuros</span><span class="value">dès 46 €</span></div>
+          <div class="pricing-row"><span class="label">Tarif minimum</span><span class="value">8 €</span></div>
+          <div class="pricing-row"><span class="label">Majoration nuit &amp; week-end</span><span class="value">+33 %</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tarifs">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Grille tarifaire</span>
+        <h2>Tarifs Paris TaxiMoto 2025</h2>
+        <p>Forfait inclus : casque, gants, blouson. Tarifs TTC, annoncés avant départ.</p>
+      </div>
+      <div class="tarif-table-wrap">
+        <table class="tarif-table">
+          <thead>
+            <tr><th>Départ</th><th>Arrivée</th><th>Prix</th></tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row"><td>Paris</td><td>Paris (Gare du Nord incluse)</td><td>€46</td></tr>
+            <tr><td>Paris</td><td>Aéroport Orly</td><td>€76</td></tr>
+            <tr><td>Paris</td><td>CDG (Roissy)</td><td>€99</td></tr>
+            <tr><td>La Défense</td><td>CDG (Roissy)</td><td>€99</td></tr>
+            <tr><td>La Défense</td><td>Aéroport Orly</td><td>€99</td></tr>
+            <tr><td>Aéroport CDG</td><td>Aéroport Orly</td><td>€139</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tarif-note">* Tarifs TTC — majoration nuit (20h–7h) et week-end : +33% · Le tarif Gare du Nord est inclus dans la grille Paris–Paris</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--light-bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Comment ça marche</span>
+        <h2>Votre transfert Gare du Nord en 3 étapes</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Réservez</h3>
+          <p>Appelez le 06 11 91 65 60 ou WhatsApp. Précisez votre train (Eurostar : 1h à l'avance recommandée). Confirmation SMS immédiate.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Prise en charge</h3>
+          <p>Le chauffeur se présente au lieu et à l'heure convenus. Pour les arrivées, il s'adapte à l'horaire réel de votre train.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>À la Gare</h3>
+          <p>Dépôt au terminal exact en 8–15 minutes depuis le centre de Paris — sans embouteillage, sans stress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">FAQ</span>
+        <h2>Questions fréquentes — Gare du Nord</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">Combien coûte un moto taxi vers la Gare du Nord ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>À partir de 46 € pour un trajet intra-Paris (forfait garanti). Le tarif exact dépend de votre adresse de départ. Utilisez notre calculateur en ligne ou appelez-nous pour une estimation en 30 secondes.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Le chauffeur peut-il m'attendre à la sortie du train ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Oui. Communiquez votre numéro de train à la réservation. Le chauffeur s'adapte à l'horaire réel d'arrivée et vous attend à la sortie désignée sans frais supplémentaires.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps avant mon Eurostar dois-je réserver ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Nous recommandons de réserver au minimum 30 minutes avant votre heure de départ depuis Paris. Pour l'Eurostar, prévoyez 1h à 1h30 d'avance en raison des contrôles aux frontières à la Gare du Nord.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <h2>Réservez votre moto taxi Gare du Nord</h2>
+      <p>Chauffeur disponible 24h/24 — réponse en moins de 2 minutes</p>
+      <div class="cta-btns">
+        <a href="tel:+33611916560" class="btn btn-primary"><i data-lucide="phone"></i> 06 11 91 65 60</a>
+        <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa"><i data-lucide="message-circle"></i> Réserver sur WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="navbar-brand" style="font-size:1.2rem;">
+            <div class="logo-icon"><img src="../logov2.png" alt="Paris TaxiMoto" style="width:32px;height:32px;object-fit:contain;border-radius:50%;"></div>
+            Paris<span style="color:var(--accent)">TaxiMoto</span>
+          </div>
+          <p>Service de moto-taxi professionnel à Paris et Île-de-France. Disponible 24h/24, certifié VMDTR, assurance passager incluse.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../">Accueil</a></li>
+            <li><a href="../#services">Services</a></li>
+            <li><a href="../#tarifs">Tarifs</a></li>
+            <li><a href="../blog/">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Destinations</h4>
+          <ul class="footer-links">
+            <li><a href="../moto-taxi-cdg/">Moto taxi CDG</a></li>
+            <li><a href="../moto-taxi-orly/">Moto taxi Orly</a></li>
+            <li><a href="../moto-taxi-gare-du-nord/">Gare du Nord</a></li>
+            <li><a href="../tarif-moto-taxi-paris/">Tarifs 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact direct</h4>
+          <p style="font-size:0.88rem;margin-bottom:14px;color:rgba(255,255,255,0.5);">Disponible 24h/24 pour votre réservation.</p>
+          <a href="tel:+33611916560" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px;"><i data-lucide="phone"></i> 06 11 91 65 60</a>
+          <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa" style="width:100%;justify-content:center;"><i data-lucide="message-circle"></i> WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Paris TaxiMoto. Tous droits réservés.</p>
+        <ul class="footer-bottom-links">
+          <li><a href="../mentions-legales.html">Mentions légales</a></li>
+          <li><a href="../politique-confidentialite.html">Politique de confidentialité</a></li>
+          <li><a href="../cgv.html">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="ftb" role="navigation" aria-label="Navigation rapide">
+    <a href="../" class="ftb-item"><i data-lucide="house"></i><span class="ftb-label">Accueil</span></a>
+    <a href="tel:+33611916560" class="ftb-item ftb-cta"><div class="ftb-cta-circle"><i data-lucide="phone"></i></div><span class="ftb-label">Appeler</span></a>
+    <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="ftb-item"><i data-lucide="message-circle"></i><span class="ftb-label">WhatsApp</span></a>
+  </nav>
+
+  <div class="floating-phone">
+    <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="floating-wa" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a>
+    <a href="tel:+33611916560" class="floating-phone-btn" aria-label="Appeler Paris TaxiMoto"><i data-lucide="phone"></i></a>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+    const navbar = document.querySelector('.navbar');
+    const navToggle = document.querySelector('.navbar-toggle');
+    const navMenu = document.querySelector('.navbar-nav');
+    window.addEventListener('scroll', () => navbar?.classList.toggle('scrolled', window.scrollY > 60));
+    navToggle?.addEventListener('click', () => {
+      navMenu?.classList.toggle('open');
+      document.body.style.overflow = navMenu?.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.navbar-nav a').forEach(l => l.addEventListener('click', () => {
+      navMenu?.classList.remove('open'); document.body.style.overflow = '';
+    }));
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
