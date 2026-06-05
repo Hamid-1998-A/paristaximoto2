@@ -22,7 +22,8 @@
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Paris TaxiMoto",
-    "description": "Service de moto-taxi professionnel à Paris et Île-de-France",
+    "description": "Service de moto-taxi professionnel à Paris et Île-de-France. Transferts aéroport CDG, Orly, gares parisiennes. Disponible 24h/24.",
+    "url": "https://paristaximoto.fr",
     "telephone": "+33611916560",
     "email": "contact@paristaximoto.fr",
     "address": {
@@ -32,9 +33,29 @@
       "addressRegion": "Essonne",
       "addressCountry": "FR"
     },
-    "areaServed": ["Paris", "Massy", "Orly", "Plateau de Saclay", "Île-de-France"],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 48.7239,
+      "longitude": 2.2570
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
     "priceRange": "€€",
-    "openingHours": "Mo-Su 00:00-23:59",
+    "areaServed": [
+      "Paris", "Île-de-France", "Essonne", "Massy", "Saclay"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services moto-taxi",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transfert CDG", "description": "Moto-taxi vers l'aéroport Charles de Gaulle" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transfert Orly", "description": "Moto-taxi vers l'aéroport d'Orly" } }
+      ]
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
@@ -792,6 +813,7 @@
         <li><a href="#zones">Zones</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="moto-taxi-massy-saclay/index.html">Massy · Saclay</a></li>
         <li><a href="blog/index.html">Blog</a></li>
         <li><a href="tel:+33611916560" class="navbar-cta"><i data-lucide="phone"></i> Réserver</a></li>
       </ul>
