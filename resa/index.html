@@ -1379,11 +1379,78 @@
        CONFIG TARIF
     ============================================================ */
     const TARIFF = {
-      baseFare:       3.50,
-      ratePerKmDay:   1.80,
-      ratePerKmNight: 2.40,
-      minimumFare:    8,
+      baseFare:          3.50,
+      ratePerKmDay:      1.80,
+      ratePerKmNight:    2.40,
+      minimumFare:       8,     // plancher compteur brut
+      minimumFareGlobal: 47,    // plancher global pour tout trajet hors forfait
     };
+
+    /* ============================================================
+       FORFAITS FIXES — prix plancher par paire de zones
+       (identique à la config de la page d'accueil — garder synchronisé)
+    ============================================================ */
+    const FORFAITS = [
+      // ——— Aller ———
+      { from: 'paris',   to: 'paris',   min: 46  },
+      { from: 'paris',   to: 'orly',    min: 76  },
+      { from: 'paris',   to: 'cdg',     min: 99  },
+      { from: 'defense', to: 'cdg',     min: 99  },
+      { from: 'defense', to: 'orly',    min: 99  },
+      { from: 'cdg',     to: 'orly',    min: 139 },
+      // ——— Retour (symétriques) ———
+      { from: 'orly',    to: 'paris',   min: 76  },
+      { from: 'cdg',     to: 'paris',   min: 99  },
+      { from: 'cdg',     to: 'defense', min: 99  },
+      { from: 'orly',    to: 'defense', min: 99  },
+      { from: 'orly',    to: 'cdg',     min: 139 },
+    ];
+
+    /**
+     * Détecte la zone tarifaire d'une adresse Google Places.
+     * Ordre de priorité : CDG > Orly > La Défense > Paris > null
+     * (important : CDG/Orly contiennent "Paris" → vérifier en premier)
+     */
+    function detectZone(address) {
+      if (!address) return null;
+      const a = address.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+      if (/cdg|roissy|charles.?de.?gaulle|95700|95701|95702/.test(a)) return 'cdg';
+      if (/\borly\b|ory|94390|94396|94544/.test(a)) return 'orly';
+      if (/la.?de.?fense|defense|puteaux|92400|92800/.test(a)) return 'defense';
+      if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
+      return null;
+    }
+
+    /** Retourne le forfait correspondant à une paire de zones, ou null. */
+    function getForfait(fromZone, toZone) {
+      if (!fromZone || !toZone) return null;
+      return FORFAITS.find(f => f.from === fromZone && f.to === toZone) || null;
+    }
+
+    /**
+     * Calcule le prix final (compteur + plancher forfait/global) pour le
+     * trajet en cours. Retourne { lo, hi, forfait, plancher }.
+     */
+    function computePrice() {
+      const night  = isNightRate();
+      const rateKm = night ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
+      let price = TARIFF.baseFare + lastDist * rateKm;
+      price = Math.max(price, TARIFF.minimumFare);
+
+      const origZone = detectZone(placeOrigin?.formatted_address || document.getElementById('origin')?.value || '');
+      const destZone = detectZone(placeDest?.formatted_address || document.getElementById('destination')?.value || '');
+      const forfait  = getForfait(origZone, destZone);
+      const plancher = forfait ? forfait.min : TARIFF.minimumFareGlobal;
+      const forfaitApplique = price < plancher;
+      price = Math.max(price, plancher);
+
+      return {
+        lo: Math.round(price * .9),
+        hi: Math.round(price * 1.1),
+        night, rateKm,
+        forfaitApplique, plancher,
+      };
+    }
 
     /* ============================================================
        STATE
@@ -1657,19 +1724,17 @@
     }
 
     function showPrice() {
-      const night  = isNightRate();
-      const rateKm = night ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
-      let price = TARIFF.baseFare + lastDist * rateKm;
-      price = Math.max(price, TARIFF.minimumFare);
-      const lo = Math.round(price * .9);
-      const hi = Math.round(price * 1.1);
+      const { lo, hi, night, rateKm, forfaitApplique, plancher } = computePrice();
 
       document.getElementById('est-price').textContent = lo + ' – ' + hi + ' €';
       const _moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
       const _sunSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
-      document.getElementById('est-note').innerHTML =
-        (night ? _moonSvg + 'Tarif nuit' : _sunSvg + 'Tarif jour') +
+      let noteHtml = (night ? _moonSvg + 'Tarif nuit' : _sunSvg + 'Tarif jour') +
         ' · ' + rateKm.toFixed(2) + ' €/km — Base ' + TARIFF.baseFare.toFixed(2) + ' €';
+      if (forfaitApplique) {
+        noteHtml += ' &nbsp;·&nbsp; <strong style="color:#D97706">✓ Forfait ' + plancher + ' €</strong>';
+      }
+      document.getElementById('est-note').innerHTML = noteHtml;
       document.getElementById('st-rate').textContent   = rateKm.toFixed(2) + ' €/km';
 
       // Mini recap for step 3
@@ -1697,12 +1762,7 @@
        STEP 3 — whatsapp link
     ============================================================ */
     function buildWaLink() {
-      const night  = isNightRate();
-      const rateKm = night ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
-      let price = TARIFF.baseFare + lastDist * rateKm;
-      price = Math.max(price, TARIFF.minimumFare);
-      const lo = Math.round(price * .9);
-      const hi = Math.round(price * 1.1);
+      const { lo, hi, night, forfaitApplique, plancher } = computePrice();
 
       const from    = placeOrigin?.formatted_address || document.getElementById('origin')?.value || '';
       const to      = placeDest?.formatted_address   || document.getElementById('destination')?.value || '';
@@ -1724,6 +1784,7 @@
       msg += `\n🧳 Bagages : ${luggage}`;
       if (flight) msg += `\n✈️ Vol : ${flight}`;
       msg += `\n💰 Estimation : ${lo}–${hi} € (${night ? 'tarif nuit' : 'tarif jour'})`;
+      if (forfaitApplique) msg += `\n✅ Forfait garanti : ${plancher} €`;
       if (notes) msg += `\n\n📝 Demandes : ${notes}`;
       msg += `\n\nPouvez-vous confirmer la disponibilité ?`;
 
