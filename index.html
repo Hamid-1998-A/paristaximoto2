@@ -1486,6 +1486,13 @@
     return FORFAITS.find(f => f.from === fromZone && f.to === toZone) || null;
   }
 
+  // Libellés lisibles des zones, pour l'affichage du nom du forfait
+  const ZONE_LABELS = { paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense' };
+  function forfaitName(forfait) {
+    if (!forfait) return null;
+    return 'Forfait ' + (ZONE_LABELS[forfait.from] || forfait.from) + ' - ' + (ZONE_LABELS[forfait.to] || forfait.to);
+  }
+
   // ============================================================
   // GOOGLE MAPS — Calculator
   // ============================================================
@@ -1599,29 +1606,34 @@
 
     // 4. Application du prix plancher
     //    - Si forfait trouvé  → plancher = prix du forfait
-    //    - Sinon              → plancher global = 47 €
+    //    - Sinon              → plancher global = TARIFF.minimumFareGlobal
     const plancher = forfait ? forfait.min : TARIFF.minimumFareGlobal;
     const forfaitApplique = price < plancher; // true si le forfait relève le prix
     price = Math.max(price, plancher);
 
-    // 5. Fourchette affichée (±10 %)
-    const priceLow  = Math.round(price * 0.9);
-    const priceHigh = Math.round(price * 1.1);
+    // 5. Prix final affiché (montant unique, sans fourchette)
+    const finalPrice = Math.round(price);
     const period = isNight ? 'Tarif nuit' : 'Tarif jour';
 
     // 6. Mise à jour de l'affichage
     document.getElementById('est-distance').textContent = distanceText;
     document.getElementById('est-duration').textContent = durationText;
     document.getElementById('est-rate').textContent = rateKm.toFixed(2) + ' €/km';
-    document.getElementById('est-price').textContent = priceLow + ' – ' + priceHigh + ' €';
+    document.getElementById('est-price').textContent = finalPrice + ' €';
 
     const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
     const sunSvg  = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
 
-    // Indicateur forfait visible sous le prix
-    let periodHtml = (isNight ? moonSvg : sunSvg) + period;
-    if (forfaitApplique) {
-      periodHtml += ' &nbsp;·&nbsp; <strong style="color:#D97706">✓ Forfait ' + plancher + ' €</strong>';
+    // Nom du forfait visible sous le prix (remplace le libellé jour/nuit
+    // quand un forfait fixe s'applique — le tarif au km n'est alors plus pertinent)
+    const fName = forfaitName(forfait);
+    let periodHtml;
+    if (forfaitApplique && fName) {
+      periodHtml = '<strong style="color:#D97706">' + fName + ' · ' + plancher + ' €</strong>';
+    } else if (forfaitApplique) {
+      periodHtml = (isNight ? moonSvg : sunSvg) + period + ' &nbsp;·&nbsp; <strong style="color:#D97706">Tarif minimum garanti · ' + plancher + ' €</strong>';
+    } else {
+      periodHtml = (isNight ? moonSvg : sunSvg) + period;
     }
     document.getElementById('est-period').innerHTML = periodHtml;
 
@@ -1629,9 +1641,9 @@
     const orig = origAddr;
     const dest = destAddr;
     const forfaitMsg = forfaitApplique
-      ? `\n✅ Forfait garanti : ${plancher} €`
+      ? `\n✅ ${fName || 'Tarif minimum garanti'} : ${plancher} €`
       : '';
-    const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${priceLow}–${priceHigh} € (${period})${forfaitMsg}\n\nPouvez-vous confirmer la disponibilité ?`;
+    const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${finalPrice} € (${period})${forfaitMsg}\n\nPouvez-vous confirmer la disponibilité ?`;
     const waBtn = document.getElementById('whatsapp-cta');
     if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
 

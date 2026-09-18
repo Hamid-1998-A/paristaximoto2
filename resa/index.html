@@ -1427,9 +1427,16 @@
       return FORFAITS.find(f => f.from === fromZone && f.to === toZone) || null;
     }
 
+    // Libellés lisibles des zones, pour l'affichage du nom du forfait
+    const ZONE_LABELS = { paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense' };
+    function forfaitName(forfait) {
+      if (!forfait) return null;
+      return 'Forfait ' + (ZONE_LABELS[forfait.from] || forfait.from) + ' - ' + (ZONE_LABELS[forfait.to] || forfait.to);
+    }
+
     /**
      * Calcule le prix final (compteur + plancher forfait/global) pour le
-     * trajet en cours. Retourne { lo, hi, forfait, plancher }.
+     * trajet en cours. Retourne { price, forfait, forfaitApplique, plancher }.
      */
     function computePrice() {
       const night  = isNightRate();
@@ -1445,10 +1452,9 @@
       price = Math.max(price, plancher);
 
       return {
-        lo: Math.round(price * .9),
-        hi: Math.round(price * 1.1),
+        price: Math.round(price),
         night, rateKm,
-        forfaitApplique, plancher,
+        forfait, forfaitApplique, plancher,
       };
     }
 
@@ -1724,15 +1730,24 @@
     }
 
     function showPrice() {
-      const { lo, hi, night, rateKm, forfaitApplique, plancher } = computePrice();
+      const { price, night, rateKm, forfait, forfaitApplique, plancher } = computePrice();
 
-      document.getElementById('est-price').textContent = lo + ' – ' + hi + ' €';
+      document.getElementById('est-price').textContent = price + ' €';
       const _moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
       const _sunSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
-      let noteHtml = (night ? _moonSvg + 'Tarif nuit' : _sunSvg + 'Tarif jour') +
-        ' · ' + rateKm.toFixed(2) + ' €/km — Base ' + TARIFF.baseFare.toFixed(2) + ' €';
-      if (forfaitApplique) {
-        noteHtml += ' &nbsp;·&nbsp; <strong style="color:#D97706">✓ Forfait ' + plancher + ' €</strong>';
+
+      // Nom du forfait visible sous le prix (remplace le libellé jour/nuit
+      // quand un forfait fixe s'applique — le tarif au km n'est alors plus pertinent)
+      const fName = forfaitName(forfait);
+      let noteHtml;
+      if (forfaitApplique && fName) {
+        noteHtml = '<strong style="color:#D97706">' + fName + ' · ' + plancher + ' €</strong>';
+      } else if (forfaitApplique) {
+        noteHtml = (night ? _moonSvg + 'Tarif nuit' : _sunSvg + 'Tarif jour') +
+          ' &nbsp;·&nbsp; <strong style="color:#D97706">Tarif minimum garanti · ' + plancher + ' €</strong>';
+      } else {
+        noteHtml = (night ? _moonSvg + 'Tarif nuit' : _sunSvg + 'Tarif jour') +
+          ' · ' + rateKm.toFixed(2) + ' €/km — Base ' + TARIFF.baseFare.toFixed(2) + ' €';
       }
       document.getElementById('est-note').innerHTML = noteHtml;
       document.getElementById('st-rate').textContent   = rateKm.toFixed(2) + ' €/km';
@@ -1742,7 +1757,7 @@
       const to   = placeDest?.formatted_address   || document.getElementById('destination').value;
       document.getElementById('mr-from').textContent  = shorten(from, 18);
       document.getElementById('mr-to').textContent    = shorten(to, 18);
-      document.getElementById('mr-price').textContent = lo + '–' + hi + ' €';
+      document.getElementById('mr-price').textContent = price + ' €';
 
       // Build WA message (will be updated again in step 3)
       buildWaLink();
@@ -1762,7 +1777,8 @@
        STEP 3 — whatsapp link
     ============================================================ */
     function buildWaLink() {
-      const { lo, hi, night, forfaitApplique, plancher } = computePrice();
+      const { price, night, forfait, forfaitApplique, plancher } = computePrice();
+      const fName = forfaitName(forfait);
 
       const from    = placeOrigin?.formatted_address || document.getElementById('origin')?.value || '';
       const to      = placeDest?.formatted_address   || document.getElementById('destination')?.value || '';
@@ -1783,8 +1799,8 @@
       msg += `\n⏱️ Durée estimée : ${lastDurText}`;
       msg += `\n🧳 Bagages : ${luggage}`;
       if (flight) msg += `\n✈️ Vol : ${flight}`;
-      msg += `\n💰 Estimation : ${lo}–${hi} € (${night ? 'tarif nuit' : 'tarif jour'})`;
-      if (forfaitApplique) msg += `\n✅ Forfait garanti : ${plancher} €`;
+      msg += `\n💰 Estimation : ${price} € (${night ? 'tarif nuit' : 'tarif jour'})`;
+      if (forfaitApplique) msg += `\n✅ ${fName || 'Tarif minimum garanti'} : ${plancher} €`;
       if (notes) msg += `\n\n📝 Demandes : ${notes}`;
       msg += `\n\nPouvez-vous confirmer la disponibilité ?`;
 
