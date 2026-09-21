@@ -284,6 +284,7 @@
     .form-group input { width:100%; padding:14px 14px 14px 42px; border:2px solid var(--border); border-radius:10px; font-size:0.95rem; transition:var(--transition); background:var(--white); color:var(--text); font-family:inherit; }
     .form-group input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,6,0.14); }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .mobile-trust-cta { display:none; } /* visible uniquement sur mobile, voir @media(max-width:768px) */
     .estimate-result { background:var(--light-bg); border-radius:12px; padding:20px; margin-top:24px; display:none; }
     .estimate-result.visible { display:block; animation:fadeInUp 0.4s ease; }
     @keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -499,9 +500,16 @@
       .navbar-nav a { font-size:1.2rem; padding:12px 24px; }
       .navbar-toggle { display:flex; z-index:1001; }
 
-      /* Hero — moins haut */
+      /* Réordonne le calculateur juste après le hero, avant les services
+         (disposition mobile "app" — inchangé sur desktop) */
+      .mobile-flow { display:flex; flex-direction:column; }
+      .mobile-flow .hero { order:1; }
+      .mobile-flow .calculator { order:2; }
+      .mobile-flow .services { order:3; }
+
+      /* Hero — moins haut, badge de dispo remis visible (masqué avant) */
       .hero { min-height:44vh; }
-      .hero-badge { display:none; }
+      .hero-badge { display:inline-flex; margin-bottom:16px; }
       .hero-stats { display:none; }
       .hero-scroll { display:none; }
       .hero p { font-size:0.93rem; margin-bottom:20px; }
@@ -538,6 +546,46 @@
       .estimate-grid { grid-template-columns:1fr 1fr; gap:10px; }
       .pricing-table { margin-bottom:16px; }
       .pricing-row { padding:10px 14px; }
+
+      /* Calculateur mobile — carte sombre façon app (desktop inchangé) */
+      .calculator-form { background:var(--dark-bg); border:1px solid rgba(255,255,255,0.08); }
+      .calculator-form h3 { color:var(--white); }
+      .calculator-form .subtitle { color:rgba(255,255,255,0.55); }
+      .calculator-form .form-group label { color:rgba(255,255,255,0.55); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
+      .calculator-form .form-group input { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.14); color:var(--white); }
+      .calculator-form .form-group input::placeholder { color:rgba(255,255,255,0.35); }
+      .calculator-form .form-group input:focus { border-color:var(--accent); background:rgba(255,255,255,0.09); }
+      .calculator-form .input-icon { color:rgba(255,255,255,0.4); }
+      .calculator-form .estimate-disclaimer { color:rgba(255,255,255,0.45); }
+
+      /* Repère visuel du trajet : ligne pointillée + marqueurs départ/arrivée
+         (offsets mesurés sur le rendu réel : centre du champ ≈ 60px sous
+         le haut de chaque .form-group, identique pour départ et arrivée) */
+      .route-inputs { position:relative; }
+      .route-inputs::before {
+        content:''; position:absolute; left:3px; top:60px; bottom:23px; width:0;
+        border-left:2px dotted rgba(255,255,255,0.28);
+      }
+      .route-inputs .form-group { position:relative; padding-left:18px; }
+      .route-inputs .form-group:first-child::after {
+        content:''; position:absolute; left:0; top:56px; width:8px; height:8px;
+        border-radius:50%; border:2px solid var(--accent); background:var(--dark-bg);
+      }
+      .route-inputs .form-group:last-child::after {
+        content:''; position:absolute; left:1px; top:56.5px; width:7px; height:7px;
+        background:var(--accent); border-radius:2px;
+      }
+
+      /* Bloc confiance + CTA WhatsApp permanent, sous le calculateur */
+      .mobile-trust-cta { display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+      .mtc-trust { display:flex; align-items:center; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 16px; }
+      .mtc-trust-item { display:flex; align-items:center; gap:10px; flex:1; min-width:0; color:var(--white); }
+      .mtc-trust-item i { color:var(--accent); flex-shrink:0; }
+      .mtc-trust-item strong { display:block; font-size:0.92rem; font-weight:700; }
+      .mtc-trust-item span { display:block; font-size:0.72rem; color:rgba(255,255,255,0.5); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .mtc-trust-sep { width:1px; align-self:stretch; background:rgba(255,255,255,0.1); margin:0 14px; }
+      .mtc-wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:14px; border:1.5px solid var(--accent); border-radius:50px; color:#FCD34D; font-weight:700; font-size:0.92rem; text-decoration:none; background:rgba(217,119,6,0.08); }
+      .mtc-wa-btn i { color:#25D366; }
 
       /* Tarifs table — compact */
       .tarif-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
@@ -823,6 +871,11 @@
     </div>
   </nav>
 
+  <!-- Regroupe hero + calculateur + services pour permettre de réordonner
+       le calculateur juste après le hero sur mobile (voir .mobile-flow),
+       sans toucher à l'ordre sur desktop. -->
+  <div class="mobile-flow">
+
   <!-- ============================================================
        HERO
   ============================================================ -->
@@ -1023,19 +1076,21 @@
           <h3>Estimez votre trajet</h3>
           <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
 
-          <div class="form-group">
-            <label for="origin"><i data-lucide="map-pin"></i> Adresse de départ</label>
-            <div class="input-wrapper">
-              <span class="input-icon"><i data-lucide="map-pin"></i></span>
-              <input type="text" id="origin" placeholder="Ex : 1 Rue de Rivoli, Paris" autocomplete="off">
+          <div class="route-inputs">
+            <div class="form-group">
+              <label for="origin"><i data-lucide="map-pin"></i> Adresse de départ</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="map-pin"></i></span>
+                <input type="text" id="origin" placeholder="Ex : 1 Rue de Rivoli, Paris" autocomplete="off">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="destination"><i data-lucide="flag"></i> Adresse de destination</label>
-            <div class="input-wrapper">
-              <span class="input-icon"><i data-lucide="flag"></i></span>
-              <input type="text" id="destination" placeholder="Ex : Aéroport CDG, Terminal 2" autocomplete="off">
+            <div class="form-group">
+              <label for="destination"><i data-lucide="flag"></i> Adresse de destination</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="flag"></i></span>
+                <input type="text" id="destination" placeholder="Ex : Aéroport CDG, Terminal 2" autocomplete="off">
+              </div>
             </div>
           </div>
 
@@ -1093,8 +1148,37 @@
         </div>
 
       </div>
+
+      <!-- Bloc confiance + CTA WhatsApp permanent — visible uniquement sur
+           mobile, juste sous le calculateur (voir .mobile-trust-cta).
+           Reprend le texte déjà utilisé ailleurs sur cette page (avis,
+           certification VMDTR, lien WhatsApp). -->
+      <div class="mobile-trust-cta">
+        <div class="mtc-trust">
+          <div class="mtc-trust-item">
+            <i data-lucide="star" style="width:18px;height:18px;fill:#F59E0B;stroke:#F59E0B;"></i>
+            <div>
+              <strong>4,9/5</strong>
+              <span>+1 200 avis vérifiés</span>
+            </div>
+          </div>
+          <div class="mtc-trust-sep"></div>
+          <div class="mtc-trust-item">
+            <i data-lucide="shield-check" style="width:18px;height:18px;"></i>
+            <div>
+              <strong>Certifié</strong>
+              <span>Chauffeur VTC / VMDTR</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/33611916560" id="whatsapp-cta-top" target="_blank" rel="noopener" class="mtc-wa-btn">
+          <i data-lucide="message-circle"></i> Réserver sur WhatsApp
+        </a>
+      </div>
     </div>
   </section>
+
+  </div><!-- /.mobile-flow -->
 
   <!-- ============================================================
        TARIFS
