@@ -445,6 +445,15 @@
     .tarif-table tbody td:last-child { text-align:right; font-weight:700; color:var(--accent); font-size:1.05rem; }
 
     /* ============================================================
+       COMMENT ÇA MARCHE
+    ============================================================ */
+    .how-grid { display:grid; grid-template-columns:1fr; gap:32px; }
+    .how-step { border-top:1px solid var(--border); padding-top:18px; }
+    .how-num { display:block; color:var(--accent); font-weight:700; font-size:0.85rem; margin-bottom:10px; }
+    .how-step h4 { color:var(--primary); font-size:1.05rem; margin-bottom:6px; }
+    .how-step p { color:var(--text-muted); font-size:0.92rem; line-height:1.55; }
+
+    /* ============================================================
        TESTIMONIALS — dark
     ============================================================ */
     .testimonials { background:var(--dark-bg); }
@@ -873,6 +882,47 @@
 
       .hero-scroll { color:rgba(17,24,39,0.35); }
       .hero-scroll::before { background:rgba(17,24,39,0.2); }
+
+      /* Calculateur remonté juste après le hero (avant les services),
+         même mécanisme que sur mobile — voir .mobile-flow plus haut */
+      .mobile-flow { display:flex; flex-direction:column; }
+      .mobile-flow .hero { order:1; }
+      .mobile-flow .calculator { order:2; }
+      .mobile-flow .services { order:3; }
+
+      /* Section calculateur — même fond clair que le hero, plus de
+         rupture sombre entre les deux (texte et champs inchangés) */
+      .calculator { background:var(--light-bg); }
+      .calculator::before { display:none; }
+      .calculator .sec-label { color:var(--text-muted) !important; }
+      .calculator .sec-label b { color:var(--accent) !important; }
+      .calculator-info h2 { color:var(--primary) !important; }
+      .calculator-info p { color:var(--text-muted) !important; }
+      .pricing-table { background:var(--white); border-color:var(--border); }
+      .pricing-row { border-bottom-color:var(--border); }
+      .pricing-row .label { color:var(--text-muted); }
+      .pricing-row .value { color:var(--primary); }
+      .pricing-row.highlight { background:rgba(217,119,6,0.08); }
+
+      /* Services — liste numérotée plutôt que cartes sombres,
+         mêmes 6 services, mêmes libellés, même accordéon au clic */
+      .svc-grid { gap:0; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--white); counter-reset:svc; }
+      .svc-card { background:transparent; border:none; border-right:1px solid var(--border); border-bottom:1px solid var(--border); border-radius:0; transform:none !important; box-shadow:none !important; }
+      .svc-card:nth-child(3n) { border-right:none; }
+      .svc-card:nth-child(n+4) { border-bottom:none; }
+      .svc-card.open { background:var(--light-bg); }
+      .svc-hd { flex-direction:row; align-items:center; justify-content:space-between; text-align:left; padding:26px 24px; position:relative; counter-increment:svc; }
+      .svc-hd::before { content:counter(svc, decimal-leading-zero); color:var(--text-muted); font-size:0.8rem; font-weight:600; order:-1; margin-right:16px; }
+      .svc-badge, .svc-icon { display:none; }
+      .svc-name { color:var(--primary); font-size:1.05rem; font-weight:700; text-align:left; padding:0; flex:1; }
+      .svc-chev { color:var(--text-muted); }
+      .svc-body-in { border-top-color:var(--border); }
+      .svc-body-in h4 { display:none; }
+      .svc-body-in > p { color:var(--text-muted); }
+      .svc-feats li { color:var(--text); }
+
+      /* Comment ça marche */
+      .how-grid { grid-template-columns:repeat(3,1fr); }
     }
   </style>
 </head>
@@ -1221,6 +1271,35 @@
   </section>
 
   </div><!-- /.mobile-flow -->
+
+  <!-- ============================================================
+       COMMENT ÇA MARCHE — descriptions reprises du calculateur, du
+       message d'estimation et du contact WhatsApp existants
+  ============================================================ -->
+  <section class="section how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>Comment ça marche.</h2>
+      </div>
+      <div class="how-grid">
+        <div class="how-step">
+          <span class="how-num">01</span>
+          <h4>Indiquez votre trajet</h4>
+          <p>Saisissez vos adresses pour obtenir un prix instantané.</p>
+        </div>
+        <div class="how-step">
+          <span class="how-num">02</span>
+          <h4>Recevez un prix immédiat</h4>
+          <p>Prix estimatif. Le tarif final peut varier selon les conditions de circulation.</p>
+        </div>
+        <div class="how-step">
+          <span class="how-num">03</span>
+          <h4>Réservez en un clic</h4>
+          <p>Confirmez directement via WhatsApp. Réponse rapide garantie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============================================================
        TARIFS
