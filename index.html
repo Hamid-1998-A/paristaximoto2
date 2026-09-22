@@ -1179,12 +1179,15 @@
           <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
 
           <!-- Trajets rapides — visible uniquement sur mobile (voir
-               .mobile-route-chips), pré-remplit le formulaire avec de
-               vrais forfaits déjà annoncés sur le site (99€/76€/139€) -->
+               .mobile-route-chips), pré-remplit le formulaire. Durées
+               reprises des pages /moto-taxi-cdg/ (35–55 min) et
+               /moto-taxi-orly/ (20–30 min) ; CDG ↔ Orly est une
+               estimation, à confirmer, sans référence ailleurs sur le
+               site -->
           <div class="mobile-route-chips">
-            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport CDG')">Paris → CDG <span>99 €</span></button>
-            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport Orly')">Paris → Orly <span>76 €</span></button>
-            <button type="button" class="route-chip" onclick="fillRoute('Aéroport CDG', 'Aéroport Orly')">CDG ↔ Orly <span>139 €</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport CDG')">Paris → CDG <span>35–55 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport Orly')">Paris → Orly <span>20–30 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Aéroport CDG', 'Aéroport Orly')">CDG ↔ Orly <span>45–65 min</span></button>
           </div>
 
           <div class="route-inputs">
