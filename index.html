@@ -558,23 +558,25 @@
       .pricing-row { padding:10px 14px; }
 
       /* Calculateur mobile — carte sombre façon app (desktop inchangé) */
-      .calculator-form { background:var(--dark-bg); border:1px solid rgba(255,255,255,0.08); }
-      .calculator-form h3 { color:var(--white); margin-bottom:14px; }
+      /* Carte du calculateur en clair (le reste de la section calculateur
+         reste sombre — non demandé) */
+      .calculator-form { background:var(--white); border:1px solid var(--border); }
+      .calculator-form h3 { color:var(--primary); margin-bottom:14px; }
       .calculator-form .subtitle { display:none; }
 
       /* Trajets rapides — pré-remplissent le formulaire au tap */
       .mobile-route-chips { display:flex; gap:8px; overflow-x:auto; margin-bottom:18px; padding-bottom:2px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
       .mobile-route-chips::-webkit-scrollbar { display:none; }
-      .route-chip { flex-shrink:0; display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:rgba(255,255,255,0.85); font-size:0.8rem; font-weight:600; padding:9px 14px; border-radius:50px; white-space:nowrap; font-family:inherit; -webkit-tap-highlight-color:transparent; }
-      .route-chip:active { background:rgba(217,119,6,0.18); border-color:rgba(217,119,6,0.45); }
+      .route-chip { flex-shrink:0; display:flex; align-items:center; gap:6px; background:var(--light-bg); border:1px solid var(--border); color:var(--text); font-size:0.8rem; font-weight:600; padding:9px 14px; border-radius:50px; white-space:nowrap; font-family:inherit; -webkit-tap-highlight-color:transparent; }
+      .route-chip:active { background:rgba(217,119,6,0.10); border-color:rgba(217,119,6,0.4); }
       .route-chip span { color:var(--accent); font-weight:700; }
 
-      .calculator-form .form-group label { color:rgba(255,255,255,0.55); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
-      .calculator-form .form-group input { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.14); color:var(--white); }
-      .calculator-form .form-group input::placeholder { color:rgba(255,255,255,0.35); }
-      .calculator-form .form-group input:focus { border-color:var(--accent); background:rgba(255,255,255,0.09); }
-      .calculator-form .input-icon { color:rgba(255,255,255,0.4); }
-      .calculator-form .estimate-disclaimer { color:rgba(255,255,255,0.45); }
+      .calculator-form .form-group label { color:var(--text-muted); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
+      .calculator-form .form-group input { background:var(--light-bg); border-color:var(--border); color:var(--text); }
+      .calculator-form .form-group input::placeholder { color:#9CA3AF; }
+      .calculator-form .form-group input:focus { border-color:var(--accent); background:var(--white); }
+      .calculator-form .input-icon { color:var(--text-muted); }
+      .calculator-form .estimate-disclaimer { color:var(--text-muted); }
 
       /* Repère visuel du trajet : ligne pointillée + marqueurs départ/arrivée
          (offsets mesurés sur le rendu réel : centre du champ ≈ 60px sous
@@ -582,12 +584,12 @@
       .route-inputs { position:relative; }
       .route-inputs::before {
         content:''; position:absolute; left:3px; top:60px; bottom:23px; width:0;
-        border-left:2px dotted rgba(255,255,255,0.28);
+        border-left:2px dotted var(--border);
       }
       .route-inputs .form-group { position:relative; padding-left:18px; }
       .route-inputs .form-group:first-child::after {
         content:''; position:absolute; left:0; top:56px; width:8px; height:8px;
-        border-radius:50%; border:2px solid var(--accent); background:var(--dark-bg);
+        border-radius:50%; border:2px solid var(--accent); background:var(--white);
       }
       .route-inputs .form-group:last-child::after {
         content:''; position:absolute; left:1px; top:56.5px; width:7px; height:7px;
@@ -604,6 +606,15 @@
       .mtc-trust-sep { width:1px; align-self:stretch; background:rgba(255,255,255,0.1); margin:0 14px; }
       .mtc-wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:14px; border:1.5px solid var(--accent); border-radius:50px; color:#FCD34D; font-weight:700; font-size:0.92rem; text-decoration:none; background:rgba(217,119,6,0.08); }
       .mtc-wa-btn i { color:#25D366; }
+
+      /* Comment ça marche — liste compacte à badges ronds numérotés */
+      .how-it-works .section-header { margin-bottom:16px; }
+      .how-it-works .section-header h2 { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); font-weight:700; }
+      .how-grid { gap:16px; }
+      .how-step { border-top:none; padding-top:0; display:flex; align-items:center; gap:14px; }
+      .how-num { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:34px; height:34px; border-radius:50%; background:rgba(217,119,6,0.12); margin-bottom:0; font-size:0.95rem; }
+      .how-step h4 { font-size:0.98rem; margin-bottom:0; }
+      .how-step p { display:none; }
 
       /* Tarifs table — compact */
       .tarif-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
@@ -1311,7 +1322,7 @@
         </div>
         <div class="how-step">
           <span class="how-num">03</span>
-          <h4>Réservez en un clic</h4>
+          <h4>Réservez via WhatsApp</h4>
           <p>Confirmez directement via WhatsApp. Réponse rapide garantie.</p>
         </div>
       </div>
