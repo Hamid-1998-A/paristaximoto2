@@ -1191,15 +1191,16 @@
                .mobile-route-chips), pré-remplit le formulaire. Défile
                horizontalement (overflow-x:auto). Durées reprises des pages
                /moto-taxi-cdg/ (35–55 min) et /moto-taxi-orly/ (20–30 min) ;
-               CDG ↔ Orly, Saclay → Paris et Disneyland → Paris sont des
-               estimations, à confirmer, sans référence ailleurs sur le
-               site -->
+               CDG ↔ Orly, La Défense, Saclay → Paris et Disneyland → Paris
+               sont des estimations, à confirmer, sans référence ailleurs
+               sur le site -->
           <div class="mobile-route-chips">
             <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport CDG')">Paris → CDG <span>35 min</span></button>
             <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport Orly')">Paris → Orly <span>20 min</span></button>
             <button type="button" class="route-chip" onclick="fillRoute('Aéroport CDG', 'Aéroport Orly')">CDG ↔ Orly <span>40 min</span></button>
-            <button type="button" class="route-chip" onclick="fillRoute('Saclay', null)">Saclay → Paris <span>30 min</span></button>
-            <button type="button" class="route-chip" onclick="fillRoute('Disneyland Paris', null)">Disneyland → Paris <span>40 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'La Défense')">Paris → La Défense <span>15 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Saclay', null)">Saclay → Paris <span>20 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Disneyland Paris', null)">Disneyland → Paris <span>30 min</span></button>
           </div>
 
           <div class="route-inputs">
