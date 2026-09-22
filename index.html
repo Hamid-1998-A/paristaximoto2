@@ -286,6 +286,7 @@
     .form-group input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(217,119,6,0.14); }
     .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
     .mobile-trust-cta { display:none; } /* visible uniquement sur mobile, voir @media(max-width:768px) */
+    .mobile-route-chips { display:none; } /* idem */
     .estimate-result { background:var(--light-bg); border-radius:12px; padding:20px; margin-top:24px; display:none; }
     .estimate-result.visible { display:block; animation:fadeInUp 0.4s ease; }
     @keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -559,8 +560,16 @@
 
       /* Calculateur mobile — carte sombre façon app (desktop inchangé) */
       .calculator-form { background:var(--dark-bg); border:1px solid rgba(255,255,255,0.08); }
-      .calculator-form h3 { color:var(--white); }
-      .calculator-form .subtitle { color:rgba(255,255,255,0.55); }
+      .calculator-form h3 { color:var(--white); margin-bottom:14px; }
+      .calculator-form .subtitle { display:none; }
+
+      /* Trajets rapides — pré-remplissent le formulaire au tap */
+      .mobile-route-chips { display:flex; gap:8px; overflow-x:auto; margin-bottom:18px; padding-bottom:2px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+      .mobile-route-chips::-webkit-scrollbar { display:none; }
+      .route-chip { flex-shrink:0; display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:rgba(255,255,255,0.85); font-size:0.8rem; font-weight:600; padding:9px 14px; border-radius:50px; white-space:nowrap; font-family:inherit; -webkit-tap-highlight-color:transparent; }
+      .route-chip:active { background:rgba(217,119,6,0.18); border-color:rgba(217,119,6,0.45); }
+      .route-chip span { color:var(--accent); font-weight:700; }
+
       .calculator-form .form-group label { color:rgba(255,255,255,0.55); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
       .calculator-form .form-group input { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.14); color:var(--white); }
       .calculator-form .form-group input::placeholder { color:rgba(255,255,255,0.35); }
@@ -1168,6 +1177,15 @@
           <h3>Estimez votre trajet</h3>
           <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
 
+          <!-- Trajets rapides — visible uniquement sur mobile (voir
+               .mobile-route-chips), pré-remplit le formulaire avec de
+               vrais forfaits déjà annoncés sur le site (99€/76€/139€) -->
+          <div class="mobile-route-chips">
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport CDG')">Paris → CDG <span>99 €</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport Orly')">Paris → Orly <span>76 €</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Aéroport CDG', 'Aéroport Orly')">CDG ↔ Orly <span>139 €</span></button>
+          </div>
+
           <div class="route-inputs">
             <div class="form-group">
               <label for="origin"><i data-lucide="map-pin"></i> Adresse de départ</label>
@@ -1677,7 +1695,26 @@
     // 4. Paris intramuros — code postal 750xx OU libellé ", Paris,"
     if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
 
-    return null; // zone inconnue → plancher global 47 €
+    return null; // zone inconnue → plancher global (TARIFF.minimumFareGlobal)
+  }
+
+  /**
+   * Pré-remplit le formulaire du calculateur (trajets rapides mobile) et
+   * réinitialise l'état Google Places associé, pour que detectZone() lise
+   * bien la valeur texte qu'on vient d'imposer plutôt qu'une ancienne
+   * sélection d'autocomplete.
+   * @param {string|null} origin  texte à mettre dans "Adresse de départ", ou null pour ne pas toucher au champ
+   * @param {string|null} dest    texte à mettre dans "Adresse de destination", ou null pour ne pas toucher au champ
+   */
+  function fillRoute(origin, dest) {
+    if (origin !== null) {
+      document.getElementById('origin').value = origin;
+      originPlace = null;
+    }
+    if (dest !== null) {
+      document.getElementById('destination').value = dest;
+      destPlace = null;
+    }
   }
 
   /**
