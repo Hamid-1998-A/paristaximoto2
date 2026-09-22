@@ -35,7 +35,7 @@
 
 .blog-card-thumb {
   height: 200px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +58,7 @@
 }
 
 .blog-cat {
-  background: rgba(217, 119, 6, 0.09);
+  background: rgba(4, 21, 39, 0.09);
   color: var(--accent);
   font-size: 0.72rem;
   font-weight: 600;
@@ -66,7 +66,7 @@
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border: 1px solid rgba(217, 119, 6, 0.18);
+  border: 1px solid rgba(4, 21, 39, 0.18);
 }
 
 .blog-date {
@@ -92,7 +92,7 @@
 }
 
 .blog-read-more {
-  color: var(--accent);
+  color: var(--cta);
   font-weight: 600;
   font-size: 0.9rem;
   display: flex;
@@ -177,7 +177,7 @@
 .article-content strong { color: var(--primary); }
 
 .article-content .highlight-box {
-  background: rgba(217, 119, 6, 0.07);
+  background: rgba(4, 21, 39, 0.07);
   border-left: 4px solid var(--accent);
   padding: 18px 22px;
   border-radius: 0 10px 10px 0;
@@ -206,7 +206,7 @@
 }
 
 .sidebar-cta {
-  background: var(--accent);
+  background: var(--cta);
   color: var(--white);
   border-radius: var(--radius);
   padding: 24px;
@@ -266,7 +266,7 @@
 /* ============================================================
    FLOATING TAB BAR
 ============================================================ */
-.ftb{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1100;background:rgba(18,18,22,.55);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-radius:50px;padding:6px 4px;display:flex;align-items:center;box-shadow:0 4px 24px rgba(0,0,0,.35),0 1px 8px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);}
+.ftb{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:1100;background:rgba(10,10,10,.65);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-radius:50px;padding:6px 4px;display:flex;align-items:center;box-shadow:0 4px 24px rgba(0,0,0,.35),0 1px 8px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);}
 .ftb-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 18px;border-radius:40px;text-decoration:none;color:rgba(255,255,255,.50);font-family:'Inter',sans-serif;font-size:.65rem;font-weight:500;transition:color .18s ease,background .18s ease;-webkit-tap-highlight-color:transparent;user-select:none;cursor:pointer;}
 .ftb-item:hover{color:rgba(255,255,255,.88);background:rgba(255,255,255,.06);}
 .ftb-item.ftb-active{color:rgba(255,255,255,.90);}
@@ -274,10 +274,10 @@
 .ftb-label{font-size:.60rem;font-weight:500;line-height:1;}
 .ftb-cta{padding:4px 14px;gap:4px;color:rgba(255,255,255,.75);}
 .ftb-cta:hover{background:transparent;color:rgba(255,255,255,.95);}
-.ftb-cta-circle{width:42px;height:42px;background:#007AFF;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 3px 14px rgba(0,122,255,.45);border:2px solid transparent;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .18s ease;}
+.ftb-cta-circle{width:42px;height:42px;background:var(--cta);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 3px 14px rgba(255,59,48,.45);border:2px solid transparent;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .18s ease;}
 .ftb-cta-circle>svg.lucide{width:20px;height:20px;stroke-width:2.2;}
-.ftb-cta:hover .ftb-cta-circle{background:#0A84FF;box-shadow:0 5px 20px rgba(0,122,255,.62);transform:scale(1.07);}
-.ftb-cta.ftb-active .ftb-cta-circle{border-color:rgba(255,255,255,.50);box-shadow:0 3px 14px rgba(0,122,255,.45),0 0 0 3px rgba(0,122,255,.20);}
+.ftb-cta:hover .ftb-cta-circle{background:var(--cta-dark);box-shadow:0 5px 20px rgba(255,59,48,.62);transform:scale(1.07);}
+.ftb-cta.ftb-active .ftb-cta-circle{border-color:rgba(255,255,255,.50);box-shadow:0 3px 14px rgba(255,59,48,.45),0 0 0 3px rgba(255,59,48,.20);}
 @keyframes ftb-spring{0%{transform:scale(1)}22%{transform:scale(.79)}52%{transform:scale(1.21)}72%{transform:scale(.93)}88%{transform:scale(1.05)}100%{transform:scale(1)}}
 .ftb-cta.ftb-bouncing .ftb-cta-circle{animation:ftb-spring .50s ease forwards;}
 /* push floating phone buttons above the tab bar */

@@ -10,7 +10,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="css/blog.css">
   <style>
@@ -22,9 +22,9 @@
     .ftb-label{font-size:.67rem;font-weight:500;line-height:1;}
     .ftb-cta{padding:6px 18px;gap:5px;color:rgba(255,255,255,.80);}
     .ftb-cta:hover{background:transparent;color:rgba(255,255,255,.95);}
-    .ftb-cta-circle{width:52px;height:52px;background:#007AFF;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 18px rgba(0,122,255,.52);border:2px solid transparent;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .18s ease;}
+    .ftb-cta-circle{width:52px;height:52px;background:var(--cta);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 18px rgba(255,59,48,.5);border:2px solid transparent;transition:transform .38s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease,background .18s ease;}
     .ftb-cta-circle>svg.lucide{width:24px;height:24px;stroke-width:2.2;}
-    .ftb-cta:hover .ftb-cta-circle{background:#0A84FF;box-shadow:0 6px 26px rgba(0,122,255,.68);transform:scale(1.07);}
+    .ftb-cta:hover .ftb-cta-circle{background:var(--cta-dark);box-shadow:0 6px 26px rgba(255,59,48,.68);transform:scale(1.07);}
     @keyframes ftb-spring{0%{transform:scale(1)}22%{transform:scale(.79)}52%{transform:scale(1.21)}72%{transform:scale(.93)}88%{transform:scale(1.05)}100%{transform:scale(1)}}
     .ftb-cta.ftb-bouncing .ftb-cta-circle{animation:ftb-spring .50s ease forwards;}
     @media(max-width:480px){.ftb{bottom:20px;padding:8px 4px;border-radius:26px;}.ftb-item{padding:6px 14px;}.ftb-cta{padding:5px 12px;}.ftb-cta-circle{width:46px;height:46px;}}
@@ -36,7 +36,7 @@
     <div class="container">
       <a href="../index.html" class="navbar-brand">
         <div class="logo-icon"><i data-lucide="bike"></i></div>
-        TaxiMoto<span style="color:var(--accent)">Paris</span>
+        <span style="color:var(--cta)">TaxiMoto</span><span style="color:var(--accent)">Paris</span>
       </a>
       <ul class="navbar-nav">
         <li><a href="../index.html#services">Services</a></li>
