@@ -37,6 +37,7 @@
   transition: var(--transition);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .blog-card:hover {
@@ -109,11 +110,23 @@
 }
 
 .blog-card h2 {
-  font-size: 1.1rem;
-  color: var(--primary);
+  font-size: 1.15rem;
   margin-bottom: 10px;
-  line-height: 1.4;
+  line-height: 1.35;
 }
+
+.blog-card h2 a {
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+.blog-card h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.blog-card:hover h2 a { color: var(--cta); }
 
 .blog-card p {
   color: var(--text-muted);
@@ -130,9 +143,10 @@
   align-items: center;
   gap: 6px;
   transition: var(--transition);
+  pointer-events: none;
 }
 
-.blog-read-more:hover { gap: 10px; }
+.blog-card:hover .blog-read-more { gap: 10px; }
 
 /* Featured (first) article — full-width editorial card */
 .blog-card.featured {
