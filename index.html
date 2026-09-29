@@ -1745,11 +1745,11 @@
 
     originAutocomplete.addListener('place_changed', () => {
       originPlace = originAutocomplete.getPlace();
-      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute(originPlace.geometry.location, destPlace.geometry.location);
     });
     destAutocomplete.addListener('place_changed', () => {
       destPlace = destAutocomplete.getPlace();
-      if (originPlace?.geometry && destPlace?.geometry) calculateRoute();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute(originPlace.geometry.location, destPlace.geometry.location);
     });
 
     // Map preview
@@ -1785,13 +1785,17 @@
     }
   };
 
-  function calculateRoute() {
+  // origin/dest : soit un google.maps.LatLng (adresse choisie dans
+  // l'autocomplete), soit une chaîne brute — le Directions Service sait
+  // géocoder une chaîne lui-même, pas besoin d'un Geocoder séparé (évite
+  // une dépendance à une API qui peut être restreinte indépendamment).
+  function calculateRoute(origin, destination) {
     const btn = document.getElementById('calculate-btn');
     if (btn) { btn.innerHTML = '<span class="spinner"></span> Calcul en cours...'; btn.disabled = true; }
 
     directionsService.route({
-      origin: originPlace.geometry.location,
-      destination: destPlace.geometry.location,
+      origin: origin,
+      destination: destination,
       travelMode: google.maps.TravelMode.DRIVING,
       drivingOptions: { departureTime: new Date(), trafficModel: google.maps.TrafficModel.BEST_GUESS },
     }, (result, status) => {
@@ -1800,7 +1804,10 @@
       if (status === 'OK') {
         const leg = result.routes[0].legs[0];
         const distanceKm = leg.distance.value / 1000;
-        displayEstimate(distanceKm, leg.distance.text, leg.duration.text);
+        // start_address/end_address : adresses formatées renvoyées par
+        // Directions lui-même, fiables pour la détection de zone même
+        // quand origin/destination étaient de simples chaînes tapées.
+        displayEstimate(distanceKm, leg.distance.text, leg.duration.text, leg.start_address, leg.end_address);
         directionsRenderer.setDirections(result);
         const mapDiv = document.getElementById('map-preview');
         if (mapDiv) mapDiv.classList.add('visible');
@@ -1810,7 +1817,7 @@
     });
   }
 
-  function displayEstimate(distanceKm, distanceText, durationText) {
+  function displayEstimate(distanceKm, distanceText, durationText, origAddr, destAddr) {
     const isNight = isNightRate();
     const rateKm = isNight ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
 
@@ -1818,9 +1825,9 @@
     let price = TARIFF.baseFare + (distanceKm * rateKm);
     price = Math.max(price, TARIFF.minimumFare); // plancher compteur : 8 €
 
-    // 2. Détection des zones depuis les adresses Google Places
-    const origAddr = originPlace?.formatted_address || document.getElementById('origin')?.value || '';
-    const destAddr  = destPlace?.formatted_address  || document.getElementById('destination')?.value || '';
+    // 2. Détection des zones depuis les adresses résolues par Directions
+    origAddr = origAddr || document.getElementById('origin')?.value || '';
+    destAddr  = destAddr || document.getElementById('destination')?.value || '';
     const origZone  = detectZone(origAddr);
     const destZone  = detectZone(destAddr);
 
@@ -1887,29 +1894,16 @@
   }
 
   window.triggerCalculate = function () {
-    if (originPlace?.geometry && destPlace?.geometry) {
-      calculateRoute();
-      return;
-    }
     const oVal = document.getElementById('origin')?.value;
     const dVal = document.getElementById('destination')?.value;
     if (!oVal || !dVal) { showCalcError('Veuillez saisir une adresse de départ et de destination.'); return; }
 
-    const geocoder = new google.maps.Geocoder();
-    let done = 0;
-    const tryCalc = () => { if (++done === 2 && originPlace && destPlace) calculateRoute(); };
-
-    if (!originPlace) geocoder.geocode({ address: oVal, region: 'fr' }, (res, st) => {
-      if (st === 'OK') originPlace = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
-      tryCalc();
-    });
-    else tryCalc();
-
-    if (!destPlace) geocoder.geocode({ address: dVal, region: 'fr' }, (res, st) => {
-      if (st === 'OK') destPlace = { geometry: { location: res[0].geometry.location }, formatted_address: res[0].formatted_address };
-      tryCalc();
-    });
-    else tryCalc();
+    // Priorité à l'adresse choisie dans l'autocomplete (coordonnées précises) ;
+    // sinon on passe le texte tel quel au Directions Service, qui le géocode
+    // lui-même — pas besoin d'un appel Geocoder séparé.
+    const originArg = originPlace?.geometry?.location || oVal;
+    const destArg = destPlace?.geometry?.location || dVal;
+    calculateRoute(originArg, destArg);
   };
 
   // ============================================================
