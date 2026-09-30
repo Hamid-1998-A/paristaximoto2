@@ -1642,21 +1642,29 @@
     { from: 'defense', to: 'cdg',     min: 99  },
     { from: 'defense', to: 'orly',    min: 99  },
     { from: 'cdg',     to: 'orly',    min: 139 },
+    { from: 'paris',   to: '77',      min: 80  },
+    { from: 'paris',   to: '78',      min: 80  },
+    { from: '77',      to: '78',      min: 120 },
     // ——— Retour (symétriques) ———
     { from: 'orly',    to: 'paris',   min: 76  },
     { from: 'cdg',     to: 'paris',   min: 99  },
     { from: 'cdg',     to: 'defense', min: 99  },
     { from: 'orly',    to: 'defense', min: 99  },
     { from: 'orly',    to: 'cdg',     min: 139 },
+    { from: '77',      to: 'paris',   min: 80  },
+    { from: '78',      to: 'paris',   min: 80  },
+    { from: '78',      to: '77',      min: 120 },
   ];
 
   /**
    * Détecte la zone tarifaire d'une adresse Google Places.
-   * Ordre de priorité : CDG > Orly > La Défense > Paris > null
-   * (important : CDG/Orly contiennent "Paris" → vérifier en premier)
+   * Ordre de priorité : CDG > Orly > La Défense > Paris >
+   * départements franciliens (77/78/91/92/93/94/95) > null
+   * (important : CDG/Orly/La Défense sont contenus dans un département
+   * générique — 95/94/92 — donc doivent être vérifiés avant)
    *
    * @param  {string} address  adresse formatée (ex: "Aéroport CDG, 95700 Roissy, France")
-   * @returns {'cdg'|'orly'|'defense'|'paris'|null}
+   * @returns {'cdg'|'orly'|'defense'|'paris'|'77'|'78'|'91'|'92'|'93'|'94'|'95'|null}
    */
   function detectZone(address) {
     if (!address) return null;
@@ -1664,17 +1672,28 @@
     const a = address.toLowerCase()
       .normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-    // 1. Aéroport CDG / Roissy — AVANT Paris car l'adresse contient "Paris"
+    // 1. Aéroport CDG / Roissy — AVANT Paris/95 car l'adresse contient "Paris" et un CP 95
     if (/cdg|roissy|charles.?de.?gaulle|95700|95701|95702/.test(a)) return 'cdg';
 
-    // 2. Aéroport Orly — AVANT Paris (même raison)
+    // 2. Aéroport Orly — AVANT Paris/94 (même raison)
     if (/\borly\b|ory|94390|94396|94544/.test(a)) return 'orly';
 
-    // 3. La Défense (quartier + communes adjacentes Puteaux, Courbevoie)
+    // 3. La Défense (quartier + communes adjacentes Puteaux, Courbevoie) — AVANT 92
     if (/la.?de.?fense|defense|puteaux|92400|92800/.test(a)) return 'defense';
 
     // 4. Paris intramuros — code postal 750xx OU libellé ", Paris,"
     if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
+
+    // 5. Départements de la grande couronne — code postal à 5 chiffres
+    if (/\b77\d{3}\b/.test(a)) return '77';
+    if (/\b78\d{3}\b/.test(a)) return '78';
+    if (/\b91\d{3}\b/.test(a)) return '91';
+
+    // 6. Départements de la petite couronne — restant après cdg/orly/defense
+    if (/\b92\d{3}\b/.test(a)) return '92';
+    if (/\b93\d{3}\b/.test(a)) return '93';
+    if (/\b94\d{3}\b/.test(a)) return '94';
+    if (/\b95\d{3}\b/.test(a)) return '95';
 
     return null; // zone inconnue → plancher global (TARIFF.minimumFareGlobal)
   }
@@ -1710,7 +1729,11 @@
   }
 
   // Libellés lisibles des zones, pour l'affichage du nom du forfait
-  const ZONE_LABELS = { paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense' };
+  const ZONE_LABELS = {
+    paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense',
+    '77': 'Seine-et-Marne', '78': 'Yvelines', '91': 'Essonne',
+    '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': "Val-d'Oise",
+  };
   function forfaitName(forfait) {
     if (!forfait) return null;
     return 'Forfait ' + (ZONE_LABELS[forfait.from] || forfait.from) + ' - ' + (ZONE_LABELS[forfait.to] || forfait.to);
