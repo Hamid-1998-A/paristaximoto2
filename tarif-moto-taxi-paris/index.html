@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarif Moto Taxi Paris 2026 — Grille Officielle | Paris TaxiMoto</title>
-  <meta name="description" content="Grille tarifaire moto taxi Paris 2026 : prise en charge 25 €, 2,50 €/km, minimum 45 €. Forfaits CDG 99 €, Orly 76 €. Aucun frais caché. Estimation gratuite en ligne.">
+  <meta name="description" content="Grille tarifaire moto taxi Paris 2026 : prise en charge 25 €, 2,50 €/km, minimum 45 €. Forfaits CDG 99 €, Orly 76 €, La Défense, Massy, Seine-et-Marne, Yvelines. Simulateur en ligne.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://paristaximoto.fr/tarif-moto-taxi-paris/">
   <link rel="icon" type="image/png" href="../logov3.png">
@@ -45,10 +45,69 @@
     "offers": [
       { "@type": "Offer", "price": "25", "priceCurrency": "EUR", "description": "Prise en charge" },
       { "@type": "Offer", "price": "2.50", "priceCurrency": "EUR", "description": "Tarif au km" },
+      { "@type": "Offer", "price": "45", "priceCurrency": "EUR", "description": "Tarif minimum par course" },
+      { "@type": "Offer", "price": "46", "priceCurrency": "EUR", "description": "Forfait Paris intramuros" },
+      { "@type": "Offer", "price": "76", "priceCurrency": "EUR", "description": "Forfait Paris → Orly" },
       { "@type": "Offer", "price": "99", "priceCurrency": "EUR", "description": "Forfait Paris → CDG" },
-      { "@type": "Offer", "price": "76", "priceCurrency": "EUR", "description": "Forfait Paris → Orly" }
+      { "@type": "Offer", "price": "99", "priceCurrency": "EUR", "description": "Forfait La Défense → CDG" },
+      { "@type": "Offer", "price": "99", "priceCurrency": "EUR", "description": "Forfait La Défense → Orly" },
+      { "@type": "Offer", "price": "139", "priceCurrency": "EUR", "description": "Forfait CDG → Orly" },
+      { "@type": "Offer", "price": "80", "priceCurrency": "EUR", "description": "Forfait Paris → Seine-et-Marne (77)" },
+      { "@type": "Offer", "price": "80", "priceCurrency": "EUR", "description": "Forfait Paris → Yvelines (78)" },
+      { "@type": "Offer", "price": "120", "priceCurrency": "EUR", "description": "Forfait Seine-et-Marne → Yvelines" },
+      { "@type": "Offer", "price": "55", "priceCurrency": "EUR", "description": "Forfait Massy → Orly" },
+      { "@type": "Offer", "price": "100", "priceCurrency": "EUR", "description": "Forfait Massy → CDG" }
     ],
     "serviceType": "Moto-taxi Paris"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Le tarif est-il annoncé avant le départ ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, systématiquement. Avant chaque course, vous recevez une estimation par téléphone ou WhatsApp. Le chauffeur confirme le prix à la prise en charge. Pas de compteur qui défile — prix fixe pour les forfaits aéroport, tarif kilométrique transparent pour les autres trajets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Y a-t-il une majoration la nuit ou le week-end ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, pour les trajets calculés au kilomètre : une majoration de +33 % s'applique sur le total de 20h à 7h, ainsi que les samedis, dimanches et jours fériés. Les forfaits fixes (Paris, CDG, Orly, La Défense, Massy) restent inchangés quelle que soit l'heure — c'est le prix garanti, jour comme nuit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne la facturation pour les entreprises ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nous proposons des comptes entreprises avec facturation mensuelle, tarifs négociés selon le volume et reporting détaillé. Les notes de frais sont disponibles pour chaque trajet. Contactez-nous pour établir un contrat adapté à vos besoins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont les moyens de paiement acceptés ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Paiement par carte bancaire (sans contact, Apple Pay, Google Pay), espèces ou virement ; facturation mensuelle pour les entreprises."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment estimer le prix de mon trajet ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Utilisez le simulateur en ligne sur cette page : saisissez votre adresse de départ et de destination, le prix s'affiche instantanément (forfait fixe ou calcul au kilomètre selon le trajet), avec un bouton pour réserver directement sur WhatsApp."
+        }
+      }
+    ]
   }
   </script>
 
@@ -93,7 +152,8 @@
     .navbar-brand .logo-icon{width:40px;height:40px;background:var(--white);border-radius:10px;display:flex;align-items:center;justify-content:center;}
     .navbar-nav{display:flex;align-items:center;gap:8px;list-style:none;}
     .navbar-nav a{color:rgba(10,10,10,0.7);font-weight:500;padding:8px 16px;border-radius:8px;transition:var(--transition);font-size:0.95rem;}
-    .navbar-nav a:hover{color:var(--primary);background:rgba(10,10,10,0.06);}
+    .navbar-nav a:hover,
+    .navbar-nav a.active{color:var(--primary);background:rgba(10,10,10,0.06);}
     .navbar-cta{background:var(--cta)!important;color:var(--white)!important;padding:10px 20px!important;border-radius:50px!important;}
     .navbar-cta:hover{background:var(--cta-dark)!important;}
     .navbar-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
@@ -143,6 +203,43 @@
     .tarif-table tbody td{padding:14px 20px;font-size:0.95rem;color:var(--text);}
     .tarif-table tbody td:last-child{text-align:right;font-weight:700;color:var(--cta);font-size:1.05rem;}
     .tarif-note{font-size:0.82rem;color:var(--text-muted);margin-top:12px;}
+    /* Simulateur */
+    .calculator-form{background:var(--white);border-radius:16px;padding:36px;color:var(--text);min-width:0;border:1px solid var(--border);box-shadow:var(--shadow);}
+    .calculator-form h3{color:var(--primary);margin-bottom:8px;}
+    .calculator-form .subtitle{color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;font-weight:600;font-size:0.9rem;color:var(--primary);margin-bottom:8px;}
+    .form-group .input-wrapper{position:relative;}
+    .form-group .input-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;z-index:1;}
+    .form-group input{width:100%;padding:14px 14px 14px 42px;border:2px solid var(--border);border-radius:10px;font-size:0.95rem;transition:var(--transition);background:var(--white);color:var(--text);font-family:inherit;}
+    .form-group input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(4,21,39,0.14);}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .mobile-route-chips{display:flex;gap:8px;overflow-x:auto;margin-bottom:18px;padding-bottom:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .mobile-route-chips::-webkit-scrollbar{display:none;}
+    .route-chip{flex-shrink:0;display:flex;align-items:center;gap:6px;background:var(--light-bg);border:1px solid var(--border);color:var(--text);font-size:0.8rem;font-weight:600;padding:9px 14px;border-radius:50px;white-space:nowrap;font-family:inherit;-webkit-tap-highlight-color:transparent;cursor:pointer;}
+    .route-chip:active{background:rgba(4,21,39,0.10);border-color:rgba(4,21,39,0.4);}
+    .route-chip span{color:var(--cta);font-weight:700;}
+    .route-inputs{position:relative;}
+    .route-inputs::before{content:'';position:absolute;left:3px;top:60px;bottom:23px;width:0;border-left:2px dotted var(--border);}
+    .route-inputs .form-group{position:relative;padding-left:18px;}
+    .route-inputs .form-group:first-child::after{content:'';position:absolute;left:0;top:56px;width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);background:var(--white);}
+    .route-inputs .form-group:last-child::after{content:'';position:absolute;left:1px;top:56.5px;width:7px;height:7px;background:var(--accent);border-radius:2px;}
+    .estimate-result{background:var(--light-bg);border-radius:12px;padding:20px;margin-top:24px;display:none;}
+    .estimate-result.visible{display:block;animation:fadeInUp 0.4s ease;}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .estimate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;}
+    .estimate-item{text-align:center;background:var(--white);border-radius:10px;padding:14px 8px;border:1px solid var(--border);}
+    .estimate-item .est-value{font-size:1.3rem;font-weight:700;color:var(--primary);}
+    .estimate-item .est-label{font-size:0.78rem;color:var(--text-muted);margin-top:4px;}
+    .estimate-price{background:var(--accent);color:var(--white);border-radius:10px;padding:16px;text-align:center;}
+    .estimate-price .price-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.7;margin-bottom:4px;}
+    .estimate-price .price-amount{font-size:2rem;font-weight:800;}
+    .estimate-price .price-note{font-size:0.82rem;opacity:0.85;margin-top:4px;}
+    .estimate-disclaimer{font-size:0.8rem;color:var(--text-muted);text-align:center;margin-top:12px;}
+    #map-preview{height:200px;border-radius:10px;margin-top:16px;background:#e8e8e8;display:none;overflow:hidden;}
+    #map-preview.visible{display:block;}
+    .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:var(--white);border-radius:50%;animation:spin 0.7s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
     /* Steps */
     .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
     .step{text-align:center;padding:32px 20px;background:var(--white);border-radius:16px;border:1px solid var(--border);}
@@ -173,6 +270,7 @@
     .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
     .footer-links a{color:rgba(255,255,255,0.55);font-size:0.88rem;transition:var(--transition);}
     .footer-links a:hover{color:var(--cta);}
+    .footer-links a.active{color:var(--cta);}
     .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
     .footer-bottom p{font-size:0.85rem;color:rgba(255,255,255,0.4);}
     .footer-bottom-links{display:flex;gap:20px;list-style:none;}
@@ -212,6 +310,9 @@
       .floating-wa{width:44px;height:44px;}
       .tarif-table-wrap{overflow-x:auto;}.tarif-table{min-width:320px;}
       .tarif-cards{grid-template-columns:1fr 1fr;}
+      .calculator-form{padding:22px 18px;}
+      .estimate-grid{grid-template-columns:1fr 1fr;gap:10px;}
+      .form-row--time{grid-template-columns:1fr 1fr!important;gap:10px!important;}
     }
     @media(max-width:480px){
       .container{padding:0 14px;}.section{padding:32px 0;}
@@ -233,7 +334,7 @@
       </a>
       <ul class="navbar-nav">
         <li><a href="../#services">Services</a></li>
-        <li><a href="../#tarifs">Tarifs</a></li>
+        <li><a href="./" class="active">Tarifs</a></li>
         <li><a href="../blog/">Blog</a></li>
         <li><a href="tel:+33611916560" class="navbar-cta"><i data-lucide="phone"></i> Réserver</a></li>
       </ul>
@@ -252,7 +353,7 @@
         <h1>Tarif Moto Taxi<br>Paris <span>2026</span></h1>
         <p>Grille officielle · Forfaits CDG 99 € et Orly 76 € · Prix annoncé avant départ</p>
         <div class="hero-actions">
-          <a href="tel:+33611916560" class="btn btn-primary"><i data-lucide="phone"></i> Devis instantané</a>
+          <a href="#estimer" class="btn btn-primary"><i data-lucide="calculator"></i> Estimer mon trajet</a>
           <a href="https://wa.me/33611916560" target="_blank" rel="noopener" class="btn btn-wa"><i data-lucide="message-circle"></i> WhatsApp</a>
         </div>
       </div>
@@ -265,7 +366,7 @@
         <div class="intro-text">
           <span class="sec-label">Présentation</span>
           <h2>Des tarifs clairs,<br>annoncés avant votre départ</h2>
-          <p>La transparence tarifaire est un engagement fondamental de Paris TaxiMoto. Notre grille 2026 est simple : prise en charge fixe à 25 €, tarif kilométrique de 2,50 €/km, avec un minimum de 45 € par course. Des forfaits fixes garantissent votre budget vers Paris intramuros, les aéroports (99 € CDG, 76 € Orly), La Défense et Massy. Aucun frais caché, aucune surprise à l'arrivée. La majoration nuit/week-end/jours fériés (+33 %) est communiquée à la réservation.</p>
+          <p>La transparence tarifaire est un engagement fondamental de Paris TaxiMoto. Notre grille 2026 est simple : prise en charge fixe à 25 €, tarif kilométrique de 2,50 €/km, avec un minimum de 45 € par course. Des forfaits fixes garantissent votre budget vers Paris intramuros, les aéroports (99 € CDG, 76 € Orly), La Défense, Massy, et la grande couronne (Seine-et-Marne, Yvelines). Aucun frais caché, aucune surprise à l'arrivée. La majoration nuit/week-end/jours fériés (+33 %) est communiquée à la réservation.</p>
           <div class="intro-highlights">
             <div class="highlight-item"><span class="highlight-icon">💶</span><span class="highlight-text">Prix annoncé avant</span></div>
             <div class="highlight-item"><span class="highlight-icon">✈️</span><span class="highlight-text">Forfaits aéroports</span></div>
@@ -286,7 +387,103 @@
     </div>
   </section>
 
-  <section class="section" id="tarifs">
+  <section class="section" id="estimer">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge">Simulateur</span>
+        <h2>Estimez votre trajet en temps réel</h2>
+        <p>Saisissez vos adresses : le prix s'affiche instantanément (forfait fixe ou calcul au kilomètre selon le trajet), avec un bouton pour réserver directement sur WhatsApp.</p>
+      </div>
+
+      <div style="max-width:580px;margin:0 auto;">
+        <div class="calculator-form">
+          <h3>Calculateur de prix</h3>
+          <p class="subtitle">Adresse de départ et de destination pour un prix instantané</p>
+
+          <div class="mobile-route-chips">
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport CDG')">Paris → CDG <span>35 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'Aéroport Orly')">Paris → Orly <span>20 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Aéroport CDG', 'Aéroport Orly')">CDG ↔ Orly <span>40 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute(null, 'La Défense')">Paris → La Défense <span>15 min</span></button>
+            <button type="button" class="route-chip" onclick="fillRoute('Massy', null)">Massy → Paris <span>25 min</span></button>
+          </div>
+
+          <div class="route-inputs">
+            <div class="form-group">
+              <label for="origin"><i data-lucide="map-pin"></i> Adresse de départ</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="map-pin"></i></span>
+                <input type="text" id="origin" placeholder="Ex : 1 Rue de Rivoli, Paris" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="destination"><i data-lucide="flag"></i> Adresse de destination</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="flag"></i></span>
+                <input type="text" id="destination" placeholder="Ex : Aéroport CDG, Terminal 2" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row form-row--time">
+            <div class="form-group">
+              <label for="trip-date"><i data-lucide="calendar"></i> Date</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="calendar"></i></span>
+                <input type="date" id="trip-date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trip-time"><i data-lucide="clock"></i> Heure</label>
+              <div class="input-wrapper">
+                <span class="input-icon"><i data-lucide="clock"></i></span>
+                <input type="time" id="trip-time">
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="calculate-btn" onclick="triggerCalculate()">
+            <i data-lucide="search"></i> Calculer le prix
+          </button>
+
+          <div class="estimate-result" id="estimate-result">
+            <div class="estimate-grid">
+              <div class="estimate-item">
+                <div class="est-value" id="est-distance">—</div>
+                <div class="est-label">Distance</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-duration">—</div>
+                <div class="est-label">Durée estimée</div>
+              </div>
+              <div class="estimate-item">
+                <div class="est-value" id="est-rate">—</div>
+                <div class="est-label">Tarif appliqué</div>
+              </div>
+            </div>
+            <div class="estimate-price">
+              <div class="price-label">Votre prix</div>
+              <div class="price-amount" id="est-price">—</div>
+              <div class="price-note" id="est-period">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic</div>
+            </div>
+            <div id="map-preview"></div>
+            <p class="estimate-disclaimer">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic.</p>
+            <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+              <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
+                <i data-lucide="phone"></i> Appeler
+              </a>
+              <a href="https://wa.me/33611916560" id="whatsapp-cta" target="_blank" rel="noopener" class="btn btn-wa" style="flex:1;justify-content:center;min-width:140px;">
+                <i data-lucide="message-circle"></i> Réserver sur WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tarifs" style="background:var(--light-bg);">
     <div class="container">
       <div class="section-header">
         <span class="badge">Forfaits garantis</span>
@@ -333,14 +530,19 @@
             <tr><td>La Défense</td><td>CDG (Roissy)</td><td>€99</td></tr>
             <tr><td>La Défense</td><td>Aéroport Orly</td><td>€99</td></tr>
             <tr><td>Aéroport CDG</td><td>Aéroport Orly</td><td>€139</td></tr>
+            <tr><td>Paris</td><td>Seine-et-Marne (77)</td><td>€80</td></tr>
+            <tr><td>Paris</td><td>Yvelines (78)</td><td>€80</td></tr>
+            <tr><td>Seine-et-Marne (77)</td><td>Yvelines (78)</td><td>€120</td></tr>
+            <tr><td>Massy</td><td>Aéroport Orly</td><td>€55</td></tr>
+            <tr><td>Massy</td><td>CDG (Roissy)</td><td>€100</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="tarif-note">* Tarifs TTC — majoration nuit (20h–7h) et week-end : +33% · Casque, gants, blouson fournis · <a href="../#estimer" style="color:var(--accent);font-weight:600;">Estimez votre trajet →</a></p>
+      <p class="tarif-note">* Tarifs TTC — majoration nuit (20h–7h) et week-end : +33% · Casque, gants, blouson fournis · <a href="#estimer" style="color:var(--accent);font-weight:600;">Estimez votre trajet →</a></p>
     </div>
   </section>
 
-  <section class="section" style="background:var(--light-bg);">
+  <section class="section">
     <div class="container">
       <div class="section-header">
         <span class="badge">Comment ça marche</span>
@@ -350,7 +552,7 @@
         <div class="step">
           <div class="step-num">1</div>
           <h3>Estimez &amp; Réservez</h3>
-          <p>Estimez votre trajet en ligne ou appelez-nous. Le tarif exact est communiqué avant votre montée. Aucune surprise.</p>
+          <p>Estimez votre trajet <a href="#estimer" style="color:var(--accent);font-weight:600;">en ligne</a> ou appelez-nous. Le tarif exact est communiqué avant votre montée. Aucune surprise.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
@@ -366,7 +568,7 @@
     </div>
   </section>
 
-  <section class="section" id="faq">
+  <section class="section" style="background:var(--light-bg);" id="faq">
     <div class="container">
       <div class="section-header">
         <span class="badge">FAQ</span>
@@ -384,6 +586,14 @@
         <div class="faq-item">
           <button class="faq-question">Comment fonctionne la facturation pour les entreprises ?<span class="faq-icon">+</span></button>
           <div class="faq-answer"><p>Nous proposons des comptes entreprises avec facturation mensuelle, tarifs négociés selon le volume et reporting détaillé. Les notes de frais sont disponibles pour chaque trajet. Contactez-nous pour établir un contrat adapté à vos besoins.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Quels sont les moyens de paiement acceptés ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Paiement par carte bancaire (sans contact, Apple Pay, Google Pay), espèces ou virement ; facturation mensuelle pour les entreprises.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Comment estimer le prix de mon trajet ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Utilisez le <a href="#estimer" style="color:var(--accent);font-weight:600;">simulateur en ligne</a> sur cette page : saisissez votre adresse de départ et de destination, le prix s'affiche instantanément, avec un bouton pour réserver directement sur WhatsApp.</p></div>
         </div>
       </div>
     </div>
@@ -415,7 +625,7 @@
           <ul class="footer-links">
             <li><a href="../">Accueil</a></li>
             <li><a href="../#services">Services</a></li>
-            <li><a href="../#tarifs">Tarifs</a></li>
+            <li><a href="./" class="active">Tarifs</a></li>
             <li><a href="../blog/">Blog</a></li>
           </ul>
         </div>
@@ -481,5 +691,297 @@
       });
     });
   </script>
+
+  <!-- ============================================================
+       SIMULATEUR DE PRIX — identique à la logique utilisée sur la
+       page d'accueil (index.html). Toute modification de formule ou
+       de forfait doit être répercutée des deux côtés.
+  ============================================================ -->
+  <script>
+  // ============================================================
+  // TARIFF CONFIG
+  // ============================================================
+  const TARIFF = {
+    baseFare: 25,
+    ratePerKm: 2.50,
+    minimumFare: 45,        // minimum pour tout trajet hors forfait
+    nightSurcharge: 0.33,   // majoration +33% sur le total, nuit/week-end/jours fériés
+  };
+
+  // ============================================================
+  // FORFAITS FIXES — prix plancher par paire de zones
+  // ============================================================
+  const FORFAITS = [
+    // ——— Aller ———
+    { from: 'paris',   to: 'paris',   min: 46  },
+    { from: 'paris',   to: 'orly',    min: 76  },
+    { from: 'paris',   to: 'cdg',     min: 99  },
+    { from: 'defense', to: 'cdg',     min: 99  },
+    { from: 'defense', to: 'orly',    min: 99  },
+    { from: 'cdg',     to: 'orly',    min: 139 },
+    { from: 'paris',   to: '77',      min: 80  },
+    { from: 'paris',   to: '78',      min: 80  },
+    { from: '77',      to: '78',      min: 120 },
+    { from: 'massy',   to: 'orly',    min: 55  },
+    { from: 'massy',   to: 'cdg',     min: 100 },
+    // ——— Retour (symétriques) ———
+    { from: 'orly',    to: 'paris',   min: 76  },
+    { from: 'cdg',     to: 'paris',   min: 99  },
+    { from: 'cdg',     to: 'defense', min: 99  },
+    { from: 'orly',    to: 'defense', min: 99  },
+    { from: 'orly',    to: 'cdg',     min: 139 },
+    { from: '77',      to: 'paris',   min: 80  },
+    { from: '78',      to: 'paris',   min: 80  },
+    { from: '78',      to: '77',      min: 120 },
+    { from: 'orly',    to: 'massy',   min: 55  },
+    { from: 'cdg',     to: 'massy',   min: 100 },
+  ];
+
+  /**
+   * Détecte la zone tarifaire d'une adresse Google Places.
+   * Ordre de priorité : CDG > Orly > La Défense > Paris > Massy >
+   * départements franciliens (77/78/91/92/93/94/95) > null
+   */
+  function detectZone(address) {
+    if (!address) return null;
+    const a = address.toLowerCase()
+      .normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+    if (/cdg|roissy|charles.?de.?gaulle|95700|95701|95702/.test(a)) return 'cdg';
+    if (/\borly\b|ory|94390|94396|94544/.test(a)) return 'orly';
+    if (/la.?de.?fense|defense|puteaux|92400|92800/.test(a)) return 'defense';
+    if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
+    if (/\bmassy\b|91300/.test(a)) return 'massy';
+    if (/\b77\d{3}\b/.test(a)) return '77';
+    if (/\b78\d{3}\b/.test(a)) return '78';
+    if (/\b91\d{3}\b/.test(a)) return '91';
+    if (/\b92\d{3}\b/.test(a)) return '92';
+    if (/\b93\d{3}\b/.test(a)) return '93';
+    if (/\b94\d{3}\b/.test(a)) return '94';
+    if (/\b95\d{3}\b/.test(a)) return '95';
+
+    return null;
+  }
+
+  function fillRoute(origin, dest) {
+    if (origin !== null) {
+      document.getElementById('origin').value = origin;
+      originPlace = null;
+    }
+    if (dest !== null) {
+      document.getElementById('destination').value = dest;
+      destPlace = null;
+    }
+  }
+
+  function getForfait(fromZone, toZone) {
+    if (!fromZone || !toZone) return null;
+    return FORFAITS.find(f => f.from === fromZone && f.to === toZone) || null;
+  }
+
+  const ZONE_LABELS = {
+    paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense', massy: 'Massy',
+    '77': 'Seine-et-Marne', '78': 'Yvelines', '91': 'Essonne',
+    '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': "Val-d'Oise",
+  };
+  function forfaitName(forfait) {
+    if (!forfait) return null;
+    return 'Forfait ' + (ZONE_LABELS[forfait.from] || forfait.from) + ' - ' + (ZONE_LABELS[forfait.to] || forfait.to);
+  }
+
+  // ============================================================
+  // GOOGLE MAPS — Calculator
+  // ============================================================
+  let map = null, directionsService = null, directionsRenderer = null;
+  let originAutocomplete = null, destAutocomplete = null;
+  let originPlace = null, destPlace = null;
+
+  window.initMapsCalculator = function () {
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+      suppressMarkers: false,
+      polylineOptions: { strokeColor: '#041527', strokeWeight: 5 }
+    });
+
+    const originInput = document.getElementById('origin');
+    const destInput = document.getElementById('destination');
+    if (!originInput || !destInput) return;
+
+    originAutocomplete = new google.maps.places.Autocomplete(originInput, {
+      componentRestrictions: { country: 'fr' },
+      fields: ['geometry', 'formatted_address', 'name'],
+    });
+    destAutocomplete = new google.maps.places.Autocomplete(destInput, {
+      componentRestrictions: { country: 'fr' },
+      fields: ['geometry', 'formatted_address', 'name'],
+    });
+
+    originAutocomplete.addListener('place_changed', () => {
+      originPlace = originAutocomplete.getPlace();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute(originPlace.geometry.location, destPlace.geometry.location);
+    });
+    destAutocomplete.addListener('place_changed', () => {
+      destPlace = destAutocomplete.getPlace();
+      if (originPlace?.geometry && destPlace?.geometry) calculateRoute(originPlace.geometry.location, destPlace.geometry.location);
+    });
+
+    const mapDiv = document.getElementById('map-preview');
+    if (mapDiv) {
+      map = new google.maps.Map(mapDiv, {
+        zoom: 12,
+        center: { lat: 48.8566, lng: 2.3522 },
+        disableDefaultUI: true,
+        styles: [
+          { elementType: 'geometry', stylers: [{ color: '#f5f5f5' }] },
+          { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c9d9e8' }] },
+          { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
+        ],
+      });
+      directionsRenderer.setMap(map);
+    }
+  };
+
+  function calculateRoute(origin, destination) {
+    const btn = document.getElementById('calculate-btn');
+    if (btn) { btn.innerHTML = '<span class="spinner"></span> Calcul en cours...'; btn.disabled = true; }
+
+    directionsService.route({
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+      drivingOptions: { departureTime: new Date(), trafficModel: google.maps.TrafficModel.BEST_GUESS },
+    }, (result, status) => {
+      if (btn) { btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Calculer le prix'; btn.disabled = false; }
+
+      if (status === 'OK') {
+        const leg = result.routes[0].legs[0];
+        const distanceKm = leg.distance.value / 1000;
+        displayEstimate(distanceKm, leg.distance.text, leg.duration.text, leg.start_address, leg.end_address);
+        directionsRenderer.setDirections(result);
+        const mapDiv = document.getElementById('map-preview');
+        if (mapDiv) mapDiv.classList.add('visible');
+      } else {
+        showCalcError('Itinéraire introuvable. Vérifiez les adresses.');
+      }
+    });
+  }
+
+  function displayEstimate(distanceKm, distanceText, durationText, origAddr, destAddr) {
+    const isNight = isNightRate();
+
+    origAddr = origAddr || document.getElementById('origin')?.value || '';
+    destAddr  = destAddr || document.getElementById('destination')?.value || '';
+    const origZone  = detectZone(origAddr);
+    const destZone  = detectZone(destAddr);
+
+    const forfait = getForfait(origZone, destZone);
+
+    let finalPrice, rateLabel;
+    if (forfait) {
+      finalPrice = forfait.min;
+      rateLabel = 'Forfait fixe';
+    } else {
+      let price = TARIFF.baseFare + (distanceKm * TARIFF.ratePerKm);
+      price = Math.max(price, TARIFF.minimumFare);
+      if (isNight) price = price * (1 + TARIFF.nightSurcharge);
+      finalPrice = Math.round(price);
+      rateLabel = TARIFF.ratePerKm.toFixed(2) + ' €/km' + (isNight ? ' (+33 %)' : '');
+    }
+
+    const period = isNight ? 'Tarif nuit / week-end' : 'Tarif jour';
+
+    document.getElementById('est-distance').textContent = distanceText;
+    document.getElementById('est-duration').textContent = durationText;
+    document.getElementById('est-rate').textContent = rateLabel;
+    document.getElementById('est-price').textContent = finalPrice + ' €';
+
+    const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+    const sunSvg  = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+
+    const fName = forfaitName(forfait);
+    let periodHtml;
+    if (forfait && fName) {
+      periodHtml = '<strong style="color:var(--white)">' + fName + ' · ' + finalPrice + ' €</strong>';
+    } else {
+      periodHtml = (isNight ? moonSvg : sunSvg) + period;
+    }
+    document.getElementById('est-period').innerHTML = periodHtml;
+
+    const orig = origAddr;
+    const dest = destAddr;
+    const forfaitMsg = (forfait && fName) ? `\n✅ ${fName} : ${finalPrice} €` : '';
+    const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${finalPrice} € (${period})${forfaitMsg}\n\nPouvez-vous confirmer la disponibilité ?`;
+    const waBtn = document.getElementById('whatsapp-cta');
+    if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
+
+    const result = document.getElementById('estimate-result');
+    if (result) { result.classList.add('visible'); result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+  }
+
+  function computeEasterSunday(year) {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31);
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(year, month - 1, day);
+  }
+
+  function frenchHolidays(year) {
+    const addDays = (date, n) => { const r = new Date(date); r.setDate(r.getDate() + n); return r; };
+    const easter = computeEasterSunday(year);
+    return [
+      new Date(year, 0, 1),
+      addDays(easter, 1),
+      new Date(year, 4, 1),
+      new Date(year, 4, 8),
+      addDays(easter, 39),
+      addDays(easter, 50),
+      new Date(year, 6, 14),
+      new Date(year, 7, 15),
+      new Date(year, 10, 1),
+      new Date(year, 10, 11),
+      new Date(year, 11, 25),
+    ];
+  }
+
+  function isFrenchHoliday(date) {
+    return frenchHolidays(date.getFullYear()).some(h =>
+      h.getMonth() === date.getMonth() && h.getDate() === date.getDate()
+    );
+  }
+
+  function isNightRate() {
+    const now = new Date();
+    const h = now.getHours(), d = now.getDay();
+    return h >= 20 || h < 7 || d === 0 || d === 6 || isFrenchHoliday(now);
+  }
+
+  function showCalcError(msg) {
+    const r = document.getElementById('estimate-result');
+    const alertSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>';
+    if (r) { r.innerHTML = `<p style="color:var(--cta);text-align:center;font-weight:600;padding:16px;">${alertSvg}${msg}</p>`; r.classList.add('visible'); }
+  }
+
+  window.triggerCalculate = function () {
+    const oVal = document.getElementById('origin')?.value;
+    const dVal = document.getElementById('destination')?.value;
+    if (!oVal || !dVal) { showCalcError('Veuillez saisir une adresse de départ et de destination.'); return; }
+
+    const originArg = originPlace?.geometry?.location || oVal;
+    const destArg = destPlace?.geometry?.location || dVal;
+    calculateRoute(originArg, destArg);
+  };
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvCs8-SBHrIxgep1d_xhfYUiw2E2KDN-c&libraries=places&callback=initMapsCalculator" async defer></script>
 </body>
 </html>
