@@ -1165,22 +1165,22 @@
           <div class="pricing-table" style="margin-bottom:28px;">
             <div class="pricing-row">
               <span class="label">Prise en charge</span>
-              <span class="value">3,50 €</span>
+              <span class="value">25,00 €</span>
             </div>
             <div class="pricing-row">
-              <span class="label">Tarif jour (7h–20h)</span>
-              <span class="value">1,80 € / km</span>
+              <span class="label">Tarif au kilomètre</span>
+              <span class="value">2,50 € / km</span>
             </div>
             <div class="pricing-row">
-              <span class="label">Tarif nuit (20h–7h)</span>
-              <span class="value">2,40 € / km</span>
+              <span class="label">Majoration nuit / WE / fériés</span>
+              <span class="value">+33 %</span>
             </div>
             <div class="pricing-row highlight">
               <span class="label">Tarif minimum</span>
-              <span class="value">8,00 €</span>
+              <span class="value">45,00 €</span>
             </div>
           </div>
-          <p style="color:rgba(255,255,255,0.55);font-size:0.85rem;">Tarifs week-end et jours fériés : tarif nuit appliqué toute la journée.</p>
+          <p style="color:rgba(255,255,255,0.55);font-size:0.85rem;">Majoration appliquée de 20h à 7h, ainsi que toute la journée les samedis, dimanches et jours fériés. Forfaits fixes disponibles vers Paris, Orly, CDG, La Défense et Massy.</p>
         </div>
 
         <div class="calculator-form" id="estimer">
@@ -1419,7 +1419,7 @@
 
         <div class="faq-item">
           <button class="faq-question">Comment est calculé le prix d'un trajet ?<span class="faq-icon">+</span></button>
-          <div class="faq-answer"><p>Le tarif comprend une prise en charge (3,50€) + tarif kilométrique (1,80€/km le jour, 2,40€/km la nuit). Tarif minimum : 8€. Utilisez notre calculateur pour une estimation précise avec la carte interactive.</p></div>
+          <div class="faq-answer"><p>Le tarif comprend une prise en charge (25€) + 2,50€/km, avec un minimum de 45€ par course. Une majoration de +33% s'applique sur le total de 20h à 7h, ainsi que toute la journée les samedis, dimanches et jours fériés. Des forfaits fixes remplacent ce calcul vers Paris intramuros, Orly, CDG, La Défense et Massy. Utilisez notre calculateur pour une estimation précise avec la carte interactive.</p></div>
         </div>
 
         <div class="faq-item">
@@ -1622,11 +1622,10 @@
   // TARIFF CONFIG
   // ============================================================
   const TARIFF = {
-    baseFare: 3.50,
-    ratePerKmDay: 1.80,
-    ratePerKmNight: 2.40,
-    minimumFare: 8,          // minimum compteur brut (inchangé)
-    minimumFareGlobal: 46,   // plancher global pour tout trajet hors forfait
+    baseFare: 25,
+    ratePerKm: 2.50,
+    minimumFare: 45,        // minimum pour tout trajet hors forfait
+    nightSurcharge: 0.33,   // majoration +33% sur le total, nuit/week-end/jours fériés
   };
 
   // ============================================================
@@ -1645,6 +1644,7 @@
     { from: 'paris',   to: '77',      min: 80  },
     { from: 'paris',   to: '78',      min: 80  },
     { from: '77',      to: '78',      min: 120 },
+    { from: 'massy',   to: 'orly',    min: 55  },
     // ——— Retour (symétriques) ———
     { from: 'orly',    to: 'paris',   min: 76  },
     { from: 'cdg',     to: 'paris',   min: 99  },
@@ -1654,17 +1654,18 @@
     { from: '77',      to: 'paris',   min: 80  },
     { from: '78',      to: 'paris',   min: 80  },
     { from: '78',      to: '77',      min: 120 },
+    { from: 'orly',    to: 'massy',   min: 55  },
   ];
 
   /**
    * Détecte la zone tarifaire d'une adresse Google Places.
-   * Ordre de priorité : CDG > Orly > La Défense > Paris >
+   * Ordre de priorité : CDG > Orly > La Défense > Paris > Massy >
    * départements franciliens (77/78/91/92/93/94/95) > null
-   * (important : CDG/Orly/La Défense sont contenus dans un département
-   * générique — 95/94/92 — donc doivent être vérifiés avant)
+   * (important : CDG/Orly/La Défense/Massy sont contenus dans un
+   * département générique — 95/94/92/91 — donc doivent être vérifiés avant)
    *
    * @param  {string} address  adresse formatée (ex: "Aéroport CDG, 95700 Roissy, France")
-   * @returns {'cdg'|'orly'|'defense'|'paris'|'77'|'78'|'91'|'92'|'93'|'94'|'95'|null}
+   * @returns {'cdg'|'orly'|'defense'|'paris'|'massy'|'77'|'78'|'91'|'92'|'93'|'94'|'95'|null}
    */
   function detectZone(address) {
     if (!address) return null;
@@ -1684,18 +1685,21 @@
     // 4. Paris intramuros — code postal 750xx OU libellé ", Paris,"
     if (/\b75[01]\d{2}\b/.test(a) || /,\s*paris[\s,]/.test(a)) return 'paris';
 
-    // 5. Départements de la grande couronne — code postal à 5 chiffres
+    // 5. Massy — AVANT le département générique 91 (91300)
+    if (/\bmassy\b|91300/.test(a)) return 'massy';
+
+    // 6. Départements de la grande couronne — code postal à 5 chiffres
     if (/\b77\d{3}\b/.test(a)) return '77';
     if (/\b78\d{3}\b/.test(a)) return '78';
     if (/\b91\d{3}\b/.test(a)) return '91';
 
-    // 6. Départements de la petite couronne — restant après cdg/orly/defense
+    // 7. Départements de la petite couronne — restant après cdg/orly/defense
     if (/\b92\d{3}\b/.test(a)) return '92';
     if (/\b93\d{3}\b/.test(a)) return '93';
     if (/\b94\d{3}\b/.test(a)) return '94';
     if (/\b95\d{3}\b/.test(a)) return '95';
 
-    return null; // zone inconnue → plancher global (TARIFF.minimumFareGlobal)
+    return null; // zone inconnue → pas de forfait, calcul au compteur (TARIFF.minimumFare)
   }
 
   /**
@@ -1730,7 +1734,7 @@
 
   // Libellés lisibles des zones, pour l'affichage du nom du forfait
   const ZONE_LABELS = {
-    paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense',
+    paris: 'Paris', cdg: 'CDG', orly: 'Orly', defense: 'La Défense', massy: 'Massy',
     '77': 'Seine-et-Marne', '78': 'Yvelines', '91': 'Essonne',
     '92': 'Hauts-de-Seine', '93': 'Seine-Saint-Denis', '94': 'Val-de-Marne', '95': "Val-d'Oise",
   };
@@ -1842,36 +1846,35 @@
 
   function displayEstimate(distanceKm, distanceText, durationText, origAddr, destAddr) {
     const isNight = isNightRate();
-    const rateKm = isNight ? TARIFF.ratePerKmNight : TARIFF.ratePerKmDay;
 
-    // 1. Calcul tarifaire de base (compteur)
-    let price = TARIFF.baseFare + (distanceKm * rateKm);
-    price = Math.max(price, TARIFF.minimumFare); // plancher compteur : 8 €
-
-    // 2. Détection des zones depuis les adresses résolues par Directions
+    // 1. Détection des zones depuis les adresses résolues par Directions
     origAddr = origAddr || document.getElementById('origin')?.value || '';
     destAddr  = destAddr || document.getElementById('destination')?.value || '';
     const origZone  = detectZone(origAddr);
     const destZone  = detectZone(destAddr);
 
-    // 3. Recherche d'un forfait applicable
+    // 2. Recherche d'un forfait applicable — s'il existe, il remplace
+    //    entièrement le calcul au compteur (prix fixe, jour comme nuit)
     const forfait = getForfait(origZone, destZone);
 
-    // 4. Application du prix plancher
-    //    - Si forfait trouvé  → plancher = prix du forfait
-    //    - Sinon              → plancher global = TARIFF.minimumFareGlobal
-    const plancher = forfait ? forfait.min : TARIFF.minimumFareGlobal;
-    const forfaitApplique = price < plancher; // true si le forfait relève le prix
-    price = Math.max(price, plancher);
+    let finalPrice, rateLabel;
+    if (forfait) {
+      finalPrice = forfait.min;
+      rateLabel = 'Forfait fixe';
+    } else {
+      let price = TARIFF.baseFare + (distanceKm * TARIFF.ratePerKm);
+      price = Math.max(price, TARIFF.minimumFare); // minimum : 45 €
+      if (isNight) price = price * (1 + TARIFF.nightSurcharge); // +33 % sur le total
+      finalPrice = Math.round(price);
+      rateLabel = TARIFF.ratePerKm.toFixed(2) + ' €/km' + (isNight ? ' (+33 %)' : '');
+    }
 
-    // 5. Prix final affiché (montant unique, sans fourchette)
-    const finalPrice = Math.round(price);
-    const period = isNight ? 'Tarif nuit' : 'Tarif jour';
+    const period = isNight ? 'Tarif nuit / week-end' : 'Tarif jour';
 
-    // 6. Mise à jour de l'affichage
+    // 3. Mise à jour de l'affichage
     document.getElementById('est-distance').textContent = distanceText;
     document.getElementById('est-duration').textContent = durationText;
-    document.getElementById('est-rate').textContent = rateKm.toFixed(2) + ' €/km';
+    document.getElementById('est-rate').textContent = rateLabel;
     document.getElementById('est-price').textContent = finalPrice + ' €';
 
     const moonSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
@@ -1881,21 +1884,17 @@
     // quand un forfait fixe s'applique — le tarif au km n'est alors plus pertinent)
     const fName = forfaitName(forfait);
     let periodHtml;
-    if (forfaitApplique && fName) {
-      periodHtml = '<strong style="color:#041527">' + fName + ' · ' + plancher + ' €</strong>';
-    } else if (forfaitApplique) {
-      periodHtml = (isNight ? moonSvg : sunSvg) + period + ' &nbsp;·&nbsp; <strong style="color:#041527">Tarif minimum garanti · ' + plancher + ' €</strong>';
+    if (forfait && fName) {
+      periodHtml = '<strong style="color:#041527">' + fName + ' · ' + finalPrice + ' €</strong>';
     } else {
       periodHtml = (isNight ? moonSvg : sunSvg) + period;
     }
     document.getElementById('est-period').innerHTML = periodHtml;
 
-    // 7. Message WhatsApp enrichi (mentionne le forfait si applicable)
+    // 4. Message WhatsApp enrichi (mentionne le forfait si applicable)
     const orig = origAddr;
     const dest = destAddr;
-    const forfaitMsg = forfaitApplique
-      ? `\n✅ ${fName || 'Tarif minimum garanti'} : ${plancher} €`
-      : '';
+    const forfaitMsg = (forfait && fName) ? `\n✅ ${fName} : ${finalPrice} €` : '';
     const msg = `Bonjour, je souhaite réserver un moto-taxi 🏍️\n\n📍 Départ : ${orig}\n🏁 Destination : ${dest}\n📏 Distance : ${distanceText}\n⏱️ Durée : ${durationText}\n💰 Estimation : ${finalPrice} € (${period})${forfaitMsg}\n\nPouvez-vous confirmer la disponibilité ?`;
     const waBtn = document.getElementById('whatsapp-cta');
     if (waBtn) waBtn.href = 'https://wa.me/33611916560?text=' + encodeURIComponent(msg);
@@ -1904,10 +1903,60 @@
     if (result) { result.classList.add('visible'); result.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
   }
 
+  /**
+   * Dimanche de Pâques pour une année donnée (algorithme de Gauss / Meeus).
+   * Sert de base pour calculer les jours fériés mobiles (Pâques, Ascension,
+   * Pentecôte).
+   */
+  function computeEasterSunday(year) {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31); // 3 = mars, 4 = avril
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(year, month - 1, day);
+  }
+
+  /** Liste des jours fériés légaux français pour une année donnée. */
+  function frenchHolidays(year) {
+    const addDays = (date, n) => { const r = new Date(date); r.setDate(r.getDate() + n); return r; };
+    const easter = computeEasterSunday(year);
+    return [
+      new Date(year, 0, 1),   // Jour de l'an
+      addDays(easter, 1),     // Lundi de Pâques
+      new Date(year, 4, 1),   // Fête du travail
+      new Date(year, 4, 8),   // Victoire 1945
+      addDays(easter, 39),    // Ascension
+      addDays(easter, 50),    // Lundi de Pentecôte
+      new Date(year, 6, 14),  // Fête nationale
+      new Date(year, 7, 15),  // Assomption
+      new Date(year, 10, 1),  // Toussaint
+      new Date(year, 10, 11), // Armistice
+      new Date(year, 11, 25), // Noël
+    ];
+  }
+
+  function isFrenchHoliday(date) {
+    return frenchHolidays(date.getFullYear()).some(h =>
+      h.getMonth() === date.getMonth() && h.getDate() === date.getDate()
+    );
+  }
+
+  // Majoration nuit/week-end/jours fériés : 20h-7h, samedi, dimanche, ou
+  // n'importe quel jour férié légal français (toute la journée).
   function isNightRate() {
     const now = new Date();
     const h = now.getHours(), d = now.getDay();
-    return h >= 20 || h < 7 || d === 0 || d === 6;
+    return h >= 20 || h < 7 || d === 0 || d === 6 || isFrenchHoliday(now);
   }
 
   function showCalcError(msg) {
