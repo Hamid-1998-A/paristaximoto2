@@ -319,6 +319,7 @@
     .estimate-item .est-value { font-size:1.3rem; font-weight:700; color:var(--primary); }
     .estimate-item .est-label { font-size:0.78rem; color:var(--text-muted); margin-top:4px; }
     .estimate-price { background:var(--accent); color:var(--white); border-radius:10px; padding:16px; text-align:center; }
+    .estimate-price .price-label { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; opacity:0.7; margin-bottom:4px; }
     .estimate-price .price-amount { font-size:2rem; font-weight:800; }
     .estimate-price .price-note { font-size:0.82rem; opacity:0.85; margin-top:4px; }
     .estimate-disclaimer { font-size:0.8rem; color:var(--text-muted); text-align:center; margin-top:12px; }
@@ -1258,11 +1259,12 @@
               </div>
             </div>
             <div class="estimate-price">
+              <div class="price-label">Votre prix</div>
               <div class="price-amount" id="est-price">—</div>
-              <div class="price-note" id="est-period">Estimation indicative</div>
+              <div class="price-note" id="est-period">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic</div>
             </div>
             <div id="map-preview"></div>
-            <p class="estimate-disclaimer">Prix estimatif. Le tarif final peut varier selon les conditions de circulation.</p>
+            <p class="estimate-disclaimer">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic.</p>
             <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
               <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
                 <i data-lucide="phone"></i> Appeler
@@ -1325,7 +1327,7 @@
         <div class="how-step">
           <span class="how-num">02</span>
           <h4>Recevez un prix immédiat</h4>
-          <p>Prix estimatif. Le tarif final peut varier selon les conditions de circulation.</p>
+          <p>Prix ferme, confirmé avant le départ — aucun supplément lié au trafic.</p>
         </div>
         <div class="how-step">
           <span class="how-num">03</span>
@@ -1885,7 +1887,7 @@
     const fName = forfaitName(forfait);
     let periodHtml;
     if (forfait && fName) {
-      periodHtml = '<strong style="color:#041527">' + fName + ' · ' + finalPrice + ' €</strong>';
+      periodHtml = '<strong style="color:var(--white)">' + fName + ' · ' + finalPrice + ' €</strong>';
     } else {
       periodHtml = (isNight ? moonSvg : sunSvg) + period;
     }
