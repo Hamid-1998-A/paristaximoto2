@@ -56,7 +56,8 @@
       { "@type": "Offer", "price": "80", "priceCurrency": "EUR", "description": "Forfait Paris → Yvelines (78)" },
       { "@type": "Offer", "price": "120", "priceCurrency": "EUR", "description": "Forfait Seine-et-Marne → Yvelines" },
       { "@type": "Offer", "price": "55", "priceCurrency": "EUR", "description": "Forfait Massy → Orly" },
-      { "@type": "Offer", "price": "100", "priceCurrency": "EUR", "description": "Forfait Massy → CDG" }
+      { "@type": "Offer", "price": "100", "priceCurrency": "EUR", "description": "Forfait Massy → CDG" },
+      { "@type": "Offer", "price": "70", "priceCurrency": "EUR", "description": "Forfait Massy → Paris" }
     ],
     "serviceType": "Moto-taxi Paris"
   }
@@ -533,6 +534,7 @@
             <tr><td>Paris</td><td>Seine-et-Marne (77)</td><td>€80</td></tr>
             <tr><td>Paris</td><td>Yvelines (78)</td><td>€80</td></tr>
             <tr><td>Seine-et-Marne (77)</td><td>Yvelines (78)</td><td>€120</td></tr>
+            <tr><td>Massy</td><td>Paris</td><td>€70</td></tr>
             <tr><td>Massy</td><td>Aéroport Orly</td><td>€55</td></tr>
             <tr><td>Massy</td><td>CDG (Roissy)</td><td>€100</td></tr>
           </tbody>
@@ -724,6 +726,7 @@
     { from: '77',      to: '78',      min: 120 },
     { from: 'massy',   to: 'orly',    min: 55  },
     { from: 'massy',   to: 'cdg',     min: 100 },
+    { from: 'massy',   to: 'paris',   min: 70  },
     // ——— Retour (symétriques) ———
     { from: 'orly',    to: 'paris',   min: 76  },
     { from: 'cdg',     to: 'paris',   min: 99  },
@@ -735,6 +738,7 @@
     { from: '78',      to: '77',      min: 120 },
     { from: 'orly',    to: 'massy',   min: 55  },
     { from: 'cdg',     to: 'massy',   min: 100 },
+    { from: 'paris',   to: 'massy',   min: 70  },
   ];
 
   /**
