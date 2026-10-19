@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paris TaxiMoto — Moto-Taxi Rapide & Fiable à Paris | Devis Instantané</title>
+  <title>Paris TaxiMoto | Moto-Taxi Rapide & Fiable à Paris | Devis Instantané</title>
   <meta name="description" content="Réservez votre taxi moto en 2 min à Paris et vers les aéroports (Orly, CDG). Chauffeurs pros, équipements fournis et temps de trajet garanti.">
   <meta name="keywords" content="moto taxi paris, taxi moto paris, moto taxi ile de france, moto taxi aeroport paris, vtc moto paris, moto taxi cdg, moto taxi orly">
   <meta name="author" content="Paris TaxiMoto">
-  <meta property="og:title" content="Paris TaxiMoto — Moto-Taxi Rapide à Paris">
+  <meta property="og:title" content="Paris TaxiMoto | Moto-Taxi Rapide à Paris">
   <meta property="og:description" content="Réservez votre taxi moto en 2 min à Paris et vers les aéroports (Orly, CDG). Chauffeurs pros, équipements fournis et temps de trajet garanti.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Paris TaxiMoto">
@@ -145,7 +145,7 @@
     /* Noir + icône verte, cohérent avec les autres CTA WhatsApp du site */
     .btn-wa { background:var(--primary); color:var(--white); }
     .btn-wa:hover { background:#2A2A2A; transform:translateY(-2px); box-shadow:var(--shadow-lg); }
-    .btn-wa i { color:#25D366; }
+    .btn-wa svg.lucide { color:#25D366; }
 
     /* ============================================================
        NAVBAR
@@ -156,17 +156,21 @@
     .navbar .container { display:flex; align-items:center; justify-content:space-between; }
     .navbar-brand { display:flex; align-items:center; gap:10px; color:var(--primary); font-size:1.3rem; font-weight:800; }
     .navbar-brand .logo-icon { width:40px; height:40px; background:var(--white); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
-    .navbar-brand-kicker { color:var(--accent); }
-    .navbar-brand-name { color:var(--cta); }
+    /* Logo deux lignes : PARIS (rouge, petit) / TaxiMoto (marine, grand) —
+       commun à toutes les tailles depuis que le mobile le reprend aussi */
+    .navbar-brand-text { display:flex; flex-direction:column; line-height:1.05; gap:1px; }
+    .navbar-brand-kicker { font-size:0.68rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:var(--cta); }
+    .navbar-brand-name { font-size:1.3rem; font-weight:800; color:var(--primary); }
     .navbar-nav { display:flex; align-items:center; gap:8px; list-style:none; }
     .navbar-nav a { color:rgba(10,10,10,0.7); font-weight:500; padding:8px 16px; border-radius:8px; transition:var(--transition); font-size:0.95rem; display:inline-flex; align-items:center; gap:4px; }
     .navbar-nav a:hover, .navbar-nav a.active { color:var(--primary); background:rgba(10,10,10,0.06); }
     .navbar-nav .chev { width:14px; height:14px; opacity:0.55; }
     .navbar-dropdown { position:relative; }
     .navbar-submenu { list-style:none; }
-    .navbar-cta { display:none; background:var(--cta)!important; color:var(--white)!important; padding:10px 20px!important; border-radius:50px!important; }
+    .navbar-cta { display:inline-flex; align-items:center; gap:6px; background:var(--cta)!important; color:var(--white)!important; padding:10px 20px!important; border-radius:50px!important; }
     .navbar-cta:hover { background:var(--cta-dark)!important; }
-    .navbar-phone { display:none; }
+    .navbar-phone { display:inline-flex; align-items:center; gap:8px; color:var(--primary); }
+    .navbar-phone-text { display:none; }
     .navbar-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
     .navbar-toggle span { width:24px; height:2px; background:var(--primary); border-radius:2px; transition:var(--transition); }
     .navbar.scrolled .navbar-nav a:hover, .navbar.scrolled .navbar-nav a.active { color:var(--white); background:rgba(255,255,255,0.1); }
@@ -188,7 +192,7 @@
     .hero-content { position:relative; z-index:2; color:var(--white); max-width:700px; }
     .hero-badge-group { position:relative; z-index:2; }
     .hero-badge { display:inline-flex; align-items:center; gap:8px; background:transparent; border:none; padding:0; color:rgba(255,255,255,0.85); text-transform:uppercase; letter-spacing:0.08em; font-size:0.78rem; font-weight:600; margin-bottom:22px; }
-    .hero-badge i { color:var(--white); width:16px; height:16px; }
+    .hero-badge svg.lucide { color:var(--white); width:16px; height:16px; }
     .hero-badge-dot { width:7px; height:7px; border-radius:50%; background:#2ECC71; flex-shrink:0; animation:heroBadgePulse 2s infinite; }
     @keyframes heroBadgePulse { 0%{box-shadow:0 0 0 0 rgba(46,204,113,0.55)} 70%{box-shadow:0 0 0 6px rgba(46,204,113,0)} 100%{box-shadow:0 0 0 0 rgba(46,204,113,0)} }
     .hero-kicker { display:block; font-size:0.85rem; font-weight:600; color:rgba(255,255,255,0.75); text-decoration:none; margin-bottom:10px; }
@@ -204,7 +208,11 @@
     .hero-slide-copy.active { display:block; }
     /* Compteur + flèches du carrousel — masqués par défaut, activés
        uniquement sur desktop pour ne pas toucher le hero mobile */
+    .hero-inset { position:relative; }
     .hero-nav-controls { display:none; }
+    .hero-mobile-badge { display:none; }
+    .hero-counter-mobile { display:none; }
+    .hero-dots { display:none; }
     .hero-stats { position:relative; z-index:2; margin-top:56px; display:flex; gap:56px; flex-wrap:wrap; padding-top:32px; border-top:1px solid rgba(255,255,255,0.15); }
     .hero-stat { text-align:left; color:var(--white); }
     .hero-stat + .hero-stat { border-left:1px solid rgba(255,255,255,0.25); padding-left:20px; }
@@ -334,7 +342,9 @@
     .mobile-trust-cta { display:none; } /* visible uniquement sur mobile, voir @media(max-width:768px) */
     .mobile-route-chips { display:none; } /* idem, sauf desktop (voir @media(min-width:769px)) */
     .route-chips-label { display:none; }
-    .calc-tabs { display:none; }
+    .calc-tabs { display:flex; gap:6px; background:var(--light-bg); border-radius:50px; padding:5px; margin-bottom:24px; width:fit-content; max-width:100%; overflow-x:auto; }
+    .calc-tab { border:none; background:transparent; padding:10px 20px; border-radius:50px; font-weight:600; font-size:0.88rem; color:var(--text-muted); cursor:pointer; font-family:inherit; transition:var(--transition); white-space:nowrap; }
+    .calc-tab.active { background:var(--white); color:var(--primary); box-shadow:var(--shadow); }
     .route-swap { display:none; }
     .calc-submit-inline { display:none; }
     .calc-trust-row { display:none; }
@@ -357,6 +367,50 @@
     #map-preview.visible { display:block; }
     .spinner { display:inline-block; width:18px; height:18px; border:2px solid rgba(255,255,255,0.3); border-top-color:var(--white); border-radius:50%; animation:spin 0.7s linear infinite; }
     @keyframes spin { to{transform:rotate(360deg)} }
+
+    /* ============================================================
+       TENDANCE DU TRAFIC — comparaison axes routiers / moto-taxi,
+       calculée côté client selon l'heure (pas de flux temps réel connecté)
+    ============================================================ */
+    .traffic-pulse { background:var(--primary); color:var(--white); }
+    .tp-header { text-align:center; max-width:620px; margin:0 auto 40px; }
+    .tp-header h2 { color:var(--white); margin:10px 0 0; }
+    .tp-header p { color:rgba(255,255,255,0.55); font-size:0.92rem; margin-top:14px; }
+    .tp-live-badge {
+      display:inline-flex; align-items:center; gap:9px; margin-top:18px;
+      background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16);
+      border-radius:50px; padding:9px 18px; font-size:0.84rem; font-weight:500;
+      color:rgba(255,255,255,0.7); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    }
+    .tp-live-badge strong { color:var(--white); font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:0.02em; }
+    .tp-live-dot { width:7px; height:7px; min-width:7px; border-radius:50%; background:#2ECC71; animation:heroBadgePulse 2s infinite; }
+    /* Schéma des axes routiers — image fournie, sur fond clair, même si
+       le reste de la section "Tendance du trafic" reste sombre */
+    .tp-map { margin:32px auto 0; max-width:900px; background:var(--white); border:1px solid var(--border); border-radius:16px; padding:20px; overflow-x:auto; }
+    .tp-map-img { display:block; width:100%; min-width:520px; height:auto; margin:0 auto; border-radius:8px; }
+
+    /* Vue mobile du trafic — sélecteur de créneau, tableau comparatif,
+       exemple de trajet, conseil (desktop garde .tp-grid, inchangé) */
+    .tp-mobile { display:none; }
+    .tp-grid { display:grid; grid-template-columns:1fr; gap:20px; max-width:900px; margin:0 auto; }
+    .tp-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:26px; }
+    .tp-card-head { display:flex; align-items:center; gap:10px; font-weight:700; margin-bottom:14px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.1); }
+    .tp-card-head svg.lucide { color:rgba(255,255,255,0.5); width:20px; height:20px; }
+    .tp-row { display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .tp-row:last-child { border-bottom:none; }
+    .tp-name { color:rgba(255,255,255,0.8); font-size:0.92rem; }
+    .tp-status { display:flex; align-items:center; gap:8px; font-weight:600; font-size:0.86rem; }
+    .tp-dot { width:8px; height:8px; min-width:8px; border-radius:50%; background:var(--text-muted); }
+    .tp-dot-high { background:var(--cta); }
+    .tp-dot-mid { background:var(--gold); }
+    .tp-dot-low { background:#2ECC71; }
+    .tp-card-highlight { background:rgba(255,59,48,0.08); border-color:rgba(255,59,48,0.3); display:flex; flex-direction:column; }
+    .tp-card-highlight .tp-card-head svg.lucide { color:var(--cta); }
+    .tp-highlight-body { display:flex; flex-direction:column; align-items:flex-start; gap:14px; flex:1; justify-content:center; }
+    .tp-status-big { font-size:1.5rem; }
+    .tp-status-big .tp-dot { width:12px; height:12px; min-width:12px; }
+    .tp-highlight-body p { color:rgba(255,255,255,0.65); font-size:0.9rem; margin:0; }
+    @media(min-width:769px) { .tp-grid { grid-template-columns:1.4fr 1fr; } }
 
     /* ============================================================
        TARIFS
@@ -414,8 +468,10 @@
     .faq-item { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
     .faq-question { width:100%; background:none; border:none; padding:20px 24px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-size:1rem; font-weight:600; color:var(--primary); text-align:left; transition:var(--transition); font-family:inherit; }
     .faq-question:hover { background:var(--light-bg); }
-    .faq-icon { width:24px; height:24px; border-radius:50%; background:rgba(255,59,48,0.12); color:var(--cta); border:1px solid rgba(255,59,48,0.25); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; transition:var(--transition); }
-    .faq-item.open .faq-icon { transform:rotate(45deg); background:var(--cta); color:var(--white); border-color:var(--cta); }
+    .faq-icon { width:26px; height:26px; border-radius:50%; background:rgba(255,59,48,0.12); color:var(--cta); border:1px solid rgba(255,59,48,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:var(--transition); }
+    .faq-icon svg.lucide { width:15px; height:15px; transition:transform 0.25s ease; }
+    .faq-item.open .faq-icon { background:var(--cta); color:var(--white); border-color:var(--cta); }
+    .faq-item.open .faq-icon svg.lucide { transform:rotate(180deg); }
     .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
     .faq-item.open .faq-answer { max-height:300px; }
     .faq-answer p { padding:0 24px 20px; color:var(--text-muted); font-size:0.95rem; }
@@ -507,6 +563,7 @@
     .how-grid { display:grid; grid-template-columns:1fr; gap:32px; }
     .how-step { border-top:1px solid var(--border); padding-top:18px; }
     .how-num { display:block; color:var(--cta); font-weight:700; font-size:0.85rem; margin-bottom:10px; }
+    .how-mobile-card { display:none; }
     .how-step h4 { color:var(--primary); font-size:1.05rem; margin-bottom:6px; }
     .how-step p { color:var(--text-muted); font-size:0.92rem; line-height:1.55; }
 
@@ -520,6 +577,23 @@
     .testi-score { font-size:3.5rem; font-weight:800; color:var(--white); line-height:1; margin-bottom:8px; }
     .testi-score span { color:var(--cta); }
     .testi-score-sub { color:rgba(255,255,255,0.5); font-size:0.85rem; margin-bottom:32px; display:flex; align-items:center; gap:8px; }
+
+    /* Avis (widget) + carte Entreprises, côte à côte dès le desktop */
+    .avis-entreprise-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    @media(min-width:769px) { .avis-entreprise-grid { grid-template-columns:1fr 1fr; } }
+    .avis-widget-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:16px; padding:22px; }
+    .avis-widget-card .sec-label { color:rgba(255,255,255,0.4); }
+    .avis-widget-placeholder { border:1px dashed rgba(255,255,255,0.2); border-radius:10px; padding:16px; color:rgba(255,255,255,0.4); font-size:0.82rem; margin:12px 0 16px; line-height:1.5; }
+    .avis-widget-link { display:inline-flex; align-items:center; gap:6px; color:var(--cta); font-weight:700; font-size:0.88rem; }
+    .avis-widget-link svg.lucide { width:15px; height:15px; }
+
+    .entreprise-card { border-radius:16px; padding:24px; background-size:cover; background-position:center; }
+    .entreprise-card h3 { color:var(--white); font-size:1.25rem; margin:10px 0 16px; }
+    .entreprise-feats { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+    .entreprise-feats li { display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.85); font-size:0.88rem; }
+    .entreprise-feats li svg.lucide { width:16px; height:16px; color:#2ECC71; flex-shrink:0; }
+    .entreprise-cta { display:flex; width:100%; justify-content:center; background:var(--white); color:var(--primary); }
+    .entreprise-cta:hover { background:rgba(255,255,255,0.9); }
     .testi-score-sub svg { color:#F59E0B; }
     .testimonial-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); }
     .testimonial-card:hover { background:rgba(255,255,255,0.08); border-color:rgba(4,21,39,0.25); box-shadow:none; }
@@ -572,8 +646,18 @@
       .navbar-submenu { text-align:center; }
       .navbar-submenu a { font-size:0.95rem; padding:8px 20px; color:rgba(255,255,255,0.55); }
       .navbar-dropdown > a .chev { display:none; }
-      .navbar-toggle { display:flex; z-index:1001; }
+
+      /* Téléphone en icône seule, bouton Réserver compact, hamburger en
+         pastille sombre — logo + ces 3 boutons tiennent sur une ligne */
+      .navbar-brand .logo-icon { width:34px; height:34px; }
+      .navbar-brand-name { font-size:1.1rem; }
+      .navbar-phone { width:36px; height:36px; justify-content:center; padding:0; border:1.5px solid var(--border); border-radius:50%; margin-right:0; }
+      .navbar-cta { padding:9px 16px!important; font-size:0.85rem; }
+      .navbar-toggle { display:flex; z-index:1001; background:var(--primary); border-radius:10px; padding:0; width:36px; height:36px; align-items:center; justify-content:center; }
+      .navbar-toggle span { background:var(--white); width:16px; }
       .navbar-nav.open ~ .navbar-toggle span { background:var(--white); } /* reste visible sur le panneau sombre même hors scroll */
+      .navbar .container { gap:8px; }
+      .navbar-phone { margin-left:auto; }
 
       /* Réordonne le calculateur juste après le hero, avant les services
          (disposition mobile "app" — inchangé sur desktop) */
@@ -582,14 +666,61 @@
       .mobile-flow .calculator { order:2; }
       .mobile-flow .services { order:3; }
 
-      /* Hero — moins haut ; stats et scroll masqués (place limitée, repris
-         dans le bloc confiance sous le calculateur) */
-      .hero { min-height:44vh; }
+      /* Hero — moins haut ; stats et scroll masqués (repris par la pastille
+         4,9★ + chevrons/points de carrousel, propres au mobile). padding-top
+         ramené à la hauteur réelle de la navbar mobile (82px, pas 92px comme
+         sur desktop) pour que la photo touche directement la navbar, sans
+         bande claire visible entre les deux. */
+      .hero { min-height:58vh; padding-top:82px; }
+      /* .hero-inset est un enfant flex de .hero (flex-direction:row) : sans
+         largeur explicite, il se réduisait à la largeur de son contenu au
+         lieu de remplir l'écran, laissant un bord vide de chaque côté.
+         min-height fixe : sans ça, la hauteur suit le texte de chaque slide
+         (plus ou moins long), donc les 3 photos n'affichaient pas le même
+         cadrage/taille en passant de l'une à l'autre. */
+      .hero-inset { width:100%; min-height:310px; }
+      .hero .container { padding-top:56px; padding-bottom:50px; }
       .hero-badge { margin-bottom:16px; }
       .hero-stats { display:none; }
       .hero-scroll { display:none; }
+      .hero-kicker { display:none; }
       .hero p { font-size:0.93rem; margin-bottom:20px; }
       .hero-actions { display:none; } /* CTA "Réserver une course" retiré du hero mobile — calculateur + WhatsApp restent les points d'entrée */
+
+      /* Effet de zoom (Ken Burns) désactivé sur mobile : l'animation de
+         transform:scale() provoquait un liseré clair visible sur les bords
+         de la photo pendant le mouvement. Le cadrage reste légèrement
+         oversize (scale 1.05, hérité de la règle de base) mais fixe. */
+      .hero-slide.active { animation:none; }
+
+      /* Cadrage des 3 photos du carrousel harmonisé sur mobile : chaque image
+         recentrée sur son sujet pour garder le même "poids" visuel dans le cadre */
+      .hero-slide:nth-child(2) { background-position:center 78%; }
+
+      /* Pastille note + certification, en haut à gauche de la photo */
+      .hero-mobile-badge {
+        position:absolute; z-index:3; top:18px; left:18px;
+        display:flex; align-items:center; gap:5px;
+        background:rgba(10,10,10,0.5); border:1px solid rgba(255,255,255,0.2);
+        border-radius:50px; padding:7px 13px;
+        color:var(--white); font-size:0.72rem; font-weight:600;
+        backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+      }
+      .hero-mobile-badge .hmb-star { color:#F59E0B; font-weight:700; }
+
+      /* Compteur de diapositive, en haut à droite */
+      .hero-counter-mobile { display:block; position:absolute; z-index:3; top:18px; right:18px; color:rgba(255,255,255,0.85); font-size:0.78rem; font-weight:600; }
+
+      /* Points de progression, en bas à gauche */
+      .hero-dots { position:absolute; z-index:3; bottom:18px; left:18px; display:flex; align-items:center; gap:6px; }
+      .hero-dot { width:6px; height:6px; border-radius:50px; background:rgba(255,255,255,0.4); border:none; padding:0; cursor:pointer; transition:var(--transition); }
+      .hero-dot.active { width:20px; background:var(--white); }
+
+      /* Flèches précédent/suivant, en bas à droite */
+      .hero-nav-controls { display:flex; gap:8px; position:absolute; z-index:3; bottom:14px; right:14px; top:auto; left:auto; }
+      .hero-nav-controls .hero-counter { display:none; }
+      .hero-arrow { width:30px; height:30px; border-radius:50%; border:none; background:rgba(255,255,255,0.14); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+      .hero-arrow svg.lucide { width:16px; height:16px; }
 
       /* Booking strip — compact */
       .booking-strip .container { flex-direction:column; align-items:stretch; gap:8px; padding-top:14px; padding-bottom:14px; }
@@ -598,11 +729,62 @@
       .booking-strip-phone { font-size:1.05rem; gap:8px; flex:1; }
       .booking-strip-contact .btn { padding:10px 16px; font-size:0.88rem; flex-shrink:0; }
 
-      /* Services — scroll horizontal */
-      .svc-scroll { margin:0 -16px; padding:0 16px 12px; }
-      .svc-grid { display:flex; flex-wrap:nowrap; width:max-content; gap:10px; }
-      .svc-card { width:148px; flex-shrink:0; transition:border-color 0.28s ease, box-shadow 0.28s ease, transform 0.32s cubic-bezier(0.34,1.56,0.64,1), width 0.36s cubic-bezier(0.16,1,0.3,1), min-width 0.36s cubic-bezier(0.16,1,0.3,1); }
-      .svc-card.open { width:calc(100vw - 72px); min-width:calc(100vw - 72px); transform:none; box-shadow:0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(4,21,39,0.18); }
+      /* Services — 2 grandes cartes photo + 4 lignes compactes (plus de
+         défilement horizontal ni d'accordéon, contenu toujours visible,
+         même logique que le desktop) */
+      .svc-scroll { margin:0; padding:0; overflow:visible; }
+      .svc-grid { display:flex; flex-direction:column; gap:12px; width:auto; }
+      .svc-card { transform:none !important; box-shadow:none !important; }
+      #sc-1 { order:1; } #sc-3 { order:2; } #sc-2 { order:3; } #sc-4 { order:4; } #sc-5 { order:5; } #sc-6 { order:6; }
+
+      .svc-hd { flex-direction:column; align-items:flex-start; text-align:left; padding:20px; position:relative; }
+      .svc-hd::before { display:none; }
+      .svc-name { color:var(--primary); font-size:0.98rem; font-weight:700; text-align:left; padding:0; margin-top:10px; }
+      .svc-chev { display:none; }
+      .svc-body { grid-template-rows:1fr; }
+      .svc-body-in { opacity:1; transform:none; border-top:none; }
+      .svc-body-in h4 { display:none; }
+      .svc-body-in > p { color:var(--text-muted); font-size:0.82rem; }
+      .svc-feats { flex-direction:row; flex-wrap:wrap; }
+      .svc-feats li { color:var(--text-muted); font-size:0.76rem; }
+
+      /* Les 2 grandes cartes : photo de fond sur TOUTE la carte (pas
+         seulement le bouton .svc-hd), pour que la description reste
+         lisible en blanc au lieu de retomber sur un fond blanc caché */
+      #sc-1, #sc-3 { background-size:cover; background-position:center; }
+      #sc-1 { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 30%,rgba(10,10,10,0.88) 65%,rgba(10,10,10,0.94) 100%), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80'); }
+      #sc-3 { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 30%,rgba(10,10,10,0.88) 65%,rgba(10,10,10,0.94) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80'); }
+      #sc-1 .svc-hd, #sc-3 .svc-hd { min-height:160px; justify-content:flex-end; padding:20px 20px 0; background:none; }
+      #sc-1 .svc-body-in, #sc-3 .svc-body-in { padding:0 20px 20px; }
+      #sc-1 .svc-icon, #sc-3 .svc-icon { display:none; }
+      #sc-1 .svc-badge, #sc-3 .svc-badge {
+        position:static; display:inline-block; width:fit-content; margin:0 0 10px;
+        background:rgba(255,255,255,0.15); color:var(--white); border:1px solid rgba(255,255,255,0.3);
+        font-size:0.64rem; padding:4px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.5px;
+      }
+      #sc-1 .svc-name, #sc-3 .svc-name { color:var(--white); font-size:1.25rem; margin-top:0; }
+      #sc-1 .svc-body-in > p, #sc-3 .svc-body-in > p { color:rgba(255,255,255,0.8); }
+      #sc-1 .svc-feats li, #sc-3 .svc-feats li {
+        background:rgba(255,255,255,0.14); color:var(--white); border:1px solid rgba(255,255,255,0.2);
+        padding:5px 11px; border-radius:50px; font-size:0.72rem;
+      }
+      #sc-1 .svc-feats li::before, #sc-3 .svc-feats li::before { display:none; }
+
+      /* Les 4 petites cartes : lignes compactes icône + texte + chevron */
+      #sc-2, #sc-4, #sc-5, #sc-6 { border-radius:14px; }
+      #sc-2 .svc-hd, #sc-4 .svc-hd, #sc-5 .svc-hd, #sc-6 .svc-hd { flex-direction:row; align-items:center; padding:14px 16px; gap:14px; }
+      #sc-2 .svc-icon, #sc-4 .svc-icon, #sc-5 .svc-icon, #sc-6 .svc-icon { margin-top:0; width:42px; height:42px; min-width:42px; }
+      #sc-2 .svc-icon svg.lucide, #sc-4 .svc-icon svg.lucide, #sc-5 .svc-icon svg.lucide, #sc-6 .svc-icon svg.lucide { width:20px; height:20px; }
+      #sc-2 .svc-name, #sc-4 .svc-name, #sc-5 .svc-name, #sc-6 .svc-name { margin-top:0; font-size:0.92rem; }
+      #sc-2 .svc-body-in > p, #sc-4 .svc-body-in > p, #sc-5 .svc-body-in > p, #sc-6 .svc-body-in > p { font-size:0.78rem; margin-top:2px; }
+      #sc-2 .svc-feats, #sc-4 .svc-feats, #sc-5 .svc-feats, #sc-6 .svc-feats { display:none; }
+      #sc-2 .svc-chev, #sc-4 .svc-chev, #sc-5 .svc-chev, #sc-6 .svc-chev { display:flex; margin-top:0; margin-left:auto; align-self:center; }
+
+      #sc-6 { background:var(--primary); border-color:var(--primary); }
+      #sc-6 .svc-name, #sc-6 .svc-body-in > p { color:var(--white); }
+      #sc-6 .svc-body-in > p { color:rgba(255,255,255,0.65); }
+      #sc-6 .svc-icon { background:rgba(255,255,255,0.1); color:var(--gold); }
+      #sc-6 .svc-chev { color:rgba(255,255,255,0.4); }
 
       /* Calculator — compact */
       .calculator { padding:36px 0; }
@@ -624,6 +806,14 @@
       .calculator-form { background:var(--white); border:1px solid var(--border); }
       .calculator-form h3 { color:var(--primary); margin-bottom:14px; }
       .calculator-form .subtitle { display:none; }
+      .calc-tabs { padding:4px; gap:4px; margin-bottom:18px; }
+      .calc-tab { padding:8px 14px; font-size:0.82rem; }
+
+      /* Icônes de confiance en pastilles, sur plusieurs lignes (pas de défilement horizontal) */
+      .calc-trust-row { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:16px 0 0; }
+      .calc-trust-row .ctr-item { display:flex; align-items:center; gap:6px; background:var(--light-bg); border:1px solid var(--border); border-radius:50px; padding:8px 13px; color:var(--text); font-size:0.76rem; font-weight:600; white-space:nowrap; }
+      .calc-trust-row .ctr-icon { width:auto; height:auto; min-width:0; background:none; border:none; box-shadow:none; }
+      .calc-trust-row .ctr-icon svg.lucide { width:14px; height:14px; color:var(--cta); }
 
       /* Trajets rapides — pré-remplissent le formulaire au tap */
       .mobile-route-chips { display:flex; gap:8px; overflow-x:auto; margin-bottom:18px; padding-bottom:2px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
@@ -631,6 +821,58 @@
       .route-chip { flex-shrink:0; display:flex; align-items:center; gap:6px; background:var(--light-bg); border:1px solid var(--border); color:var(--text); font-size:0.8rem; font-weight:600; padding:9px 14px; border-radius:50px; white-space:nowrap; font-family:inherit; -webkit-tap-highlight-color:transparent; }
       .route-chip:active { background:rgba(4,21,39,0.10); border-color:rgba(4,21,39,0.4); }
       .route-chip span { color:var(--cta); font-weight:700; }
+
+      /* Tendance du trafic — vue mobile (remplace .tp-grid, desktop
+         inchangé) : sélecteur de créneau, tableau comparatif, trajet
+         exemple, conseil */
+      .tp-grid { display:none; }
+      .tp-mobile { display:block; max-width:none; }
+
+      /* Schéma des axes routiers — s'adapte à la largeur de l'écran,
+         sans défilement horizontal (desktop inchangé, voir règle de base) */
+      .tp-map { overflow-x:visible; max-width:100%; padding:14px; margin-top:24px; }
+      .tp-map-img { min-width:0; width:100%; }
+
+      .tp-period-scroll { display:flex; gap:8px; overflow-x:auto; margin-bottom:16px; padding-bottom:2px; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+      .tp-period-scroll::-webkit-scrollbar { display:none; }
+      .tp-period { position:relative; flex-shrink:0; display:flex; flex-direction:column; gap:2px; text-align:left; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:14px; padding:14px 14px 10px; margin-top:10px; color:rgba(255,255,255,0.6); font-family:inherit; cursor:pointer; min-width:132px; }
+      .tp-period strong { color:var(--white); font-size:0.86rem; font-weight:700; }
+      .tp-period span { font-size:0.74rem; }
+      .tp-period.now { border-color:var(--gold); }
+      .tp-period.now::after { content:'MAINTENANT'; position:absolute; top:-9px; left:12px; background:var(--gold); color:var(--primary); font-size:0.58rem; font-weight:800; padding:3px 8px; border-radius:20px; letter-spacing:0.03em; white-space:nowrap; }
+      .tp-period.active { background:var(--white); border-color:var(--white); }
+      .tp-period.active strong { color:var(--primary); }
+      .tp-period.active span { color:var(--cta); font-weight:600; }
+
+      .tp-mobile .tp-card { margin-top:14px; padding:18px; }
+      .tp-card-head { position:relative; font-size:0.92rem; }
+      .tp-axes-period { margin-left:auto; font-size:0.72rem; font-weight:600; color:rgba(255,255,255,0.4); text-transform:none; letter-spacing:0; }
+      .tp-axes-table { width:100%; border-collapse:collapse; margin-top:4px; }
+      .tp-axes-table th { text-align:left; font-size:0.66rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:rgba(255,255,255,0.35); padding:0 0 10px; }
+      .tp-axes-table th:not(:first-child), .tp-axes-table td:not(:first-child) { text-align:left; padding-left:10px; }
+      .tp-axes-table td { padding:10px 0; border-top:1px solid rgba(255,255,255,0.07); font-size:0.82rem; color:rgba(255,255,255,0.85); vertical-align:top; }
+      .tp-axes-table td small { color:rgba(255,255,255,0.4); font-weight:400; }
+      .tp-axes-table .tp-status { font-size:0.76rem; }
+
+      .tp-compare-row { display:flex; justify-content:space-between; align-items:baseline; }
+      .tp-compare-label { font-size:0.82rem; color:rgba(255,255,255,0.65); }
+      .tp-compare-value { font-size:1.2rem; font-weight:800; color:var(--white); }
+      .tp-compare-value-green { color:#2ECC71; }
+      .tp-bar-track { height:7px; border-radius:50px; background:rgba(255,255,255,0.08); margin-top:6px; overflow:hidden; }
+      .tp-bar { height:100%; border-radius:50px; transition:width 0.4s ease; }
+      .tp-bar-red { background:var(--cta); }
+      .tp-bar-green { background:#2ECC71; }
+      .tp-savings { display:flex; align-items:center; gap:6px; background:rgba(46,204,113,0.12); color:#2ECC71; font-size:0.8rem; font-weight:700; padding:10px 14px; border-radius:12px; margin-top:16px; }
+      .tp-savings svg.lucide { width:15px; height:15px; }
+
+      .tp-advice { background:rgba(255,59,48,0.08); border-color:rgba(255,59,48,0.25); }
+      .tp-advice .tp-card-head { color:var(--white); margin-bottom:10px; padding-bottom:0; border-bottom:none; }
+      .tp-advice-icon { width:28px; height:28px; border-radius:8px; background:var(--cta); display:flex; align-items:center; justify-content:center; }
+      .tp-advice-icon svg.lucide { width:16px; height:16px; color:var(--white); }
+      .tp-advice h4 { color:var(--white); font-size:1.05rem; margin-bottom:8px; }
+      .tp-advice p { color:rgba(255,255,255,0.65); font-size:0.86rem; margin-bottom:18px; }
+
+      .tp-disclaimer-mobile { font-size:0.72rem; color:rgba(255,255,255,0.35); text-align:center; margin-top:18px; line-height:1.5; }
 
       .calculator-form .form-group label { color:var(--text-muted); font-weight:600; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
       .calculator-form .form-group input { background:var(--light-bg); border-color:var(--border); color:var(--text); }
@@ -661,12 +903,12 @@
       .mobile-trust-cta { display:flex; flex-direction:column; gap:14px; margin-top:20px; }
       .mtc-trust { display:flex; align-items:center; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px 16px; }
       .mtc-trust-item { display:flex; align-items:center; gap:10px; flex:1; min-width:0; color:var(--white); }
-      .mtc-trust-item i { color:var(--accent); flex-shrink:0; }
+      .mtc-trust-item svg.lucide { color:var(--accent); flex-shrink:0; }
       .mtc-trust-item strong { display:block; font-size:0.92rem; font-weight:700; }
       .mtc-trust-item span { display:block; font-size:0.72rem; color:rgba(255,255,255,0.5); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .mtc-trust-sep { width:1px; align-self:stretch; background:rgba(255,255,255,0.1); margin:0 14px; }
       .mtc-wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:14px; border:1.5px solid rgba(255,255,255,0.25); border-radius:50px; color:var(--white); font-weight:700; font-size:0.92rem; text-decoration:none; background:transparent; }
-      .mtc-wa-btn i { color:#25D366; }
+      .mtc-wa-btn svg.lucide { color:#25D366; }
 
       /* Comment ça marche — liste compacte à badges ronds numérotés */
       .how-it-works .section-header { margin-bottom:16px; }
@@ -677,12 +919,42 @@
       .how-step h4 { font-size:0.98rem; margin-bottom:0; }
       .how-step p { display:none; }
 
-      /* Tarifs table — compact */
-      .tarif-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
-      .tarif-table { min-width:300px; }
-      .tarif-table thead th { padding:10px 14px; }
-      .tarif-table tbody td { padding:11px 14px; font-size:0.88rem; }
+      /* Fusionne transparence + "Comment ça marche" dans une carte sombre
+         unique sur mobile ; le desktop garde les 2 blocs clairs d'origine */
+      .section-header, .how-grid-desktop { display:none; }
+      .how-mobile-card { display:block; background:var(--primary); border-radius:20px; padding:24px 20px; color:var(--white); }
+      .how-mobile-card .sec-label { color:rgba(255,255,255,0.4); }
+      .how-mobile-card h3 { color:var(--white); margin:8px 0 18px; font-size:1.2rem; }
+      .how-stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+      .how-stat-tile { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; }
+      .hst-label { display:block; font-size:0.7rem; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+      .hst-value { display:block; font-size:1.05rem; font-weight:700; color:var(--white); }
+      .hst-value-accent { color:var(--gold); }
+      .how-mobile-desc { font-size:0.82rem; color:rgba(255,255,255,0.55); margin-bottom:20px; }
+      .how-mobile-sublabel { display:block; margin-bottom:14px; }
+      .how-mobile-card .how-grid { margin-bottom:22px; }
+      .how-mobile-card .how-num { background:rgba(255,59,48,0.18); }
+      .how-mobile-card .how-step h4 { color:var(--white); }
+      .how-mobile-cta svg.lucide { width:16px; height:16px; }
+
+      /* Tarifs — liste de cartes compactes plutôt que le tableau */
+      .tarif-table-wrap { display:none; }
       .tarif-note { font-size:0.72rem; }
+      .tarif-cards-grid { display:flex; flex-direction:column; gap:10px; margin-top:24px; }
+      .trc { display:grid; grid-template-columns:1fr auto; grid-template-rows:auto auto; align-items:center; column-gap:10px; padding:14px 16px; }
+      .trc-route { display:flex; align-items:center; gap:6px; grid-column:1; grid-row:1; margin-bottom:2px; font-size:0.86rem; }
+      .trc-route svg.lucide { display:none; }
+      .trc-line { display:block; flex:0 0 14px; width:14px; }
+      .trc-meta { grid-column:1; grid-row:2; margin-bottom:0; font-size:0.74rem; }
+      .trc-bottom { grid-column:2; grid-row:1 / span 2; display:flex; align-items:center; gap:8px; }
+      .trc-price { font-size:1.2rem; }
+      .trc-cta { padding:7px 12px; font-size:0.72rem; }
+      .trc-badge { top:-10px; font-size:0.6rem; padding:4px 10px; }
+      .trc-featured { background:var(--primary); border-color:var(--primary); }
+      .trc-featured .trc-route, .trc-featured .trc-price { color:var(--white); }
+      .trc-featured .trc-line { border-top-color:rgba(255,255,255,0.25); }
+      .trc-featured .trc-meta { color:rgba(255,255,255,0.55); }
+      .trc-featured .trc-cta-solid { background:var(--cta); color:var(--white); }
 
       /* Témoignages — scroll horizontal */
       .testi-scroll { margin:0 -16px; padding:0 16px 10px; }
@@ -950,21 +1222,18 @@
       .utility-bar-sep { color:rgba(255,255,255,0.25); }
       .utility-bar a { color:rgba(255,255,255,0.65); transition:var(--transition); }
       .utility-bar a:hover { color:var(--white); }
-      .utility-bar-lang { color:rgba(255,255,255,0.4); }
+      .utility-bar-lang { color:rgba(255,255,255,0.4); background:none; border:none; padding:0; font:inherit; cursor:pointer; transition:var(--transition); }
+      .utility-bar-lang:hover { color:rgba(255,255,255,0.7); }
       .utility-bar-lang strong { color:var(--white); font-weight:700; }
       .navbar { top:38px; }
 
-      /* Logo deux lignes : PARIS (rouge, petit) / TaxiMoto (marine, grand) */
-      .navbar-brand-text { display:flex; flex-direction:column; line-height:1.05; gap:1px; }
-      .navbar-brand-kicker { font-size:0.68rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:var(--cta); }
-      .navbar-brand-name { font-size:1.3rem; font-weight:800; color:var(--primary); }
-
-      /* Pastille téléphone + bouton Réserver, visibles uniquement sur desktop
-         (le mobile garde son comportement d'origine : juste le hamburger) */
-      .navbar-phone { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border:1.5px solid var(--border); border-radius:50px; color:var(--primary); font-weight:700; font-size:0.9rem; margin-right:10px; white-space:nowrap; }
+      /* Pastille téléphone (texte visible) + bouton Réserver — sur mobile
+         le téléphone reste une icône seule, voir @media(max-width:768px) */
+      .navbar-phone { padding:10px 18px; border:1.5px solid var(--border); border-radius:50px; font-weight:700; font-size:0.9rem; margin-right:10px; white-space:nowrap; }
       .navbar-phone:hover { border-color:var(--primary); }
-      .navbar-phone i { width:16px; height:16px; flex-shrink:0; }
-      .navbar-cta { display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+      .navbar-phone svg.lucide { width:16px; height:16px; flex-shrink:0; }
+      .navbar-phone-text { display:inline; }
+      .navbar-cta { white-space:nowrap; }
       .navbar-nav { flex-wrap:nowrap; margin-left:auto; margin-right:28px; }
       .navbar-nav a { white-space:nowrap; }
       .navbar-nav li { flex-shrink:0; }
@@ -1000,7 +1269,7 @@
       .hero-counter { color:rgba(255,255,255,0.8); font-size:0.85rem; font-weight:600; margin-right:4px; }
       .hero-arrow { width:36px; height:36px; border-radius:50%; border:none; background:rgba(255,255,255,0.14); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:var(--transition); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
       .hero-arrow:hover { background:rgba(255,255,255,0.28); }
-      .hero-arrow i { width:18px; height:18px; }
+      .hero-arrow svg.lucide { width:18px; height:18px; }
 
       /* Stats (4,9★ / VMDTR) en bas à droite de la carte, par-dessus la photo */
       .hero-stats { position:absolute; z-index:3; bottom:150px; right:150px; margin-top:0; display:flex; gap:20px; padding-top:0; border-top:none; }
@@ -1054,18 +1323,13 @@
       .calculator-info { order:3; width:100%; max-width:560px; margin:40px auto 0; text-align:center; }
       .calculator-info .pricing-table { text-align:left; }
 
-      /* Onglets du mode de réservation (cosmétique : seul le mode "course
-         immédiate" est réellement câblé au calculateur pour l'instant) */
-      .calc-tabs { display:flex; gap:6px; background:var(--light-bg); border-radius:50px; padding:5px; margin-bottom:24px; width:fit-content; }
-      .calc-tab { border:none; background:transparent; padding:10px 20px; border-radius:50px; font-weight:600; font-size:0.88rem; color:var(--text-muted); cursor:pointer; font-family:inherit; transition:var(--transition); }
-      .calc-tab.active { background:var(--white); color:var(--primary); box-shadow:var(--shadow); }
 
       /* Champs de trajet en ligne avec bouton d'inversion + calcul inline */
       .route-inputs { display:grid; grid-template-columns:1fr auto 1fr auto; align-items:end; gap:12px; }
       .route-inputs .form-group { margin-bottom:0; }
       .route-swap { display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; border:2px solid var(--border); background:var(--white); color:var(--text-muted); cursor:pointer; margin-bottom:2px; flex-shrink:0; transition:var(--transition); }
       .route-swap:hover { border-color:var(--accent); color:var(--accent); }
-      .route-swap i { width:18px; height:18px; }
+      .route-swap svg.lucide { width:18px; height:18px; }
       .calc-submit-inline { display:inline-flex; white-space:nowrap; padding:14px 26px; margin-bottom:2px; }
 
       /* Trajets fréquents, visibles aussi sur desktop, alignés en ligne */
@@ -1079,8 +1343,14 @@
 
       /* Icônes de confiance sous la carte, comme sur la référence */
       .calc-trust-row { display:flex; justify-content:center; gap:22px; flex-wrap:nowrap; max-width:none; width:100%; margin:28px auto 0; }
-      .calc-trust-row .ctr-item { display:flex; align-items:center; gap:8px; color:var(--text-muted); font-size:0.8rem; white-space:nowrap; max-width:none; }
-      .calc-trust-row .ctr-item i { color:var(--cta); flex-shrink:0; width:18px; height:18px; }
+      .calc-trust-row .ctr-item { display:flex; align-items:center; gap:10px; color:var(--text-muted); font-size:0.8rem; white-space:nowrap; max-width:none; }
+      .calc-trust-row .ctr-icon {
+        display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        width:32px; height:32px; min-width:32px; border-radius:50%;
+        background:var(--white); border:1px solid var(--border);
+        box-shadow:0 2px 6px rgba(10,10,10,0.07);
+      }
+      .calc-trust-row .ctr-icon svg.lucide { color:var(--accent); width:16px; height:16px; }
 
       /* Services — 2 grandes cartes photo + 4 petites cartes compactes,
          mêmes 6 services/libellés ; le contenu reste toujours visible
@@ -1104,13 +1374,14 @@
       .svc-feats { flex-direction:row; flex-wrap:wrap; }
       .svc-feats li { color:var(--text-muted); font-size:0.78rem; }
 
-      /* Les 2 grandes cartes : photo de fond, texte clair */
-      #sc-1 .svc-hd, #sc-3 .svc-hd {
-        min-height:300px; justify-content:flex-end; padding:28px;
-        background-size:cover; background-position:center;
-      }
-      #sc-1 .svc-hd { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 35%,rgba(10,10,10,0.88) 100%), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80'); }
-      #sc-3 .svc-hd { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 35%,rgba(10,10,10,0.88) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80'); }
+      /* Les 2 grandes cartes : photo de fond sur TOUTE la carte (pas
+         seulement le bouton .svc-hd), pour que la description reste
+         lisible en blanc au lieu de retomber sur un fond blanc caché */
+      #sc-1, #sc-3 { background-size:cover; background-position:center; }
+      #sc-1 { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 30%,rgba(10,10,10,0.88) 65%,rgba(10,10,10,0.94) 100%), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80'); }
+      #sc-3 { background-image:linear-gradient(180deg,rgba(10,10,10,0.05) 30%,rgba(10,10,10,0.88) 65%,rgba(10,10,10,0.94) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80'); }
+      #sc-1 .svc-hd, #sc-3 .svc-hd { min-height:230px; justify-content:flex-end; padding:28px 28px 0; background:none; }
+      #sc-1 .svc-body-in, #sc-3 .svc-body-in { padding:0 28px 28px; }
       #sc-1 .svc-icon, #sc-3 .svc-icon { display:none; }
       #sc-1 .svc-badge, #sc-3 .svc-badge {
         position:static; display:inline-block; width:fit-content; margin:0 0 14px;
@@ -1145,7 +1416,7 @@
       .trc { display:block; background:var(--white); border:1px solid var(--border); border-radius:16px; padding:22px 20px; transition:var(--transition); position:relative; }
       .trc:hover { border-color:var(--primary); box-shadow:var(--shadow-lg); transform:translateY(-2px); }
       .trc-route { display:flex; align-items:center; gap:8px; font-weight:700; color:var(--primary); font-size:0.95rem; margin-bottom:10px; }
-      .trc-route i { width:16px; height:16px; color:var(--cta); flex-shrink:0; }
+      .trc-route svg.lucide { width:16px; height:16px; color:var(--cta); flex-shrink:0; }
       .trc-line { flex:1; min-width:16px; height:0; border-top:2px dotted var(--border); }
       .trc-meta { color:var(--text-muted); font-size:0.8rem; margin-bottom:16px; }
       .trc-bottom { display:flex; align-items:center; justify-content:space-between; }
@@ -1154,7 +1425,7 @@
       .trc:hover .trc-cta { background:rgba(10,10,10,0.08); }
       .trc-featured { background:var(--primary); border-color:var(--primary); }
       .trc-featured .trc-route, .trc-featured .trc-price { color:var(--white); }
-      .trc-featured .trc-route i { color:var(--cta); }
+      .trc-featured .trc-route svg.lucide { color:var(--cta); }
       .trc-featured .trc-line { border-top-color:rgba(255,255,255,0.25); }
       .trc-featured .trc-meta { color:rgba(255,255,255,0.55); }
       .trc-cta-solid { background:var(--cta); color:var(--white); }
@@ -1183,7 +1454,7 @@
       .footer-phone-btn { background:none !important; padding:0 !important; font-size:1.8rem; font-weight:800; justify-content:flex-start !important; margin-bottom:8px !important; }
       .footer-contact-note { margin-bottom:18px !important; }
       .footer-wa-btn { background:#25D366 !important; width:auto !important; padding:13px 26px !important; }
-      .footer-wa-btn i { color:var(--white) !important; }
+      .footer-wa-btn svg.lucide { color:var(--white) !important; }
 
       /* Bouton flottant avec libellé (desktop) */
       .floating-wa { width:auto; border-radius:50px; padding:0 20px 0 16px; gap:8px; }
@@ -1210,7 +1481,7 @@
       <div class="utility-bar-right">
         <a href="#entreprises">Espace entreprises</a>
         <a href="#contact">Contact</a>
-        <span class="utility-bar-lang"><strong>FR</strong> / EN</span>
+        <button type="button" class="utility-bar-lang" id="lang-toggle" aria-label="Switch language / Changer de langue"><strong>FR</strong> / EN</button>
       </div>
     </div>
   </div>
@@ -1234,7 +1505,7 @@
         <li><a href="blog/index.html">Actualités</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
-      <a href="tel:+33611916560" class="navbar-phone"><i data-lucide="phone"></i> 06 11 91 65 60</a>
+      <a href="tel:+33611916560" class="navbar-phone"><i data-lucide="phone"></i><span class="navbar-phone-text"> 06 11 91 65 60</span></a>
       <a href="tel:+33611916560" class="navbar-cta"><i data-lucide="phone"></i> Réserver</a>
       <button class="navbar-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -1256,6 +1527,13 @@
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80')" role="img" aria-label="Aile d'avion au-dessus des nuages"></div>
     <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80')" role="img" aria-label="Tours de bureaux vitrées"></div>
     <div class="hero-overlay"></div>
+    <div class="hero-mobile-badge"><span class="hmb-star">4,9★</span> · Chauffeur VMDTR</div>
+    <div class="hero-counter-mobile"><span id="hero-counter-current-m">1</span>/3</div>
+    <div class="hero-dots" role="tablist" aria-label="Diapositives du hero">
+      <button class="hero-dot active" data-dot="0" aria-label="Diapositive 1"></button>
+      <button class="hero-dot" data-dot="1" aria-label="Diapositive 2"></button>
+      <button class="hero-dot" data-dot="2" aria-label="Diapositive 3"></button>
+    </div>
     <div class="hero-nav-controls" role="tablist" aria-label="Diapositives du hero">
       <span class="hero-counter"><span id="hero-counter-current">1</span>/3</span>
       <button class="hero-arrow" data-dir="-1" aria-label="Diapositive précédente"><i data-lucide="chevron-left"></i></button>
@@ -1382,7 +1660,7 @@
           <div class="svc-body" id="sb-4" aria-hidden="true">
             <div class="svc-body-in">
               <h4>Mise à Disposition</h4>
-              <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées — nous restons avec vous.</p>
+              <p>Besoin d'un chauffeur à votre disposition pour plusieurs heures ? Réunions, visites, journées chargées. Nous restons avec vous.</p>
               <ul class="svc-feats">
                 <li>À la demi-journée ou journée</li>
                 <li>Plusieurs arrêts inclus</li>
@@ -1424,7 +1702,7 @@
           <div class="svc-body" id="sb-6" aria-hidden="true">
             <div class="svc-body-in">
               <h4>Service Nuit &amp; Weekend</h4>
-              <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs — nous sommes là quand les autres ne le sont pas.</p>
+              <p>Disponible 24h/24 et 7j/7. Sorties, événements, retours tardifs : nous sommes là quand les autres ne le sont pas.</p>
               <ul class="svc-feats">
                 <li>Disponible de 20h à 7h</li>
                 <li>Samedis et dimanches</li>
@@ -1471,9 +1749,9 @@
 
         <div class="calculator-form" id="estimer">
           <div class="calc-tabs">
-            <button type="button" class="calc-tab active" data-tab="0">Course immédiate</button>
-            <button type="button" class="calc-tab" data-tab="1">Réserver à l'avance</button>
-            <button type="button" class="calc-tab" data-tab="2">Transfert aéroport</button>
+            <button type="button" class="calc-tab active" data-tab="0">Immédiate</button>
+            <button type="button" class="calc-tab" data-tab="1">À l'avance</button>
+            <button type="button" class="calc-tab" data-tab="2">Aéroport</button>
           </div>
           <h3>Estimez votre trajet</h3>
           <p class="subtitle">Saisissez vos adresses pour obtenir un prix instantané</p>
@@ -1556,10 +1834,10 @@
             <div class="estimate-price">
               <div class="price-label">Votre prix</div>
               <div class="price-amount" id="est-price">—</div>
-              <div class="price-note" id="est-period">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic</div>
+              <div class="price-note" id="est-period">Prix ferme, confirmé avant le départ. Aucun supplément lié au trafic</div>
             </div>
             <div id="map-preview"></div>
-            <p class="estimate-disclaimer">Prix ferme, confirmé avant le départ — aucun supplément lié au trafic.</p>
+            <p class="estimate-disclaimer">Prix ferme, confirmé avant le départ. Aucun supplément lié au trafic.</p>
             <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
               <a href="tel:+33611916560" class="btn btn-primary" style="flex:1;justify-content:center;min-width:140px;">
                 <i data-lucide="phone"></i> Appeler
@@ -1572,11 +1850,11 @@
         </div>
 
         <div class="calc-trust-row">
-          <div class="ctr-item"><i data-lucide="shield-check"></i> Chauffeur certifié VMDTR</div>
-          <div class="ctr-item"><i data-lucide="ban"></i> Prix fixe annoncé avant départ</div>
-          <div class="ctr-item"><i data-lucide="hard-hat"></i> Casque, gants, blouson fournis</div>
-          <div class="ctr-item"><i data-lucide="shield"></i> Assurance passager incluse</div>
-          <div class="ctr-item"><i data-lucide="file-text"></i> Facture sur demande</div>
+          <div class="ctr-item"><span class="ctr-icon"><i data-lucide="shield-check"></i></span> Chauffeur certifié VMDTR</div>
+          <div class="ctr-item"><span class="ctr-icon"><i data-lucide="ban"></i></span> Prix fixe annoncé avant départ</div>
+          <div class="ctr-item"><span class="ctr-icon"><i data-lucide="hard-hat"></i></span> Casque, gants, blouson fournis</div>
+          <div class="ctr-item"><span class="ctr-icon"><i data-lucide="shield"></i></span> Assurance passager incluse</div>
+          <div class="ctr-item"><span class="ctr-icon"><i data-lucide="file-text"></i></span> Facture sur demande</div>
         </div>
 
       </div>
@@ -1613,15 +1891,152 @@
   </div><!-- /.mobile-flow -->
 
   <!-- ============================================================
+       TENDANCE DU TRAFIC — statut calculé côté client selon le jour/
+       l'heure du visiteur (pas de flux live connecté), pour contraster
+       la circulation parisienne avec la moto-taxi
+  ============================================================ -->
+  <section class="section traffic-pulse" id="trafic">
+    <div class="container">
+      <div class="tp-header">
+        <span class="sec-label" style="color:rgba(255,255,255,0.4);">Tendance du trafic</span>
+        <h2>Pendant que Paris roule au ralenti.</h2>
+        <div class="tp-live-badge">
+          <span class="tp-live-dot"></span>
+          <span><strong id="tp-time">--:--:--</strong></span>
+        </div>
+      </div>
+      <div class="tp-grid">
+        <div class="tp-card">
+          <div class="tp-card-head"><i data-lucide="car"></i> Axes routiers</div>
+          <div class="tp-row" id="tp-periph-int">
+            <span class="tp-name">Périphérique intérieur</span>
+            <span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span>
+          </div>
+          <div class="tp-row" id="tp-periph-ext">
+            <span class="tp-name">Périphérique extérieur</span>
+            <span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span>
+          </div>
+          <div class="tp-row" id="tp-boulevards">
+            <span class="tp-name">Grands boulevards</span>
+            <span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span>
+          </div>
+          <div class="tp-row" id="tp-quais">
+            <span class="tp-name">Quais de Seine</span>
+            <span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span>
+          </div>
+        </div>
+        <div class="tp-card tp-card-highlight">
+          <div class="tp-card-head"><i data-lucide="bike"></i> Moto-Taxi Paris</div>
+          <div class="tp-highlight-body">
+            <span class="tp-status tp-status-big"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span>
+            <p>On se faufile entre les files. Le trafic ne change pas notre heure d'arrivée.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tp-map tp-map-light">
+        <img src="schema-routes-idf.png" alt="Schéma des principaux axes routiers de Paris et de la petite couronne" class="tp-map-img">
+      </div>
+
+      <!-- Vue mobile : sélecteur de créneau + tableau comparatif voiture/
+           taxi-moto + exemple de trajet + conseil. Le bloc .tp-grid
+           ci-dessus reste la vue desktop, inchangée. -->
+      <div class="tp-mobile">
+        <div class="tp-period-scroll">
+          <button type="button" class="tp-period" data-period="matin"><strong>Pointe du matin</strong><span>Lun–Ven · 7h–10h</span></button>
+          <button type="button" class="tp-period" data-period="journee"><strong>Journée</strong><span>Lun–Ven · 10h–16h</span></button>
+          <button type="button" class="tp-period" data-period="soir"><strong>Pointe du soir</strong><span>Lun–Ven · 17h–20h</span></button>
+          <button type="button" class="tp-period" data-period="nuit"><strong>Nuit &amp; week-end</strong><span>20h–7h et WE</span></button>
+        </div>
+
+        <div class="tp-card">
+          <div class="tp-card-head"><i data-lucide="signpost"></i> Axes routiers <span class="tp-axes-period" id="tp-axes-period">Journée</span></div>
+          <table class="tp-axes-table">
+            <thead><tr><th>Axe</th><th>Voiture</th><th>Taxi-Moto</th></tr></thead>
+            <tbody id="tp-axes-body">
+              <tr data-axis="periph-int"><td>Périphérique intérieur<br><small>Boucle de Paris</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+              <tr data-axis="periph-ext"><td>Périphérique extérieur<br><small>Boucle de Paris</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+              <tr data-axis="a1"><td>A1<br><small>Paris ↔ Roissy-CDG</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+              <tr data-axis="a6"><td>A6<br><small>Paris ↔ Orly</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+              <tr data-axis="a86"><td>A86<br><small>Petite couronne</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+              <tr data-axis="a13"><td>A13 / A14<br><small>Paris ↔ La Défense</small></td><td><span class="tp-status"><span class="tp-dot"></span><span class="tp-label">—</span></span></td><td><span class="tp-status"><span class="tp-dot tp-dot-low"></span><span class="tp-label">Fluide</span></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tp-card">
+          <div class="tp-card-head"><i data-lucide="plane"></i> Paris centre → CDG</div>
+          <div class="tp-compare">
+            <div class="tp-compare-row">
+              <div class="tp-compare-label">En voiture / VTC</div>
+              <div class="tp-compare-value" id="tp-car-time">45–60 min</div>
+            </div>
+            <div class="tp-bar-track"><div class="tp-bar tp-bar-red" id="tp-car-bar" style="width:100%"></div></div>
+            <div class="tp-compare-row" style="margin-top:14px;">
+              <div class="tp-compare-label">En Taxi-Moto</div>
+              <div class="tp-compare-value tp-compare-value-green" id="tp-moto-time">35 min</div>
+            </div>
+            <div class="tp-bar-track"><div class="tp-bar tp-bar-green" id="tp-moto-bar" style="width:58%"></div></div>
+            <div class="tp-savings" id="tp-savings"><i data-lucide="zap"></i> Jusqu'à 25 min gagnées en Taxi-Moto</div>
+          </div>
+        </div>
+
+        <div class="tp-card tp-advice">
+          <div class="tp-card-head"><span class="tp-advice-icon"><i data-lucide="lightbulb"></i></span> Notre conseil</div>
+          <h4 id="tp-advice-title">Trafic dense, mais prévisible</h4>
+          <p id="tp-advice-text">En journée, le périphérique reste chargé. Idéal pour un rendez-vous pro ou une correspondance en gare : prise en charge rapide, prix fixe.</p>
+          <a href="#estimer" class="btn btn-primary" style="width:100%;justify-content:center;">Estimer ma course <i data-lucide="arrow-right"></i></a>
+        </div>
+
+        <p class="tp-disclaimer-mobile">Tendances de circulation habituelles par créneau, hors incidents et travaux. Durées indicatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        COMMENT ÇA MARCHE — descriptions reprises du calculateur, du
        message d'estimation et du contact WhatsApp existants
   ============================================================ -->
   <section class="section how-it-works">
     <div class="container">
+      <!-- Bloc transparence, mobile uniquement : fusionne la grille de
+           prix (reprise de .calculator-info, masquée sur mobile) avec
+           "Comment ça marche" dans une seule carte sombre -->
+      <div class="how-mobile-card">
+        <span class="sec-label">Transparence</span>
+        <h3>Comment est calculé votre prix.</h3>
+        <div class="how-stats-grid">
+          <div class="how-stat-tile"><span class="hst-label">Prise en charge</span><span class="hst-value">25,00 €</span></div>
+          <div class="how-stat-tile"><span class="hst-label">Au kilomètre</span><span class="hst-value">2,50 €</span></div>
+          <div class="how-stat-tile"><span class="hst-label">Nuit / WE / fériés</span><span class="hst-value hst-value-accent">+33 %</span></div>
+          <div class="how-stat-tile"><span class="hst-label">Minimum</span><span class="hst-value">45,00 €</span></div>
+        </div>
+        <p class="how-mobile-desc">Majoration de 20h à 7h et toute la journée les samedis, dimanches et jours fériés. Forfaits fixes vers Paris, Orly, CDG, La Défense et Massy.</p>
+        <span class="sec-label how-mobile-sublabel">Comment ça marche</span>
+        <div class="how-grid">
+          <div class="how-step">
+            <span class="how-num">01</span>
+            <h4>Indiquez votre trajet</h4>
+            <p>Saisissez vos adresses pour obtenir un prix instantané.</p>
+          </div>
+          <div class="how-step">
+            <span class="how-num">02</span>
+            <h4>Recevez un prix immédiat</h4>
+            <p>Prix ferme, confirmé avant le départ. Aucun supplément lié au trafic.</p>
+          </div>
+          <div class="how-step">
+            <span class="how-num">03</span>
+            <h4>Réservez via WhatsApp</h4>
+            <p>Confirmez directement via WhatsApp. Réponse rapide garantie.</p>
+          </div>
+        </div>
+        <a href="#estimer" class="btn btn-primary how-mobile-cta" style="width:100%;justify-content:center;">Estimer ma course <i data-lucide="arrow-right"></i></a>
+      </div>
+
       <div class="section-header">
         <h2>Comment ça marche.</h2>
       </div>
-      <div class="how-grid">
+      <div class="how-grid how-grid-desktop">
         <div class="how-step">
           <span class="how-num">01</span>
           <h4>Indiquez votre trajet</h4>
@@ -1630,7 +2045,7 @@
         <div class="how-step">
           <span class="how-num">02</span>
           <h4>Recevez un prix immédiat</h4>
-          <p>Prix ferme, confirmé avant le départ — aucun supplément lié au trafic.</p>
+          <p>Prix ferme, confirmé avant le départ. Aucun supplément lié au trafic.</p>
         </div>
         <div class="how-step">
           <span class="how-num">03</span>
@@ -1705,7 +2120,7 @@
         </a>
       </div>
 
-      <p class="tarif-note">* Tarifs TTC — majoration nuit (20h–7h) et week-end : +33% · <a href="#estimer" style="color:var(--cta);font-weight:600;">Estimez votre trajet →</a></p>
+      <p class="tarif-note">* Tarifs TTC · majoration nuit (20h–7h) et week-end : +33% · <a href="#estimer" style="color:var(--cta);font-weight:600;">Estimez votre trajet →</a></p>
     </div>
   </section>
 
@@ -1714,7 +2129,7 @@
   ============================================================ -->
   <section class="section testimonials" id="avis">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header" style="margin-bottom:28px;">
         <span class="sec-label">Avis clients</span>
         <div class="testi-score">4,9<span>/5</span></div>
         <div class="testi-score-sub">
@@ -1723,6 +2138,25 @@
           <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
           <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
           <i data-lucide="star" style="width:16px;height:16px;fill:#F59E0B;stroke:#F59E0B;"></i>
+        </div>
+      </div>
+
+      <div class="avis-entreprise-grid">
+        <div class="avis-widget-card">
+          <h4 style="color:var(--white);font-size:0.95rem;">Avis Google</h4>
+          <div class="avis-widget-placeholder">[Widget avis Google, 3 derniers avis vérifiés]</div>
+          <a href="#avis" class="avis-widget-link">Voir tous les avis <i data-lucide="arrow-right"></i></a>
+        </div>
+
+        <div class="entreprise-card" id="entreprises" style="background-image:linear-gradient(180deg,rgba(10,10,10,0.35) 0%,rgba(10,10,10,0.92) 100%), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80');">
+          <span class="sec-label" style="color:rgba(255,255,255,0.45);">Entreprises</span>
+          <h3>Un compte entreprise pour vos déplacements urgents.</h3>
+          <ul class="entreprise-feats">
+            <li><i data-lucide="check"></i> Facturation mensuelle</li>
+            <li><i data-lucide="check"></i> Tarifs négociés au volume</li>
+            <li><i data-lucide="check"></i> Reporting détaillé</li>
+          </ul>
+          <a href="#contact" class="btn entreprise-cta">Demander un devis entreprise</a>
         </div>
       </div>
     </div>
@@ -1753,37 +2187,37 @@
       <div class="faq-list">
 
         <div class="faq-item">
-          <button class="faq-question">Comment réserver un moto-taxi à Paris ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Comment réserver un moto-taxi à Paris ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Appelez le 06 11 91 65 60 ou envoyez un message WhatsApp 24h/24. Vous pouvez aussi estimer votre tarif via notre calculateur puis réserver directement depuis l'estimation. Confirmation par SMS garantie.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Quelle est la différence entre un moto-taxi et un VTC ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Quelle est la différence entre un moto-taxi et un VTC ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Un moto-taxi (VMDTR) est un véhicule à deux roues motorisé avec chauffeur professionnel certifié. Il est jusqu'à 3x plus rapide qu'un VTC en heure de pointe car il circule entre les files de trafic. Idéal pour les trajets urgents à Paris.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Est-ce que le moto-taxi est sûr ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Est-ce que le moto-taxi est sûr ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Oui. Notre chauffeur est certifié VMDTR, titulaire d'une carte professionnelle préfectorale. Casque homologué fourni, assurance responsabilité civile passager incluse. Votre sécurité est notre priorité absolue.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Peut-on transporter des bagages ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Peut-on transporter des bagages ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Oui, nous acceptons un bagage de cabine (sac à dos ou trolley cabine jusqu'à 10 kg) dans le top-case. Pour les bagages volumineux, prévenez-nous à la réservation et nous trouverons la meilleure solution.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Comment est calculé le prix d'un trajet ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Comment est calculé le prix d'un trajet ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Le tarif comprend une prise en charge (25€) + 2,50€/km, avec un minimum de 45€ par course. Une majoration de +33% s'applique sur le total de 20h à 7h, ainsi que toute la journée les samedis, dimanches et jours fériés. Des forfaits fixes remplacent ce calcul vers Paris intramuros, Orly, CDG, La Défense et Massy. Utilisez notre calculateur pour une estimation précise avec la carte interactive.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Proposez-vous la mise à disposition pour les événements ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Proposez-vous la mise à disposition pour les événements ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Absolument ! Mariage, soirée VIP, tournage, journée d'entreprise… Nous proposons une mise à disposition à la demi-journée ou journée avec tarif horaire négocié. Contactez-nous pour un devis personnalisé.</p></div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-question">Proposez-vous la facturation pour les entreprises ?<span class="faq-icon">+</span></button>
+          <button class="faq-question">Proposez-vous la facturation pour les entreprises ?<span class="faq-icon"><i data-lucide="chevron-down"></i></span></button>
           <div class="faq-answer"><p>Oui. Comptes entreprises avec facturation mensuelle, tarifs négociés selon le volume, et reporting détaillé. Contactez-nous pour établir un devis personnalisé.</p></div>
         </div>
 
@@ -1806,7 +2240,7 @@
               <div class="contact-item-content">
                 <h4>Téléphone</h4>
                 <p><a href="tel:+33611916560">06 11 91 65 60</a></p>
-                <p style="font-size:0.82rem;margin-top:2px;">Disponible 24h/24 — 7j/7</p>
+                <p style="font-size:0.82rem;margin-top:2px;">Disponible 24h/24 · 7j/7</p>
               </div>
             </div>
             <div class="contact-item">
@@ -2431,8 +2865,10 @@
     const slides = hero.querySelectorAll('.hero-slide');
     const copies = hero.querySelectorAll('.hero-slide-copy');
     const arrows = hero.querySelectorAll('.hero-arrow');
+    const dots = hero.querySelectorAll('.hero-dot');
     const counter = document.getElementById('hero-counter-current');
-    if (!slides.length || !arrows.length || !window.matchMedia('(min-width:769px)').matches) return;
+    const counterMobile = document.getElementById('hero-counter-current-m');
+    if (!slides.length || !arrows.length) return;
 
     const DURATION = 6000;
     let idx = 0, timer;
@@ -2440,10 +2876,13 @@
     function goTo(next) {
       slides[idx].classList.remove('active');
       copies[idx].classList.remove('active');
+      if (dots[idx]) dots[idx].classList.remove('active');
       idx = (next + slides.length) % slides.length;
       slides[idx].classList.add('active');
       copies[idx].classList.add('active');
+      if (dots[idx]) dots[idx].classList.add('active');
       if (counter) counter.textContent = idx + 1;
+      if (counterMobile) counterMobile.textContent = idx + 1;
     }
 
     function restart() { clearInterval(timer); timer = setInterval(() => goTo(idx + 1), DURATION); }
@@ -2452,6 +2891,7 @@
       goTo(idx + parseInt(arrow.dataset.dir, 10));
       restart();
     }));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); restart(); }));
     restart();
   })();
 
@@ -2474,6 +2914,114 @@
       tab.classList.add('active');
     });
   });
+
+  // ============================================================
+  // TENDANCE DU TRAFIC — statut calculé selon le jour/l'heure du
+  // visiteur (heuristique simple, pas de flux temps réel connecté)
+  // ============================================================
+  (function initTrafficPulse() {
+    const section = document.getElementById('trafic');
+    if (!section) return;
+    const timeEl = document.getElementById('tp-time');
+
+    function setStatus(id, lvl, lbl) {
+      const row = document.getElementById(id);
+      if (!row) return;
+      row.querySelector('.tp-dot').className = 'tp-dot tp-dot-' + lvl;
+      row.querySelector('.tp-label').textContent = lbl;
+    }
+
+    function computeStatus() {
+      const d = new Date();
+      const day = d.getDay(); // 0 = dimanche, 6 = samedi
+      const hour = d.getHours();
+      const isWeekday = day >= 1 && day <= 5;
+      const isRush = isWeekday && ((hour >= 7 && hour < 10) || (hour >= 17 && hour < 20));
+      const isBusyDaytime = isWeekday && hour >= 10 && hour < 17;
+      const isWeekendBusy = !isWeekday && hour >= 14 && hour < 20;
+
+      let level, label;
+      if (isRush) { level = 'high'; label = 'Très saturé'; }
+      else if (isBusyDaytime || isWeekendBusy) { level = 'mid'; label = 'Dense'; }
+      else { level = 'low'; label = 'Fluide'; }
+
+      const periphLevel = isRush ? 'high' : (level === 'low' ? 'mid' : level);
+      const periphLabel = isRush ? 'Très saturé' : (level === 'low' ? 'Dense' : label);
+      const quaisLevel = level === 'high' ? 'mid' : level;
+      const quaisLabel = level === 'high' ? 'Dense' : label;
+
+      setStatus('tp-periph-int', periphLevel, periphLabel);
+      setStatus('tp-periph-ext', periphLevel, periphLabel);
+      setStatus('tp-boulevards', level, label);
+      setStatus('tp-quais', quaisLevel, quaisLabel);
+    }
+
+    function tickClock() {
+      if (timeEl) timeEl.textContent = new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+
+    computeStatus();
+    tickClock();
+    setInterval(tickClock, 1000);
+    setInterval(computeStatus, 60000);
+
+    // --- Vue mobile : sélecteur de créneau ---------------------------
+    const PERIODS = {
+      matin: { label:'Pointe du matin', level:'high', axisLabel:'Très saturé', carTime:'55–70 min', motoTime:'40 min', carPct:100, motoPct:57, savings:"Jusqu'à 30 min gagnées en Taxi-Moto", adviceTitle:'Pointe de trafic, anticipez', adviceText:"Le matin, le périphérique et les axes vers les aéroports sont très chargés. Le Taxi-Moto reste la solution la plus fiable pour ne pas rater un vol ou un train." },
+      journee: { label:'Journée', level:'mid', axisLabel:'Dense', carTime:'45–60 min', motoTime:'35 min', carPct:100, motoPct:58, savings:"Jusqu'à 25 min gagnées en Taxi-Moto", adviceTitle:'Trafic dense, mais prévisible', adviceText:"En journée, le périphérique reste chargé. Idéal pour un rendez-vous pro ou une correspondance en gare : prise en charge rapide, prix fixe." },
+      soir: { label:'Pointe du soir', level:'high', axisLabel:'Très saturé', carTime:'55–70 min', motoTime:'40 min', carPct:100, motoPct:57, savings:"Jusqu'à 30 min gagnées en Taxi-Moto", adviceTitle:'Pointe de trafic, anticipez', adviceText:"En fin de journée, la sortie de Paris sature rapidement. Partez tranquille : le Taxi-Moto n'est pas affecté par les files." },
+      nuit: { label:'Nuit & week-end', level:'low', axisLabel:'Fluide', carTime:'30–35 min', motoTime:'25 min', carPct:85, motoPct:60, savings:"Jusqu'à 10 min gagnées en Taxi-Moto", adviceTitle:'Trafic fluide, profitez-en', adviceText:"La nuit et le week-end, la circulation est dégagée. Nos chauffeurs restent disponibles 24h/24 pour vos trajets urgents." },
+    };
+    const AXES = ['periph-int', 'periph-ext', 'a1', 'a6', 'a86', 'a13'];
+
+    function setAxisStatus(axis, lvl, lbl) {
+      const row = document.querySelector('[data-axis="' + axis + '"]');
+      if (!row) return;
+      const carCell = row.children[1];
+      carCell.querySelector('.tp-dot').className = 'tp-dot tp-dot-' + lvl;
+      carCell.querySelector('.tp-label').textContent = lbl;
+    }
+
+    function currentPeriodKey() {
+      const d = new Date();
+      const day = d.getDay();
+      const hour = d.getHours();
+      const isWeekday = day >= 1 && day <= 5;
+      if (!isWeekday) return 'nuit';
+      if (hour >= 7 && hour < 10) return 'matin';
+      if (hour >= 17 && hour < 20) return 'soir';
+      if (hour >= 10 && hour < 17) return 'journee';
+      return 'nuit';
+    }
+
+    function applyPeriod(key) {
+      const p = PERIODS[key];
+      if (!p) return;
+      const axesPeriodEl = document.getElementById('tp-axes-period');
+      if (axesPeriodEl) axesPeriodEl.textContent = p.label;
+      AXES.forEach(axis => setAxisStatus(axis, p.level, p.axisLabel));
+      const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+      set('tp-car-time', p.carTime);
+      set('tp-moto-time', p.motoTime);
+      const carBar = document.getElementById('tp-car-bar'); if (carBar) carBar.style.width = p.carPct + '%';
+      const motoBar = document.getElementById('tp-moto-bar'); if (motoBar) motoBar.style.width = p.motoPct + '%';
+      const savingsEl = document.getElementById('tp-savings');
+      if (savingsEl) { savingsEl.innerHTML = '<i data-lucide="zap"></i> ' + p.savings; if (window.lucide) lucide.createIcons(); }
+      set('tp-advice-title', p.adviceTitle);
+      set('tp-advice-text', p.adviceText);
+      document.querySelectorAll('.tp-period').forEach(btn => btn.classList.toggle('active', btn.dataset.period === key));
+    }
+
+    const periodButtons = section.querySelectorAll('.tp-period');
+    if (periodButtons.length) {
+      const nowKey = currentPeriodKey();
+      periodButtons.forEach(btn => {
+        btn.classList.toggle('now', btn.dataset.period === nowKey);
+        btn.addEventListener('click', () => applyPeriod(btn.dataset.period));
+      });
+      applyPeriod(nowKey);
+    }
+  })();
 
   // ============================================================
   // DATE/TIME DEFAULTS
@@ -2618,6 +3166,359 @@
         setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
       }
     }
+  </script>
+
+
+  <script>
+  /* ============================================================
+     TRADUCTION FR / EN — landing page uniquement, purement
+     cosmétique (ne touche ni au calculateur, ni aux statuts trafic
+     dynamiques, ni aux autres pages du site)
+  ============================================================ */
+  (function () {
+    var LANG_KEY = 'ptm_lang';
+
+    // [sélecteur, HTML en anglais] — appliqué via innerHTML, l'original
+    // français est mis en cache au premier passage pour pouvoir revenir en arrière
+    var T = [
+      // --- Barre utilitaire ---
+      ['.utility-bar-left > span:nth-child(1)', '<span class="utility-bar-dot"></span>Open 24/7'],
+      ['.utility-bar-right a[href="#entreprises"]', 'Business portal'],
+
+      // --- Navbar ---
+      ['.navbar-dropdown > a', 'Services <i data-lucide="chevron-down" class="chev"></i>'],
+      ['.navbar-submenu li:nth-child(1) a', 'Our services'],
+      ['.navbar-submenu li:nth-child(2) a', 'Pricing'],
+      ['.navbar-submenu li:nth-child(3) a', 'Price calculator'],
+      ['.navbar-submenu li:nth-child(4) a', 'Areas covered'],
+      ['.navbar-nav > li:nth-child(2) a', 'Blog'],
+      ['.navbar-cta', '<i data-lucide="phone"></i> Book now'],
+
+      // --- Hero ---
+      ['.hero-badge', '<span class="hero-badge-dot"></span><i data-lucide="bike"></i> Paris · 24/7'],
+      ['.hero-kicker', "Because a delay can cost you.."],
+      ['.hero-slide-copy[data-slide="0"] h1', 'Don\'t let<br>traffic <span>slow you down.</span>'],
+      ['.hero-slide-copy[data-slide="0"] .hero-lede', 'Moto-taxi in Paris and Île-de-France, 24/7.'],
+      ['.hero-slide-copy[data-slide="1"] h1', 'Your flight won\'t wait.<br><span>We\'ll be there.</span>'],
+      ['.hero-slide-copy[data-slide="1"] .hero-lede', 'Orly, CDG, Beauvais. Flight tracking and cabin bag included.'],
+      ['.hero-slide-copy[data-slide="2"] h1', 'Being a Parisian means<br>being <span>on time.</span>'],
+      ['.hero-slide-copy[data-slide="2"] .hero-lede', 'Train stations, La Défense, business meetings. VMDTR-certified driver.'],
+      ['.hero-actions .btn', 'Book a ride →'],
+      ['.hero-stats .hero-stat-extra .stat-label', 'Certified driver'],
+      ['.hero-scroll', 'Scroll'],
+      ['.hero-mobile-badge', '<span class="hmb-star">4.9★</span> · VMDTR certified'],
+
+      // --- Services ---
+      ['#services .sec-label', 'Our services'],
+      ['#services h2', 'Wherever you need to be.'],
+
+      ['#sc-1 .svc-name', 'Airport<br>Transfers'],
+      ['#sb-1 h4', 'Airport Transfers'],
+      ['#sb-1 p', 'CDG, Orly, Beauvais. Real-time flight tracking, waiting time included in case of delay.'],
+      ['#sb-1 .svc-feats li:nth-child(3)', 'Automatic flight tracking'],
+      ['#sb-1 .svc-feats li:nth-child(4)', 'Cabin baggage included'],
+
+      ['#sc-2 .svc-name', 'Train Station<br>Transfers'],
+      ['#sb-2 h4', 'Train Station Transfers'],
+      ['#sb-2 p', 'Gare du Nord, Lyon, Montparnasse, Saint-Lazare, Est… Guaranteed punctuality for your connections.'],
+      ['#sb-2 .svc-feats li:nth-child(1)', 'All Paris train stations'],
+      ['#sb-2 .svc-feats li:nth-child(2)', 'TGV / Eurostar connections'],
+      ['#sb-2 .svc-feats li:nth-child(3)', 'SMS confirmation'],
+      ['#sb-2 .svc-feats li:nth-child(4)', 'Identified driver'],
+
+      ['#sc-3 .svc-name', 'Business<br>Trips'],
+      ['#sb-3 h4', 'Business Trips'],
+      ['#sb-3 p', 'Meetings, conferences, urgent trips. Invoices available, corporate accounts accepted.'],
+      ['#sb-3 .svc-feats li:nth-child(1)', 'Corporate invoicing'],
+      ['#sb-3 .svc-feats li:nth-child(2)', 'Advance booking'],
+      ['#sb-3 .svc-feats li:nth-child(3)', 'Certified punctuality'],
+      ['#sb-3 .svc-feats li:nth-child(4)', 'Full discretion'],
+
+      ['#sc-4 .svc-badge', 'On demand'],
+      ['#sc-4 .svc-name', 'Hourly<br>Hire'],
+      ['#sb-4 h4', 'Hourly Hire'],
+      ['#sb-4 p', 'Need a driver at your disposal for several hours? Meetings, visits, busy days. We stay with you.'],
+      ['#sb-4 .svc-feats li:nth-child(1)', 'Half-day or full-day'],
+      ['#sb-4 .svc-feats li:nth-child(2)', 'Multiple stops included'],
+      ['#sb-4 .svc-feats li:nth-child(3)', 'Negotiated hourly rate'],
+      ['#sb-4 .svc-feats li:nth-child(4)', 'Corporate invoicing'],
+
+      ['#sc-5 .svc-name', 'Special<br>Events'],
+      ['#sb-5 h4', 'Special Events'],
+      ['#sb-5 p', 'Weddings, private parties, VIP outings, film shoots… Your dedicated moto-taxi for all your special events in Paris.'],
+      ['#sb-5 .svc-feats li:nth-child(1)', 'Weddings &amp; ceremonies'],
+      ['#sb-5 .svc-feats li:nth-child(2)', 'Private parties &amp; events'],
+      ['#sb-5 .svc-feats li:nth-child(3)', 'Photo shoots / filming'],
+      ['#sb-5 .svc-feats li:nth-child(4)', 'Arrival or departure by bike'],
+
+      ['#sc-6 .svc-badge', '7/7'],
+      ['#sc-6 .svc-name', 'Night<br>&amp; Weekend Service'],
+      ['#sb-6 h4', 'Night &amp; Weekend Service'],
+      ['#sb-6 p', 'Available 24/7. Nights out, events, late returns: we\'re here when others aren\'t.'],
+      ['#sb-6 .svc-feats li:nth-child(1)', 'Available 8pm–7am'],
+      ['#sb-6 .svc-feats li:nth-child(2)', 'Saturdays and Sundays'],
+      ['#sb-6 .svc-feats li:nth-child(3)', 'Public holidays'],
+      ['#sb-6 .svc-feats li:nth-child(4)', 'Online booking'],
+
+      // --- Calculateur ---
+      ['.calculator-info .sec-label', 'Price calculator'],
+      ['.calculator-info .pricing-row:nth-child(1) .label', 'Base fare'],
+      ['.calculator-info .pricing-row:nth-child(2) .label', 'Rate per km'],
+      ['.calculator-info .pricing-row:nth-child(3) .label', 'Night/weekend/holiday surcharge'],
+      ['.calculator-info .pricing-row.highlight .label', 'Minimum fare'],
+      ['.calculator-info > p', 'Surcharge applies from 8pm to 7am, and all day on Saturdays, Sundays and public holidays. Fixed packages available to Paris, Orly, CDG, La Défense and Massy.'],
+
+      ['.calc-tab[data-tab="0"]', 'Now'],
+      ['.calc-tab[data-tab="1"]', 'Book ahead'],
+      ['.calc-tab[data-tab="2"]', 'Airport'],
+      ['.calculator-form h3', 'Estimate your ride'],
+      ['.calculator-form .subtitle', 'Enter your addresses for an instant price'],
+      ['label[for="origin"]', '<i data-lucide="map-pin"></i> Pickup address'],
+      ['label[for="destination"]', '<i data-lucide="flag"></i> Destination address'],
+      ['.calc-submit-btn', '<i data-lucide="search"></i> Get price'],
+      ['label[for="trip-time"]', '<i data-lucide="clock"></i> Time'],
+      ['.route-chips-label', 'Frequent routes'],
+      ['.estimate-grid .estimate-item:nth-child(2) .est-label', 'Estimated duration'],
+      ['.estimate-grid .estimate-item:nth-child(3) .est-label', 'Rate applied'],
+      ['.price-label', 'Your price'],
+      ['.estimate-disclaimer', 'Fixed price, confirmed before departure. No traffic-related surcharge.'],
+      ['.estimate-result > div > a.btn-primary', '<i data-lucide="phone"></i> Call'],
+      ['#whatsapp-cta', '<i data-lucide="message-circle"></i> Book on WhatsApp'],
+
+      ['.calc-trust-row .ctr-item:nth-child(1)', '<span class="ctr-icon"><i data-lucide="shield-check"></i></span> VMDTR certified driver'],
+      ['.calc-trust-row .ctr-item:nth-child(2)', '<span class="ctr-icon"><i data-lucide="ban"></i></span> Fixed price announced upfront'],
+      ['.calc-trust-row .ctr-item:nth-child(3)', '<span class="ctr-icon"><i data-lucide="hard-hat"></i></span> Helmet, gloves &amp; jacket provided'],
+      ['.calc-trust-row .ctr-item:nth-child(4)', '<span class="ctr-icon"><i data-lucide="shield"></i></span> Passenger insurance included'],
+      ['.calc-trust-row .ctr-item:nth-child(5)', '<span class="ctr-icon"><i data-lucide="file-text"></i></span> Invoice on request'],
+
+      ['.mtc-trust-item:last-child strong', 'Certified'],
+      ['.mtc-trust-item:last-child span', 'VTC / VMDTR certified driver'],
+      ['#whatsapp-cta-top', '<i data-lucide="message-circle"></i> Book on WhatsApp'],
+
+      // --- Tendance du trafic (contenu statique uniquement) ---
+      ['#trafic .sec-label', 'Traffic trends'],
+      ['#trafic h2', 'While Paris crawls along.'],
+      ['.tp-grid .tp-card:nth-child(1) .tp-card-head', '<i data-lucide="car"></i> Main roads'],
+      ['#tp-periph-int .tp-name', 'Inner ring road'],
+      ['#tp-periph-ext .tp-name', 'Outer ring road'],
+      ['#tp-boulevards .tp-name', 'Main boulevards'],
+      ['#tp-quais .tp-name', 'Seine riverbanks'],
+      ['.tp-card-highlight .tp-card-head', '<i data-lucide="bike"></i> Paris Moto-Taxi'],
+      ['.tp-card-highlight .tp-label', 'Smooth'],
+      ['.tp-card-highlight .tp-highlight-body p', 'We weave between the lines. Traffic doesn\'t affect our arrival time.'],
+
+      ['.tp-period[data-period="matin"] strong', 'Morning rush'],
+      ['.tp-period[data-period="matin"] span', 'Mon–Fri · 7–10am'],
+      ['.tp-period[data-period="journee"] strong', 'Daytime'],
+      ['.tp-period[data-period="journee"] span', 'Mon–Fri · 10am–4pm'],
+      ['.tp-period[data-period="soir"] strong', 'Evening rush'],
+      ['.tp-period[data-period="soir"] span', 'Mon–Fri · 5–8pm'],
+      ['.tp-period[data-period="nuit"] strong', 'Night &amp; weekend'],
+      ['.tp-period[data-period="nuit"] span', '8pm–7am &amp; weekends'],
+
+      ['.tp-mobile > .tp-card:nth-child(2) .tp-card-head', '<i data-lucide="signpost"></i> Main roads <span class="tp-axes-period" id="tp-axes-period">Journée</span>'],
+      ['.tp-axes-table thead th:nth-child(1)', 'Road'],
+      ['.tp-axes-table thead th:nth-child(2)', 'Car'],
+      ['tr[data-axis="periph-int"] td:nth-child(1)', 'Inner ring road<br><small>Paris loop</small>'],
+      ['tr[data-axis="periph-ext"] td:nth-child(1)', 'Outer ring road<br><small>Paris loop</small>'],
+      ['tr[data-axis="a86"] td:nth-child(1)', 'A86<br><small>Inner suburbs</small>'],
+      ['#tp-axes-body tr td:nth-child(3) .tp-label', 'Smooth'],
+
+      ['.tp-mobile > .tp-card:nth-child(3) .tp-card-head', '<i data-lucide="plane"></i> Central Paris → CDG'],
+      ['.tp-compare > .tp-compare-row:nth-child(1) .tp-compare-label', 'By car / VTC'],
+      ['.tp-compare > .tp-compare-row:nth-child(3) .tp-compare-label', 'By Taxi-Moto'],
+      ['.tp-mobile .tp-advice .tp-card-head', '<span class="tp-advice-icon"><i data-lucide="lightbulb"></i></span> Our advice'],
+      ['.tp-mobile .tp-advice > a.btn', 'Get my estimate <i data-lucide="arrow-right"></i>'],
+      ['.tp-disclaimer-mobile', 'Typical traffic trends by time slot, excluding incidents and roadworks. Durations are indicative.'],
+
+      // --- Comment ça marche ---
+      ['.how-mobile-card > .sec-label:not(.how-mobile-sublabel)', 'Transparency'],
+      ['.how-mobile-card h3', 'How your price is calculated.'],
+      ['.how-stats-grid .how-stat-tile:nth-child(1) .hst-label', 'Base fare'],
+      ['.how-stats-grid .how-stat-tile:nth-child(2) .hst-label', 'Per km'],
+      ['.how-stats-grid .how-stat-tile:nth-child(3) .hst-label', 'Night/weekend/holiday'],
+      ['.how-mobile-desc', 'Surcharge from 8pm to 7am and all day on Saturdays, Sundays and public holidays. Fixed packages to Paris, Orly, CDG, La Défense and Massy.'],
+      ['.how-mobile-sublabel', 'How it works'],
+      ['.how-grid .how-step:nth-child(1) h4', 'Enter your route'],
+      ['.how-grid .how-step:nth-child(1) p', 'Enter your addresses to get an instant price.'],
+      ['.how-grid .how-step:nth-child(2) h4', 'Get an instant price'],
+      ['.how-grid .how-step:nth-child(2) p', 'Fixed price, confirmed before departure. No traffic-related surcharge.'],
+      ['.how-grid .how-step:nth-child(3) h4', 'Book via WhatsApp'],
+      ['.how-grid .how-step:nth-child(3) p', 'Confirm directly via WhatsApp. Fast response guaranteed.'],
+      ['.how-mobile-cta', 'Get my estimate <i data-lucide="arrow-right"></i>'],
+      ['.section.how-it-works .section-header h2', 'How it works.'],
+
+      // --- Tarifs ---
+      ['#tarifs .sec-label', 'Pricing'],
+      ['#tarifs h2', 'Price list,<br>announced before departure.'],
+      ['#tarifs > .container > p:first-of-type', 'Package includes: helmet, gloves, jacket.'],
+      ['.tarif-table thead th:nth-child(1)', 'From'],
+      ['.tarif-table thead th:nth-child(2)', 'To'],
+      ['.tarif-table thead th:nth-child(3)', 'Price'],
+      ['.tarif-table tbody tr:nth-child(2) td:nth-child(2)', 'Orly Airport'],
+      ['.tarif-table tbody tr:nth-child(5) td:nth-child(2)', 'Orly Airport'],
+      ['.tarif-table tbody tr:nth-child(6) td:nth-child(1)', 'CDG Airport'],
+      ['.tarif-table tbody tr:nth-child(6) td:nth-child(2)', 'Orly Airport'],
+
+      ['.tarif-cards-grid > a:nth-child(1) .trc-meta', 'Inner Paris · incl. tax'],
+      ['.tarif-cards-grid > a:nth-child(2) .trc-meta', '≈ 20 min · incl. tax'],
+      ['.tarif-cards-grid > a:nth-child(3) .trc-badge', 'Most popular'],
+      ['.tarif-cards-grid > a:nth-child(3) .trc-meta', '≈ 35 min · incl. tax'],
+      ['.tarif-cards-grid > a:nth-child(4) .trc-meta', 'incl. tax'],
+      ['.tarif-cards-grid > a:nth-child(5) .trc-meta', 'incl. tax'],
+      ['.tarif-cards-grid > a:nth-child(6) .trc-meta', '≈ 40 min · incl. tax'],
+      ['.trc-cta', 'Book now'],
+      ['.tarif-note', '* Prices incl. tax · night (8pm–7am) and weekend surcharge: +33% · <a href="#estimer" style="color:var(--cta);font-weight:600;">Estimate your ride →</a>'],
+
+      // --- Avis / Entreprises ---
+      ['#avis .sec-label', 'Customer reviews'],
+      ['.avis-widget-card h4', 'Google Reviews'],
+      ['.avis-widget-placeholder', '[Google reviews widget, 3 latest verified reviews]'],
+      ['.avis-widget-link', 'See all reviews <i data-lucide="arrow-right"></i>'],
+      ['#entreprises .sec-label', 'Businesses'],
+      ['#entreprises h3', 'A business account for your urgent trips.'],
+      ['.entreprise-feats li:nth-child(1)', '<i data-lucide="check"></i> Monthly invoicing'],
+      ['.entreprise-feats li:nth-child(2)', '<i data-lucide="check"></i> Volume-based rates'],
+      ['.entreprise-feats li:nth-child(3)', '<i data-lucide="check"></i> Detailed reporting'],
+      ['.entreprise-cta', 'Request a business quote'],
+
+      // --- FAQ ---
+      ['#faq .faq-side h2', 'Frequently asked questions'],
+      ['#faq .faq-side .section-header > p', "Don't see your question? We answer 24/7."],
+      ['.faq-contact-item:nth-child(1) small', 'Call'],
+      ['.faq-contact-item:nth-child(2) strong', 'Send a message'],
+
+      ['.faq-list .faq-item:nth-child(1) .faq-question', 'How do I book a moto-taxi in Paris?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(1) .faq-answer p', 'Call 06 11 91 65 60 or send a WhatsApp message 24/7. You can also estimate your fare with our calculator and book directly from the estimate. SMS confirmation guaranteed.'],
+      ['.faq-list .faq-item:nth-child(2) .faq-question', 'What\'s the difference between a moto-taxi and a VTC?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(2) .faq-answer p', 'A moto-taxi (VMDTR) is a motorised two-wheeler with a certified professional driver. It can be up to 3x faster than a VTC at rush hour, since it rides between lanes of traffic. Ideal for urgent trips in Paris.'],
+      ['.faq-list .faq-item:nth-child(3) .faq-question', 'Is the moto-taxi safe?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(3) .faq-answer p', 'Yes. Our driver is VMDTR-certified and holds an official professional licence. Approved helmet provided, passenger liability insurance included. Your safety is our top priority.'],
+      ['.faq-list .faq-item:nth-child(4) .faq-question', 'Can I bring luggage?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(4) .faq-answer p', "Yes, we accept one cabin bag (backpack or cabin trolley up to 10 kg) in the top case. For larger luggage, let us know when booking and we'll find the best solution."],
+      ['.faq-list .faq-item:nth-child(5) .faq-question', 'How is the price of a ride calculated?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(5) .faq-answer p', 'The fare includes a base charge (€25) + €2.50/km, with a €45 minimum per ride. A +33% surcharge applies to the total from 8pm to 7am, and all day on Saturdays, Sundays and public holidays. Fixed packages replace this calculation for inner Paris, Orly, CDG, La Défense and Massy. Use our calculator for a precise estimate with the interactive map.'],
+      ['.faq-list .faq-item:nth-child(6) .faq-question', 'Do you offer hourly hire for events?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(6) .faq-answer p', 'Absolutely! Weddings, VIP evenings, film shoots, corporate days… We offer half-day or full-day hourly hire with a negotiated rate. Contact us for a custom quote.'],
+      ['.faq-list .faq-item:nth-child(7) .faq-question', 'Do you offer invoicing for businesses?<span class="faq-icon"><i data-lucide="chevron-down"></i></span>'],
+      ['.faq-list .faq-item:nth-child(7) .faq-answer p', 'Yes. Business accounts with monthly invoicing, volume-based rates, and detailed reporting. Contact us to set up a custom quote.'],
+
+      // --- Contact ---
+      ['#contact h2', 'Book in 30 seconds.'],
+      ['.contact-item:nth-child(1) h4', 'Phone'],
+      ['.contact-item:nth-child(1) p:last-child', 'Available 24/7'],
+      ['.contact-item:nth-child(2) a', 'Send a message'],
+      ['.contact-item:nth-child(2) p:last-child', 'Fast response guaranteed'],
+      ['.contact-item:nth-child(3) p:last-child', 'Response within 2h during the day'],
+      ['.contact-item:nth-child(4) h4', 'Service area'],
+      ['.contact-item:nth-child(4) p:last-child', 'CDG, Orly, outer suburbs'],
+
+      ['.contact-form-wrapper h3', 'Send a message'],
+      ['.contact-form-wrapper > p', 'For business quotes, events or special requests.'],
+      ['label[for="contact-name"]', 'First name'],
+      ['label[for="contact-phone"]', 'Phone'],
+      ['label[for="contact-subject"]', 'Subject'],
+      ['#contact-subject option[value=""]', 'Choose a subject...'],
+      ['#contact-subject option[value="reservation"]', 'Booking'],
+      ['#contact-subject option[value="evenement"]', 'Event / Hourly hire'],
+      ['#contact-subject option[value="devis"]', 'Business quote'],
+      ['#contact-subject option[value="info"]', 'Information'],
+      ['#contact-subject option[value="avis"]', 'Review / feedback'],
+      ['.contact-form button[type="submit"]', 'Send message →'],
+      ['#form-success', '<i data-lucide="check"></i> Message sent! We\'ll get back to you shortly.'],
+
+      // --- Footer ---
+      ['.footer-brand > p', 'Professional moto-taxi service in Paris and Île-de-France. Available 24/7, VMDTR certified, passenger insurance included.'],
+      ['.footer-links a[href="#services"]', 'Our services'],
+      ['.footer-links a[href="#calculateur"]', 'Price calculator'],
+      ['.footer-links a[href="tarif-moto-taxi-paris/"]', 'Pricing'],
+      ['.footer-links a[href="#zones"]', 'Areas covered'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(1) a', 'Airport transfers'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(2) a', 'Train station transfers'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(3) a', 'Business trips'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(4) a', 'Hourly hire'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(5) a', 'Events'],
+      ['.footer-grid > .footer-col:nth-child(3) .footer-links li:nth-child(6) a', 'Night service'],
+      ['.footer-contact-label', 'Contact us'],
+      ['.footer-contact-note', 'Available 24/7 for your booking.'],
+      ['.footer-bottom p', '© 2026 Paris TaxiMoto. All rights reserved.'],
+      ['.footer-bottom-links a[href="/mentions-legales.html"]', 'Legal notice'],
+      ['.footer-bottom-links a[href="/politique-confidentialite.html"]', 'Privacy policy'],
+      ['.footer-bottom-links a[href="/cgv.html"]', 'Terms &amp; conditions'],
+
+      // --- Barre flottante mobile + boutons flottants ---
+      ['.ftb-item:nth-child(1) .ftb-label', 'Home'],
+      ['.ftb-item:nth-child(2) .ftb-label', 'Book'],
+      ['.ftb-item:nth-child(3) .ftb-label', 'Blog'],
+      ['.floating-wa-label', 'Book']
+    ];
+
+    // [sélecteur, placeholder en anglais]
+    var PH = [
+      ['#origin', 'E.g.: 1 Rue de Rivoli, Paris'],
+      ['#destination', 'E.g.: CDG Airport, Terminal 2'],
+      ['#contact-name', 'John'],
+      ['#contact-email', 'john@example.com'],
+      ['#contact-message', 'Describe your request...']
+    ];
+
+    function applyLang(lang) {
+      document.documentElement.setAttribute('lang', lang);
+
+      // Certains éléments (#tp-axes-period, #tp-time) sont réécrits en direct
+      // par le script de tendance du trafic : on préserve leur valeur en
+      // cours plutôt que de la figer dans la traduction statique de leur parent.
+      var liveIds = ['tp-axes-period', 'tp-time'];
+      var liveValues = liveIds.map(function (id) {
+        var el = document.getElementById(id);
+        return el ? el.textContent : null;
+      });
+
+      T.forEach(function (pair) {
+        var sel = pair[0], en = pair[1];
+        document.querySelectorAll(sel).forEach(function (el) {
+          if (el.dataset.i18nFr === undefined) el.dataset.i18nFr = el.innerHTML;
+          el.innerHTML = lang === 'en' ? en : el.dataset.i18nFr;
+        });
+      });
+
+      liveIds.forEach(function (id, i) {
+        if (liveValues[i] === null) return;
+        var el = document.getElementById(id);
+        if (el) el.textContent = liveValues[i];
+      });
+
+      PH.forEach(function (pair) {
+        var sel = pair[0], en = pair[1];
+        document.querySelectorAll(sel).forEach(function (el) {
+          if (el.dataset.i18nFrPh === undefined) el.dataset.i18nFrPh = el.getAttribute('placeholder') || '';
+          el.setAttribute('placeholder', lang === 'en' ? en : el.dataset.i18nFrPh);
+        });
+      });
+
+      if (window.lucide) window.lucide.createIcons();
+
+      document.querySelectorAll('.utility-bar-lang').forEach(function (btn) {
+        btn.innerHTML = lang === 'en' ? 'FR / <strong>EN</strong>' : '<strong>FR</strong> / EN';
+        btn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+      });
+    }
+
+    function currentLang() {
+      try { return localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'fr'; }
+      catch (e) { return 'fr'; }
+    }
+
+    applyLang(currentLang());
+
+    document.querySelectorAll('.utility-bar-lang').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = currentLang() === 'en' ? 'fr' : 'en';
+        try { localStorage.setItem(LANG_KEY, next); } catch (e) {}
+        applyLang(next);
+      });
+    });
+  })();
   </script>
 
 </body>
