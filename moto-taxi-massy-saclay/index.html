@@ -251,6 +251,14 @@
       h1 { font-size:1.7rem; }
       h2 { font-size:1.3rem; }
     }
+    .navbar-brand-kicker{color:var(--accent);}
+    .navbar-brand-name{color:var(--cta);}
+    /* Logo deux lignes repris de la landing page desktop ; mobile inchangé */
+    @media(min-width:769px){
+      .navbar-brand-text{display:flex;flex-direction:column;line-height:1.05;gap:1px;}
+      .navbar-brand-kicker{font-size:0.68rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--cta);}
+      .navbar-brand-name{font-size:1.3rem;font-weight:800;color:var(--primary);}
+    }
   </style>
 </head>
 <body>
@@ -260,7 +268,7 @@
     <div class="container">
       <a href="../index.html" class="navbar-brand">
         <div class="logo-icon"><img src="../logov3.png" alt="Paris TaxiMoto" style="width:32px;height:32px;object-fit:contain;border-radius:50%;"></div>
-        <span style="color:var(--accent)">Paris</span><span style="color:var(--cta)">TaxiMoto</span>
+        <span class="navbar-brand-text"><span class="navbar-brand-kicker">Paris</span><span class="navbar-brand-name">TaxiMoto</span></span>
       </a>
       <ul class="navbar-nav">
         <li><a href="../index.html#services">Services</a></li>

@@ -192,6 +192,9 @@ a { text-decoration: none; color: inherit; }
   font-weight: 800;
 }
 
+.navbar-brand-kicker { color: var(--accent); }
+.navbar-brand-name { color: var(--cta); }
+
 .navbar-brand .logo-icon {
   width: 40px;
   height: 40px;
@@ -1636,3 +1639,11 @@ svg.lucide {
 
 /* Float WA (resa page) */
 .float-wa svg.lucide { width: 24px; height: 24px; }
+
+/* Logo deux lignes (PARIS en rouge / TaxiMoto en marine), repris de la
+   landing page desktop — le mobile garde le logo d'origine, inchangé */
+@media (min-width: 769px) {
+  .navbar-brand-text { display: flex; flex-direction: column; line-height: 1.05; gap: 1px; }
+  .navbar-brand-kicker { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cta); }
+  .navbar-brand-name { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+}
